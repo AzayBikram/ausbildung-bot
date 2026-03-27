@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Foreign Diploma Recognition in Germany – Ausbildung Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0a1628;--blue:#1a56ff;--gold:#f5a623;--green:#00c48c;--red:#ff4757;--text:#0a1628;--text2:#4a5568;--text3:#718096;--bg:#f8faff;--surface:#fff;--border:#e2e8f0;--font:'Outfit',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  padding-top:68px;background:var(--bg);color:var(--text);font-family:var(--font);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,250,255,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 40px;height:68px;display:flex;align-items:center;gap:16px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:800;font-size:17px;}
+.logo-mark{width:34px;height:34px;background:var(--navy);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.nav-back{margin-left:auto;background:var(--border);border:none;border-radius:8px;color:var(--text2);font-family:var(--font);font-size:13px;padding:7px 14px;cursor:pointer;text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:calc(var(--nav-h, 68px) + 32px) 24px 80px;}
+.page-label{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.page-title{font-size:clamp(32px,5vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:12px;color:var(--navy);}
+.page-sub{font-size:17px;color:var(--text2);margin-bottom:40px;}
+.check-card{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:32px;margin-bottom:24px;}
+.check-card h2{font-size:18px;font-weight:700;margin-bottom:20px;}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.cg-group{display:flex;flex-direction:column;gap:6px;}
+.cg-label{font-size:13px;font-weight:600;color:var(--text2);}
+.cg-input{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font);font-size:14px;padding:10px 14px;outline:none;width:100%;}
+.cg-input:focus{border-color:var(--blue);}
+.check-btn{background:var(--navy);color:#fff;border:none;border-radius:12px;font-family:var(--font);font-size:15px;font-weight:700;padding:14px 32px;cursor:pointer;width:100%;transition:all 0.2s;}
+.check-btn:hover{background:#0f2040;}
+.result{display:none;background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:32px;margin-bottom:24px;}
+.result.show{display:block;}
+.result-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.result-icon{font-size:40px;}
+.result-title{font-size:22px;font-weight:800;color:var(--navy);}
+.result-sub{font-size:14px;color:var(--text3);}
+.steps-list{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+.step-item{display:flex;gap:14px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.step-num{width:28px;height:28px;background:var(--navy);border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.step-text h4{font-size:14px;font-weight:700;margin-bottom:3px;}
+.step-text p{font-size:13px;color:var(--text2);line-height:1.6;}
+.step-text a{color:var(--blue);text-decoration:none;}
+.info-box{background:rgba(26,86,255,0.05);border:1px solid rgba(26,86,255,0.15);border-radius:12px;padding:20px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:16px;}
+.status-good{background:rgba(0,196,140,0.08);border:1px solid rgba(0,196,140,0.2);border-radius:12px;padding:16px;font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:16px;}
+.status-warn{background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:12px;padding:16px;font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:16px;}
+</style>
+<!-- ── UNIVERSAL NAV ── -->
+<style>
+:root{--nav-h:68px;}
+.u-nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(248,250,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid #e2e8f0;height:var(--nav-h);display:flex;align-items:center;padding:0 32px;gap:8px;}
+.u-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0a1628;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;flex-shrink:0;}
+.u-logo-mark{width:36px;height:36px;background:#0a1628;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.u-links{display:flex;align-items:center;gap:2px;margin-left:24px;}
+.u-link{color:#4a5568;text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:8px;transition:all .15s;font-family:'Outfit',sans-serif;white-space:nowrap;}
+.u-link:hover{background:#e2e8f0;color:#0a1628;}
+.u-link.active{background:rgba(26,86,255,.08);color:#1a56ff;}
+.u-spacer{flex:1;}
+.u-lang{position:relative;}
+.u-lang-btn{background:none;border:1.5px solid #e2e8f0;border-radius:8px;color:#4a5568;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;padding:6px 12px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s;}
+.u-lang-btn:hover{border-color:#1a56ff;color:#1a56ff;}
+.u-lang-drop{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;padding:6px;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:none;z-index:10000;}
+.u-lang.open .u-lang-drop{display:block;}
+.u-lang-opt{display:block;width:100%;background:none;border:none;border-radius:7px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:8px 12px;cursor:pointer;text-align:left;transition:background .1s;}
+.u-lang-opt:hover{background:#f8faff;}
+.u-myapp{background:#0a1628;color:#fff;text-decoration:none;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;border-radius:10px;white-space:nowrap;transition:all .15s;margin-left:8px;}
+.u-myapp:hover{background:#0f2040;}
+.u-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:8px;flex-direction:column;gap:5px;}
+.u-hamburger span{display:block;width:22px;height:2px;background:#0a1628;border-radius:2px;transition:all .25s;}
+.u-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.u-hamburger.open span:nth-child(2){opacity:0;}
+.u-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.u-mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:rgba(248,250,255,.98);backdrop-filter:blur(20px);z-index:9998;overflow-y:auto;padding:20px 24px 40px;}
+.u-mobile-menu.open{display:block;}
+.u-mob-section{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#718096;margin:20px 0 8px;font-family:'Outfit',sans-serif;}
+.u-mob-link{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;text-decoration:none;color:#0a1628;font-family:'Outfit',sans-serif;font-size:15px;font-weight:500;transition:all .15s;margin-bottom:4px;}
+.u-mob-link:hover,.u-mob-link.active{background:rgba(26,86,255,.07);color:#1a56ff;}
+.u-mob-link .mob-icon{font-size:20px;flex-shrink:0;}
+.u-mob-myapp{display:block;background:#0a1628;color:#fff;text-decoration:none;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;padding:14px 20px;border-radius:14px;text-align:center;margin-top:16px;}
+.u-mob-langs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.u-mob-lang{background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#4a5568;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;padding:6px 14px;cursor:pointer;transition:all .15s;}
+.u-mob-lang:hover,.u-mob-lang.active-lang{background:#0a1628;border-color:#0a1628;color:#fff;}
+@media(max-width:960px){.u-links{display:none;}.u-hamburger{display:flex;}}
+@media(max-width:480px){.u-nav{padding:0 16px;}.u-lang{display:none;}}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEV3ZNRJ2P"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BEV3ZNRJ2P');
+</script>
+</head>
+<body>
+<nav class="u-nav" id="uNav">
+  <a href="/" class="u-logo"><div class="u-logo-mark">🎓</div><span>AusbildungInGermany</span></a>
+  <div class="u-links">
+    <a href="/jobs.html" class="u-link" data-i18n="nav_jobs">Job Finder</a>
+    <a href="/sectors.html" class="u-link" data-i18n="nav_sectors">Sectors</a>
+    <a href="/eligibility.html" class="u-link" data-i18n="nav_eligibility">Eligibility</a>
+    <a href="/timeline.html" class="u-link" data-i18n="nav_timeline">Timeline</a>
+    <a href="/embassy.html" class="u-link" data-i18n="nav_embassy">Embassy</a>
+    <a href="/generator.html" class="u-link" data-i18n="nav_generator">Documents</a>
+    <a href="/chat.html" class="u-link" data-i18n="nav_chat">AI Chat</a>
+  </div>
+  <div class="u-spacer"></div>
+  <div class="u-lang" id="uLang">
+    <button class="u-lang-btn" onclick="toggleLang(event)">🌐 <span id="uLangLabel">EN</span> ▾</button>
+    <div class="u-lang-drop" id="uLangDrop">
+      <button class="u-lang-opt" onclick="setLang('en')">🇬🇧 English</button>
+      <button class="u-lang-opt" onclick="setLang('de')">🇩🇪 Deutsch</button>
+      <button class="u-lang-opt" onclick="setLang('ar')">🇸🇦 العربية</button>
+      <button class="u-lang-opt" onclick="setLang('tr')">🇹🇷 Türkçe</button>
+      <button class="u-lang-opt" onclick="setLang('fr')">🇫🇷 Français</button>
+      <button class="u-lang-opt" onclick="setLang('es')">🇪🇸 Español</button>
+      <button class="u-lang-opt" onclick="setLang('hi')">🇮🇳 हिंदी</button>
+      <button class="u-lang-opt" onclick="setLang('ur')">🇵🇰 اردو</button>
+      <button class="u-lang-opt" onclick="setLang('sw')">🌍 Swahili</button>
+      <button class="u-lang-opt" onclick="setLang('bn')">🇧🇩 বাংলা</button>
+      <button class="u-lang-opt" onclick="setLang('tl')">🇵🇭 Filipino</button>
+    </div>
+  </div>
+  <a href="/myapplication.html" class="u-myapp" data-i18n="nav_myapp">🗂️ My Application</a>
+  <button class="u-hamburger" id="uHamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="u-mobile-menu" id="uMobileMenu">
+  <div class="u-mob-section" data-i18n="nav_tools">Tools</div>
+  <a href="/jobs.html" class="u-mob-link"><span class="mob-icon">🔍</span><span data-i18n="nav_jobs">Job Finder</span></a>
+  <a href="/generator.html" class="u-mob-link"><span class="mob-icon">📄</span><span data-i18n="nav_generator">Document Generator</span></a>
+  <a href="/embassy.html" class="u-mob-link"><span class="mob-icon">🗺️</span><span data-i18n="nav_embassy">Embassy Finder</span></a>
+  <a href="/checklist.html" class="u-mob-link"><span class="mob-icon">📋</span><span data-i18n="nav_checklist">Document Checklist</span></a>
+  <a href="/chat.html" class="u-mob-link"><span class="mob-icon">🤖</span><span data-i18n="nav_chat">AI Chatbot</span></a>
+  <div class="u-mob-section" data-i18n="nav_resources">Resources</div>
+  <a href="/eligibility.html" class="u-mob-link"><span class="mob-icon">🎯</span><span data-i18n="nav_eligibility">Eligibility Checker</span></a>
+  <a href="/sectors.html" class="u-mob-link"><span class="mob-icon">🏭</span><span data-i18n="nav_sectors">Sector Explorer</span></a>
+  <a href="/timeline.html" class="u-mob-link"><span class="mob-icon">📅</span><span data-i18n="nav_timeline">Timeline Planner</span></a>
+  <a href="/salary.html" class="u-mob-link"><span class="mob-icon">💰</span>Salary Calculator</a>
+  <a href="/sperrkonto.html" class="u-mob-link"><span class="mob-icon">🏦</span>Sperrkonto Calculator</a>
+  <a href="/recognition.html" class="u-mob-link"><span class="mob-icon">🎓</span>Qualification Recognition</a>
+  <a href="/phrases.html" class="u-mob-link"><span class="mob-icon">💬</span>German Phrases</a>
+  <a href="/templates.html" class="u-mob-link"><span class="mob-icon">📧</span>Email Templates</a>
+  <a href="/housing.html" class="u-mob-link"><span class="mob-icon">🏠</span>Housing Guide</a>
+  <div class="u-mob-section">Language / Sprache</div>
+  <div class="u-mob-langs">
+    <button class="u-mob-lang" onclick="setLang('en')">🇬🇧 EN</button>
+    <button class="u-mob-lang" onclick="setLang('de')">🇩🇪 DE</button>
+    <button class="u-mob-lang" onclick="setLang('ar')">🇸🇦 AR</button>
+    <button class="u-mob-lang" onclick="setLang('tr')">🇹🇷 TR</button>
+    <button class="u-mob-lang" onclick="setLang('fr')">🇫🇷 FR</button>
+    <button class="u-mob-lang" onclick="setLang('es')">🇪🇸 ES</button>
+  </div>
+  <a href="/myapplication.html" class="u-mob-myapp" data-i18n="nav_myapp">🗂️ My Application</a>
+</div>
+
+<main>
+  <div class="page-label">Qualification Recognition</div>
+  <div class="page-title">Is your diploma<br/>recognized in Germany?</div>
+  <div class="page-sub">Check if your foreign school or university diploma is recognized in Germany — and how to get it officially recognized if needed.</div>
+
+  <div class="check-card">
+    <h2>🎓 Check My Qualification</h2>
+    <div class="cg">
+      <div class="cg-group">
+        <label class="cg-label">Your Country</label>
+        <select class="cg-input" id="recCountry">
+          <option value="Nigeria">Nigeria</option><option value="India">India</option>
+          <option value="Pakistan">Pakistan</option><option value="Philippines">Philippines</option>
+          <option value="Nepal">Nepal</option><option value="Ghana">Ghana</option>
+          <option value="Kenya">Kenya</option><option value="Vietnam">Vietnam</option>
+          <option value="Morocco">Morocco</option><option value="Turkey">Turkey</option>
+          <option value="Egypt">Egypt</option><option value="Bangladesh">Bangladesh</option>
+          <option value="Ethiopia">Ethiopia</option><option value="Indonesia">Indonesia</option>
+          <option value="Other">Other country</option>
+        </select>
+      </div>
+      <div class="cg-group">
+        <label class="cg-label">Your Diploma Type</label>
+        <select class="cg-input" id="diplomaType">
+          <option value="highschool">High School Diploma (Class 10 or 12)</option>
+          <option value="vocational">Vocational/Technical Certificate</option>
+          <option value="bachelor">Bachelor's Degree</option>
+          <option value="master">Master's Degree</option>
+          <option value="medical">Medical/Nursing Degree</option>
+        </select>
+      </div>
+      <div class="cg-group">
+        <label class="cg-label">Target Ausbildung Field</label>
+        <select class="cg-input" id="recField">
+          <option>IT & Technology</option>
+          <option>Healthcare & Nursing</option>
+          <option>Electrical / Mechatronics</option>
+          <option>Retail & Commerce</option>
+          <option>Logistics</option>
+          <option>Construction & Trades</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="cg-group">
+        <label class="cg-label">Is your diploma translated to German?</label>
+        <select class="cg-input" id="translated">
+          <option value="no">No, not yet</option>
+          <option value="yes">Yes, I have a German translation</option>
+          <option value="certified">Yes, certified by official translator</option>
+        </select>
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkRecognition()">🎓 Check Recognition Status</button>
+  </div>
+
+  <div class="result" id="recResult"></div>
+</main>
+<script>
+function checkRecognition() {
+  const country = document.getElementById('recCountry').value;
+  const diploma = document.getElementById('diplomaType').value;
+  const field = document.getElementById('recField').value;
+  const translated = document.getElementById('translated').value;
+
+  const isHealthcare = field.includes('Health');
+  const needsTranslation = translated === 'no';
+
+  let html = `<div class="result-header">
+    <div class="result-icon">${diploma==='highschool'?'🏫':diploma==='bachelor'?'🎓':'📜'}</div>
+    <div><div class="result-title">Recognition Status for ${country}</div>
+    <div class="result-sub">${diploma==='highschool'?'High School Diploma':diploma==='bachelor'?'Bachelor\'s Degree':diploma==='vocational'?'Vocational Certificate':diploma==='master'?'Master\'s Degree':'Medical Degree'} · ${field}</div></div>
+  </div>`;
+
+  if (diploma === 'highschool') {
+    html += `<div class="status-good">✅ <strong>Good news!</strong> High school diplomas (Class 10 or 12) from ${country} are generally accepted for Ausbildung in Germany. You do NOT need formal academic recognition for most vocational training programs.</div>`;
+  } else if (diploma === 'bachelor' || diploma === 'master') {
+    html += `<div class="status-warn">⚠️ <strong>Recognition may be needed.</strong> University degrees from ${country} need to be checked in the <a href="https://anabin.kmk.org" target="_blank" style="color:#d4890a;">anabin database</a>. For Ausbildung specifically, a high school diploma is usually sufficient — your university degree is a bonus.</div>`;
+  } else if (diploma === 'medical') {
+    html += `<div class="status-warn">⚠️ <strong>Special process required.</strong> Medical and nursing degrees require formal recognition by the responsible authority (Landesbehörde). This is more complex but special fast-track programs exist for nurses from India and Philippines.</div>`;
+  }
+
+  if (needsTranslation) {
+    html += `<div class="status-warn">⚠️ <strong>Translation required!</strong> Your diploma must be officially translated into German by a certified translator (vereidigter Übersetzer). Cost: €50–€200 per document.</div>`;
+  }
+
+  html += `<h3 style="font-size:16px;font-weight:700;margin-bottom:16px;margin-top:8px;">📋 Steps to Get Your Diploma Recognized</h3>
+  <div class="steps-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-text"><h4>Check anabin Database</h4><p>Germany's official database of foreign qualifications. Search for ${country} to see how your diploma is classified. Website: <a href="https://anabin.kmk.org" target="_blank">anabin.kmk.org</a></p></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text"><h4>Get Official German Translation</h4><p>Find a certified translator (vereidigter Übersetzer) for ${country} documents. Cost: €50–€200 per document. Embassy websites often have approved translator lists.</p></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text"><h4>Get Documents Notarized (if required)</h4><p>Some embassies require notarized copies. Get your diploma apostilled at the relevant ministry in ${country}. Cost: €20–€100.</p></div></div>
+    ${diploma==='bachelor'||diploma==='master'?`<div class="step-item"><div class="step-num">4</div><div class="step-text"><h4>Apply for Recognition (if university degree)</h4><p>Apply through the ZAB (Zentralstelle für ausländisches Bildungswesen) or relevant Landesbehörde. Processing: 2–3 months. Cost: ~€200. Website: <a href="https://www.kmk.org" target="_blank">kmk.org</a></p></div></div>`:''}
+    <div class="step-item"><div class="step-num">${diploma==='bachelor'||diploma==='master'?5:4}</div><div class="step-text"><h4>Include in Visa Application</h4><p>All translated and certified documents go in your visa application package. The embassy will verify them.</p></div></div>
+  </div>
+  <div class="info-box">💡 <strong>For Ausbildung specifically:</strong> Even without formal recognition, many employers in Germany accept foreign school diplomas for Ausbildung. The most important factor is your German language certificate — not your diploma's formal recognition status.</div>`;
+
+  const result = document.getElementById('recResult');
+  result.innerHTML = html;
+  result.classList.add('show');
+  result.scrollIntoView({behavior:'smooth'});
+}
+</script>
+<!-- ── UNIVERSAL NAV JS + i18n + GA4 ── -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEV3ZNRJ2P"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BEV3ZNRJ2P');
+</script>
+<script>
+// ── Nav helpers ──
+function toggleMenu(){
+  const h=document.getElementById('uHamburger');
+  const m=document.getElementById('uMobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function toggleLang(e){
+  e.stopPropagation();
+  document.getElementById('uLang').classList.toggle('open');
+}
+document.addEventListener('click',()=>document.getElementById('uLang')?.classList.remove('open'));
+
+// Highlight active page
+(function(){
+  const path=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.u-link,.u-mob-link').forEach(a=>{
+    if(a.getAttribute('href')===('/'+path)||a.getAttribute('href')==='/'+path){
+      a.classList.add('active');
+    }
+  });
+})();
+
+// ── i18n translations ──
+const TRANSLATIONS = {
+  en:{nav_jobs:'Job Finder',nav_sectors:'Sectors',nav_eligibility:'Eligibility',nav_timeline:'Timeline',nav_embassy:'Embassy',nav_generator:'Documents',nav_chat:'AI Chat',nav_myapp:'🗂️ My Application',nav_tools:'Tools',nav_resources:'Resources',nav_checklist:'Checklist'},
+  de:{nav_jobs:'Jobs finden',nav_sectors:'Branchen',nav_eligibility:'Eignung prüfen',nav_timeline:'Zeitplan',nav_embassy:'Botschaft',nav_generator:'Dokumente',nav_chat:'KI-Chat',nav_myapp:'🗂️ Meine Bewerbung',nav_tools:'Tools',nav_resources:'Ressourcen',nav_checklist:'Checkliste'},
+  ar:{nav_jobs:'البحث عن وظيفة',nav_sectors:'القطاعات',nav_eligibility:'التأهل',nav_timeline:'الجدول الزمني',nav_embassy:'السفارة',nav_generator:'المستندات',nav_chat:'الدردشة',nav_myapp:'🗂️ طلبي',nav_tools:'الأدوات',nav_resources:'الموارد',nav_checklist:'قائمة التحقق'},
+  tr:{nav_jobs:'İş Bul',nav_sectors:'Sektörler',nav_eligibility:'Uygunluk',nav_timeline:'Zaman Çizelgesi',nav_embassy:'Büyükelçilik',nav_generator:'Belgeler',nav_chat:'Yapay Zeka',nav_myapp:'🗂️ Başvurum',nav_tools:'Araçlar',nav_resources:'Kaynaklar',nav_checklist:'Kontrol Listesi'},
+  fr:{nav_jobs:'Chercher emploi',nav_sectors:'Secteurs',nav_eligibility:'Éligibilité',nav_timeline:'Calendrier',nav_embassy:'Ambassade',nav_generator:'Documents',nav_chat:'IA Chat',nav_myapp:'🗂️ Ma Candidature',nav_tools:'Outils',nav_resources:'Ressources',nav_checklist:'Liste de contrôle'},
+  hi:{nav_jobs:'नौकरी खोजें',nav_sectors:'क्षेत्र',nav_eligibility:'पात्रता',nav_timeline:'समयरेखा',nav_embassy:'दूतावास',nav_generator:'दस्तावेज़',nav_chat:'AI चैट',nav_myapp:'🗂️ मेरा आवेदन',nav_tools:'टूल्स',nav_resources:'संसाधन',nav_checklist:'चेकलिस्ट'},
+  ur:{nav_jobs:'ملازمت تلاش کریں',nav_sectors:'شعبہ جات',nav_eligibility:'اہلیت',nav_timeline:'ٹائم لائن',nav_embassy:'سفارت خانہ',nav_generator:'دستاویزات',nav_chat:'AI چیٹ',nav_myapp:'🗂️ میری درخواست',nav_tools:'ٹولز',nav_resources:'وسائل',nav_checklist:'چیک لسٹ'},
+  sw:{nav_jobs:'Tafuta Kazi',nav_sectors:'Sekta',nav_eligibility:'Ustahili',nav_timeline:'Ratiba',nav_embassy:'Ubalozi',nav_generator:'Nyaraka',nav_chat:'Mazungumzo ya AI',nav_myapp:'🗂️ Maombi Yangu',nav_tools:'Zana',nav_resources:'Rasilimali',nav_checklist:'Orodha ya Ukaguzi'},
+  bn:{nav_jobs:'চাকরি খুঁজুন',nav_sectors:'সেক্টর',nav_eligibility:'যোগ্যতা',nav_timeline:'সময়রেখা',nav_embassy:'দূতাবাস',nav_generator:'নথিপত্র',nav_chat:'AI চ্যাট',nav_myapp:'🗂️ আমার আবেদন',nav_tools:'টুলস',nav_resources:'রিসোর্স',nav_checklist:'চেকলিস্ট'},
+  tl:{nav_jobs:'Maghanap ng Trabaho',nav_sectors:'Sektor',nav_eligibility:'Kwalipikasyon',nav_timeline:'Timeline',nav_embassy:'Embahada',nav_generator:'Mga Dokumento',nav_chat:'AI Chat',nav_myapp:'🗂️ Aking Aplikasyon',nav_tools:'Mga Tool',nav_resources:'Mga Mapagkukunan',nav_checklist:'Checklist'},
+  es:{nav_jobs:'Buscar empleo',nav_sectors:'Sectores',nav_eligibility:'Elegibilidad',nav_timeline:'Cronograma',nav_embassy:'Embajada',nav_generator:'Documentos',nav_chat:'Chat IA',nav_myapp:'🗂️ Mi Solicitud',nav_tools:'Herramientas',nav_resources:'Recursos',nav_checklist:'Lista de verificación'},
+};
+
+function setLang(lang){
+  localStorage.setItem('aig_lang', lang);
+  document.getElementById('uLangLabel').textContent = lang.toUpperCase();
+  document.getElementById('uLang').classList.remove('open');
+  // Update nav items
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(t[key]) el.textContent = t[key];
+  });
+  // Update active lang button
+  document.querySelectorAll('.u-mob-lang').forEach(b=>{
+    b.classList.toggle('active-lang', b.textContent.includes(lang.toUpperCase()));
+  });
+  // Store and trigger page-level translations if available
+  if(typeof applyPageTranslations === 'function') applyPageTranslations(lang);
+}
+
+// Apply saved language on load
+(function(){
+  const saved = localStorage.getItem('aig_lang') || 'en';
+  setLang(saved);
+})();
+</script>
+
+
+<!-- Share & Feedback Bar -->
+<div id="shareBar" style="position:fixed;bottom:24px;left:24px;z-index:8888;display:flex;flex-direction:column;gap:8px;">
+  <button onclick="shareWhatsApp()" title="Share on WhatsApp" style="width:44px;height:44px;border-radius:50%;border:none;background:#25D366;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</button>
+  <button onclick="shareFacebook()" title="Share on Facebook" style="width:44px;height:44px;border-radius:50%;border:none;background:#1877F2;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">f</button>
+  <button onclick="copyLink()" title="Copy link" style="width:44px;height:44px;border-radius:50%;border:none;background:#0a1628;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🔗</button>
+  <button onclick="toggleFeedback()" title="Send feedback" style="width:44px;height:44px;border-radius:50%;border:none;background:#f5a623;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💡</button>
+</div>
+
+<!-- Feedback Panel -->
+<div id="feedbackPanel" style="display:none;position:fixed;bottom:24px;left:76px;z-index:8889;background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;padding:20px;width:300px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <strong style="font-family:'Outfit',sans-serif;font-size:15px;color:#0a1628;">💡 Send Feedback</strong>
+    <button onclick="toggleFeedback()" style="background:none;border:none;font-size:18px;cursor:pointer;color:#718096;">×</button>
+  </div>
+  <p style="font-size:13px;color:#4a5568;margin-bottom:12px;">Found a bug, missing feature, or have a suggestion? Tell us!</p>
+  <select id="fbType" style="width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:8px 12px;outline:none;margin-bottom:10px;">
+    <option>🐛 Bug / Something broken</option>
+    <option>💡 Feature suggestion</option>
+    <option>✏️ Wrong information</option>
+    <option>🌍 Language / translation issue</option>
+    <option>👍 General feedback</option>
+  </select>
+  <textarea id="fbText" placeholder="Describe the issue or idea..." style="width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:10px 12px;outline:none;resize:none;min-height:80px;margin-bottom:10px;"></textarea>
+  <button onclick="submitFeedback()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:9px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;padding:10px;cursor:pointer;transition:all .15s;">Send Feedback</button>
+</div>
+
+<script>
+function shareWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent('Check out AusbildungInGermany.org — the free platform to find Ausbildung in Germany! '+window.location.href),'_blank');}
+function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank');}
+function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>{const b=document.querySelector('[title="Copy link"]');const orig=b.textContent;b.textContent='✅';b.style.background='#00c48c';setTimeout(()=>{b.textContent=orig;b.style.background='#0a1628';},2000);});}
+function toggleFeedback(){const p=document.getElementById('feedbackPanel');p.style.display=p.style.display==='none'?'block':'none';}
+function submitFeedback(){
+  const type=document.getElementById('fbType').value;
+  const text=document.getElementById('fbText').value.trim();
+  if(!text){alert('Please write your feedback!');return;}
+  // Send to a simple endpoint or just log for now
+  console.log('Feedback:', type, text);
+  document.getElementById('feedbackPanel').innerHTML='<div style="text-align:center;padding:20px;"><div style="font-size:32px;margin-bottom:10px;">🙏</div><strong style="font-family:Outfit,sans-serif;font-size:16px;color:#0a1628;">Thank you!</strong><p style="font-size:13px;color:#718096;margin-top:8px;">Your feedback helps us improve AusbildungInGermany for everyone.</p></div>';
+  setTimeout(()=>{document.getElementById('feedbackPanel').style.display='none';},3000);
+}
+</script>
+</body>
+</html>

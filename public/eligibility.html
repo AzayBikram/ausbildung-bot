@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="description" content="Get your personal Ausbildung eligibility score instantly. Find out if you qualify for German vocational training and what to improve." />
+  <meta name="keywords" content="Ausbildung eligibility, can I do Ausbildung, Ausbildung requirements foreigners, qualify for Ausbildung Germany" />
+  <meta name="author" content="AusbildungInGermany.org" />
+  <meta property="og:title" content="Check Your Ausbildung Eligibility – Free Score in 2 Minutes" />
+  <meta property="og:description" content="Get your personal Ausbildung eligibility score instantly. Find out if you qualify for German vocational training and what to improve." />
+  <meta property="og:url" content="https://ausbildungingermany.org/eligibility.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Check Your Ausbildung Eligibility – Free Score in 2 Minutes" />
+  <meta name="twitter:description" content="Get your personal Ausbildung eligibility score instantly. Find out if you qualify for German vocational training and what to improve." />
+  <link rel="canonical" href="https://ausbildungingermany.org/eligibility.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Check Your Ausbildung Eligibility – Free Score in 2 Minutes</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --navy:#0a1628;--blue:#1a56ff;--blue2:#4f7fff;--gold:#f5a623;--green:#00c48c;
+  --red:#ff4757;--text:#0a1628;--text2:#4a5568;--text3:#718096;
+  --bg:#f8faff;--surface:#fff;--border:#e2e8f0;
+  --font:'Outfit',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{
+  padding-top:68px;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,250,255,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 40px;height:68px;display:flex;align-items:center;gap:16px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:800;font-size:17px;}
+.logo-mark{width:34px;height:34px;background:var(--navy);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.nav-back{margin-left:auto;background:var(--border);border:none;border-radius:8px;color:var(--text2);font-family:var(--font);font-size:13px;padding:7px 14px;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:5px;}
+.nav-back:hover{background:#d1d8e8;}
+main{max-width:760px;margin:0 auto;padding:calc(var(--nav-h, 68px) + 32px) 24px 80px;}
+.page-label{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.page-title{font-size:clamp(32px,5vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:12px;color:var(--navy);}
+.page-sub{font-size:17px;color:var(--text2);margin-bottom:48px;line-height:1.6;}
+
+/* Progress */
+.progress-steps{display:flex;gap:8px;margin-bottom:40px;}
+.ps-step{flex:1;height:4px;background:var(--border);border-radius:2px;transition:background 0.3s;}
+.ps-step.active{background:var(--blue);}
+.ps-step.done{background:var(--green);}
+.ps-label{font-size:13px;color:var(--text3);margin-bottom:20px;}
+
+/* Question card */
+.q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:32px;margin-bottom:24px;display:none;}
+.q-card.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.q-text{font-size:20px;font-weight:700;letter-spacing:-0.3px;color:var(--navy);margin-bottom:24px;line-height:1.4;}
+.q-options{display:flex;flex-direction:column;gap:10px;}
+.q-option{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:14px 18px;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:500;}
+.q-option:hover{border-color:var(--blue);background:rgba(26,86,255,0.03);}
+.q-option.selected{border-color:var(--blue);background:rgba(26,86,255,0.06);color:var(--blue);}
+.q-option .opt-icon{font-size:20px;flex-shrink:0;}
+.q-option .opt-label{flex:1;}
+.q-option .opt-check{width:20px;height:20px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all 0.15s;}
+.q-option.selected .opt-check{background:var(--blue);border-color:var(--blue);color:#fff;}
+
+/* Nav buttons */
+.q-nav{display:flex;gap:12px;margin-top:24px;}
+.btn-next{background:var(--navy);color:#fff;border:none;border-radius:12px;font-family:var(--font);font-size:15px;font-weight:700;padding:14px 28px;cursor:pointer;transition:all 0.2s;flex:1;}
+.btn-next:hover{background:#0f2040;transform:translateY(-1px);}
+.btn-next:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.btn-back{background:none;border:1.5px solid var(--border);border-radius:12px;font-family:var(--font);font-size:15px;font-weight:500;padding:14px 20px;cursor:pointer;color:var(--text2);transition:all 0.15s;}
+.btn-back:hover{border-color:var(--navy);color:var(--navy);}
+
+/* Results */
+.result-card{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:40px;text-align:center;display:none;}
+.result-card.show{display:block;animation:fadeIn 0.4s ease;}
+.score-ring{width:160px;height:160px;margin:0 auto 24px;position:relative;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring .score-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-num{font-size:44px;font-weight:900;letter-spacing:-2px;line-height:1;}
+.score-sub{font-size:13px;color:var(--text3);margin-top:2px;}
+.score-label{font-size:22px;font-weight:800;margin-bottom:8px;}
+.score-desc{font-size:15px;color:var(--text2);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;}
+.breakdown{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;text-align:left;}
+.breakdown-item{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+.bi-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.bi-label{font-size:14px;font-weight:600;}
+.bi-score{font-size:14px;font-weight:700;}
+.bi-score.good{color:var(--green);}
+.bi-score.medium{color:var(--gold);}
+.bi-score.bad{color:var(--red);}
+.bi-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.bi-fill{height:100%;border-radius:3px;transition:width 0.8s ease;}
+.bi-fill.good{background:var(--green);}
+.bi-fill.medium{background:var(--gold);}
+.bi-fill.bad{background:var(--red);}
+.bi-tip{font-size:12px;color:var(--text3);margin-top:6px;}
+.result-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.ra-btn{background:var(--navy);color:#fff;text-decoration:none;font-family:var(--font);font-size:14px;font-weight:600;padding:12px 24px;border-radius:12px;transition:all 0.2s;border:none;cursor:pointer;}
+.ra-btn:hover{background:#0f2040;transform:translateY(-1px);}
+.ra-btn.secondary{background:none;border:1.5px solid var(--border);color:var(--text2);}
+.ra-btn.secondary:hover{border-color:var(--navy);color:var(--navy);}
+</style>
+<!-- ── UNIVERSAL NAV ── -->
+<style>
+:root{--nav-h:68px;}
+.u-nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(248,250,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid #e2e8f0;height:var(--nav-h);display:flex;align-items:center;padding:0 32px;gap:8px;}
+.u-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0a1628;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;flex-shrink:0;}
+.u-logo-mark{width:36px;height:36px;background:#0a1628;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.u-links{display:flex;align-items:center;gap:2px;margin-left:24px;}
+.u-link{color:#4a5568;text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:8px;transition:all .15s;font-family:'Outfit',sans-serif;white-space:nowrap;}
+.u-link:hover{background:#e2e8f0;color:#0a1628;}
+.u-link.active{background:rgba(26,86,255,.08);color:#1a56ff;}
+.u-spacer{flex:1;}
+.u-lang{position:relative;}
+.u-lang-btn{background:none;border:1.5px solid #e2e8f0;border-radius:8px;color:#4a5568;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;padding:6px 12px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s;}
+.u-lang-btn:hover{border-color:#1a56ff;color:#1a56ff;}
+.u-lang-drop{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;padding:6px;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:none;z-index:10000;}
+.u-lang.open .u-lang-drop{display:block;}
+.u-lang-opt{display:block;width:100%;background:none;border:none;border-radius:7px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:8px 12px;cursor:pointer;text-align:left;transition:background .1s;}
+.u-lang-opt:hover{background:#f8faff;}
+.u-myapp{background:#0a1628;color:#fff;text-decoration:none;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;border-radius:10px;white-space:nowrap;transition:all .15s;margin-left:8px;}
+.u-myapp:hover{background:#0f2040;}
+.u-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:8px;flex-direction:column;gap:5px;}
+.u-hamburger span{display:block;width:22px;height:2px;background:#0a1628;border-radius:2px;transition:all .25s;}
+.u-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.u-hamburger.open span:nth-child(2){opacity:0;}
+.u-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.u-mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:rgba(248,250,255,.98);backdrop-filter:blur(20px);z-index:9998;overflow-y:auto;padding:20px 24px 40px;}
+.u-mobile-menu.open{display:block;}
+.u-mob-section{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#718096;margin:20px 0 8px;font-family:'Outfit',sans-serif;}
+.u-mob-link{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;text-decoration:none;color:#0a1628;font-family:'Outfit',sans-serif;font-size:15px;font-weight:500;transition:all .15s;margin-bottom:4px;}
+.u-mob-link:hover,.u-mob-link.active{background:rgba(26,86,255,.07);color:#1a56ff;}
+.u-mob-link .mob-icon{font-size:20px;flex-shrink:0;}
+.u-mob-myapp{display:block;background:#0a1628;color:#fff;text-decoration:none;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;padding:14px 20px;border-radius:14px;text-align:center;margin-top:16px;}
+.u-mob-langs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.u-mob-lang{background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#4a5568;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;padding:6px 14px;cursor:pointer;transition:all .15s;}
+.u-mob-lang:hover,.u-mob-lang.active-lang{background:#0a1628;border-color:#0a1628;color:#fff;}
+@media(max-width:960px){.u-links{display:none;}.u-hamburger{display:flex;}}
+@media(max-width:480px){.u-nav{padding:0 16px;}.u-lang{display:none;}}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEV3ZNRJ2P"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BEV3ZNRJ2P');
+</script>
+</head>
+<body>
+<nav class="u-nav" id="uNav">
+  <a href="/" class="u-logo"><div class="u-logo-mark">🎓</div><span>AusbildungInGermany</span></a>
+  <div class="u-links">
+    <a href="/jobs.html" class="u-link" data-i18n="nav_jobs">Job Finder</a>
+    <a href="/sectors.html" class="u-link" data-i18n="nav_sectors">Sectors</a>
+    <a href="/eligibility.html" class="u-link" data-i18n="nav_eligibility">Eligibility</a>
+    <a href="/timeline.html" class="u-link" data-i18n="nav_timeline">Timeline</a>
+    <a href="/embassy.html" class="u-link" data-i18n="nav_embassy">Embassy</a>
+    <a href="/generator.html" class="u-link" data-i18n="nav_generator">Documents</a>
+    <a href="/chat.html" class="u-link" data-i18n="nav_chat">AI Chat</a>
+  </div>
+  <div class="u-spacer"></div>
+  <div class="u-lang" id="uLang">
+    <button class="u-lang-btn" onclick="toggleLang(event)">🌐 <span id="uLangLabel">EN</span> ▾</button>
+    <div class="u-lang-drop" id="uLangDrop">
+      <button class="u-lang-opt" onclick="setLang('en')">🇬🇧 English</button>
+      <button class="u-lang-opt" onclick="setLang('de')">🇩🇪 Deutsch</button>
+      <button class="u-lang-opt" onclick="setLang('ar')">🇸🇦 العربية</button>
+      <button class="u-lang-opt" onclick="setLang('tr')">🇹🇷 Türkçe</button>
+      <button class="u-lang-opt" onclick="setLang('fr')">🇫🇷 Français</button>
+      <button class="u-lang-opt" onclick="setLang('es')">🇪🇸 Español</button>
+      <button class="u-lang-opt" onclick="setLang('hi')">🇮🇳 हिंदी</button>
+      <button class="u-lang-opt" onclick="setLang('ur')">🇵🇰 اردو</button>
+      <button class="u-lang-opt" onclick="setLang('sw')">🌍 Swahili</button>
+      <button class="u-lang-opt" onclick="setLang('bn')">🇧🇩 বাংলা</button>
+      <button class="u-lang-opt" onclick="setLang('tl')">🇵🇭 Filipino</button>
+    </div>
+  </div>
+  <a href="/myapplication.html" class="u-myapp" data-i18n="nav_myapp">🗂️ My Application</a>
+  <button class="u-hamburger" id="uHamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="u-mobile-menu" id="uMobileMenu">
+  <div class="u-mob-section" data-i18n="nav_tools">Tools</div>
+  <a href="/jobs.html" class="u-mob-link"><span class="mob-icon">🔍</span><span data-i18n="nav_jobs">Job Finder</span></a>
+  <a href="/generator.html" class="u-mob-link"><span class="mob-icon">📄</span><span data-i18n="nav_generator">Document Generator</span></a>
+  <a href="/embassy.html" class="u-mob-link"><span class="mob-icon">🗺️</span><span data-i18n="nav_embassy">Embassy Finder</span></a>
+  <a href="/checklist.html" class="u-mob-link"><span class="mob-icon">📋</span><span data-i18n="nav_checklist">Document Checklist</span></a>
+  <a href="/chat.html" class="u-mob-link"><span class="mob-icon">🤖</span><span data-i18n="nav_chat">AI Chatbot</span></a>
+  <div class="u-mob-section" data-i18n="nav_resources">Resources</div>
+  <a href="/eligibility.html" class="u-mob-link"><span class="mob-icon">🎯</span><span data-i18n="nav_eligibility">Eligibility Checker</span></a>
+  <a href="/sectors.html" class="u-mob-link"><span class="mob-icon">🏭</span><span data-i18n="nav_sectors">Sector Explorer</span></a>
+  <a href="/timeline.html" class="u-mob-link"><span class="mob-icon">📅</span><span data-i18n="nav_timeline">Timeline Planner</span></a>
+  <a href="/salary.html" class="u-mob-link"><span class="mob-icon">💰</span>Salary Calculator</a>
+  <a href="/sperrkonto.html" class="u-mob-link"><span class="mob-icon">🏦</span>Sperrkonto Calculator</a>
+  <a href="/recognition.html" class="u-mob-link"><span class="mob-icon">🎓</span>Qualification Recognition</a>
+  <a href="/phrases.html" class="u-mob-link"><span class="mob-icon">💬</span>German Phrases</a>
+  <a href="/templates.html" class="u-mob-link"><span class="mob-icon">📧</span>Email Templates</a>
+  <a href="/housing.html" class="u-mob-link"><span class="mob-icon">🏠</span>Housing Guide</a>
+  <div class="u-mob-section">Language / Sprache</div>
+  <div class="u-mob-langs">
+    <button class="u-mob-lang" onclick="setLang('en')">🇬🇧 EN</button>
+    <button class="u-mob-lang" onclick="setLang('de')">🇩🇪 DE</button>
+    <button class="u-mob-lang" onclick="setLang('ar')">🇸🇦 AR</button>
+    <button class="u-mob-lang" onclick="setLang('tr')">🇹🇷 TR</button>
+    <button class="u-mob-lang" onclick="setLang('fr')">🇫🇷 FR</button>
+    <button class="u-mob-lang" onclick="setLang('es')">🇪🇸 ES</button>
+  </div>
+  <a href="/myapplication.html" class="u-mob-myapp" data-i18n="nav_myapp">🗂️ My Application</a>
+</div>
+
+<main>
+  <div class="page-label">Eligibility Checker</div>
+  <div class="page-title">Check your Ausbildung<br/>eligibility score</div>
+  <div class="page-sub">Answer 8 questions and get your personal score with a detailed breakdown and action plan — takes 2 minutes.</div>
+
+  <div class="progress-steps" id="progressSteps"></div>
+  <div class="ps-label" id="progressLabel">Question 1 of 8</div>
+
+  <!-- Questions -->
+  <div class="q-card active" id="q1">
+    <div class="q-num">Question 1 of 8</div>
+    <div class="q-text">What is your current German language level?</div>
+    <div class="q-options">
+      <div class="q-option" onclick="selectOption(this,'german','none',0)"><span class="opt-icon">😅</span><span class="opt-label">No German at all</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'german','A1',5)"><span class="opt-icon">🔤</span><span class="opt-label">A1 – Can say hello and basic words</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'german','A2',10)"><span class="opt-icon">📖</span><span class="opt-label">A2 – Can handle simple conversations</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'german','B1',20)"><span class="opt-icon">💬</span><span class="opt-label">B1 – Can communicate at work (minimum required)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'german','B2',25)"><span class="opt-icon">🗣️</span><span class="opt-label">B2 – Comfortable in most situations</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'german','C1+',30)"><span class="opt-icon">🎯</span><span class="opt-label">C1/C2 – Near-native level</span><span class="opt-check"></span></div>
+    </div>
+    <div class="q-nav"><button class="btn-next" onclick="nextQ(1)" id="next1" disabled>Continue →</button></div>
+  </div>
+
+  <div class="q-card" id="q2">
+    <div class="q-num">Question 2 of 8</div>
+    <div class="q-text">What is your highest completed education level?</div>
+    <div class="q-options">
+      <div class="q-option" onclick="selectOption(this,'education','none',0)"><span class="opt-icon">📚</span><span class="opt-label">No completed diploma yet</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'education','middle',8)"><span class="opt-icon">🏫</span><span class="opt-label">Middle school / Class 8–9 completed</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'education','highschool',15)"><span class="opt-icon">🎒</span><span class="opt-label">High school diploma (Class 10–12)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'education','vocational',17)"><span class="opt-icon">🔧</span><span class="opt-label">Vocational certificate / trade diploma</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'education','bachelor',20)"><span class="opt-icon">🎓</span><span class="opt-label">Bachelor's degree</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'education','master',20)"><span class="opt-icon">🏆</span><span class="opt-label">Master's degree or higher</span><span class="opt-check"></span></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="prevQ(2)">← Back</button>
+      <button class="btn-next" onclick="nextQ(2)" id="next2" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3">
+    <div class="q-num">Question 3 of 8</div>
+    <div class="q-text">How old are you?</div>
+    <div class="q-options">
+      <div class="q-option" onclick="selectOption(this,'age','under16',5)"><span class="opt-icon">👦</span><span class="opt-label">Under 16 (too young for most programs)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'age','16-18',12)"><span class="opt-icon">🧑</span><span class="opt-label">16–18 years old</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'age','19-25',15)"><span class="opt-icon">😊</span><span class="opt-label">19–25 years old (ideal range)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'age','26-30',13)"><span class="opt-icon">🙂</span><span class="opt-label">26–30 years old</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'age','31-35',10)"><span class="opt-icon">😌</span><span class="opt-label">31–35 years old</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'age','over35',7)"><span class="opt-icon">🧓</span><span class="opt-label">Over 35 (still possible in some fields)</span><span class="opt-check"></span></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="prevQ(3)">← Back</button>
+      <button class="btn-next" onclick="nextQ(3)" id="next3" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q4">
+    <div class="q-num">Question 4 of 8</div>
+    <div class="q-text">Do you have work experience in any field?</div>
+    <div class="q-options">
+      <div class="q-option" onclick="selectOption(this,'experience','none',3)"><span class="opt-icon">🌱</span><span class="opt-label">No work experience at all</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'experience','some',6)"><span class="opt-icon">💼</span><span class="opt-label">Less than 1 year of work experience</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'experience','1-3',8)"><span class="opt-icon">🏢</span><span class="opt-label">1–3 years of work experience</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'experience','3+',10)"><span class="opt-icon">⭐</span><span class="opt-label">More than 3 years of work experience</span><span class="opt-check"></span></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="prevQ(4)">← Back</button>
+      <button class="btn-next" onclick="nextQ(4)" id="next4" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q5">
+    <div class="q-num">Question 5 of 8</div>
+    <div class="q-text">Do you have a valid passport?</div>
+    <div class="q-options">
+      <div class="q-option" onclick="selectOption(this,'passport','no',0)"><span class="opt-icon">❌</span><span class="opt-label">No passport yet</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'passport','expiring',3)"><span class="opt-icon">⚠️</span><span class="opt-label">Have passport but expires within 1 year</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'passport','valid',5)"><span class="opt-icon">✅</span><span class="opt-label">Valid passport (2+ years remaining)</span><span class="opt-check"></span></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="prevQ(5)">← Back</button>
+      <button class="btn-next" onclick="nextQ(5)" id="next5" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q6">
+    <div class="q-num">Question 6 of 8</div>
+    <div class="q-text">Which field of Ausbildung interests you most?</div>
+    <div class="q-options">
+      <div class="q-option" onclick="selectOption(this,'field','it',5)"><span class="opt-icon">💻</span><span class="opt-label">IT & Technology</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'field','healthcare',5)"><span class="opt-icon">🏥</span><span class="opt-label">Healthcare & Nursing</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'field','engineering',5)"><span class="opt-icon">⚡</span><span class="opt-label">Engineering & Trades (Electrical, Mechanical)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'field','logistics',5)"><span class="opt-icon">🚚</span><span class="opt-label">Logistics & Transport</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'field','retail',5)"><span class="opt-icon">🛒</span><span class="opt-label">Retail & Business Administration</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'field','other',5)"><span class="opt-icon">🔍</span><span class="opt-label">Other / Not sure yet</span><span class="opt-check"></span></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="prevQ(6)">← Back</button>
+      <button class="btn-next" onclick="nextQ(6)" id="next6" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q7">
+    <div class="q-num">Question 7 of 8</div>
+    <div class="q-text">Can you financially support yourself while waiting for your first salary?</div>
+    <div class="q-options">
+      <div class="q-option" onclick="selectOption(this,'finance','no',0)"><span class="opt-icon">😰</span><span class="opt-label">No — I have no savings</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'finance','some',3)"><span class="opt-icon">🤔</span><span class="opt-label">Limited — I have some savings but not much</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'finance','enough',5)"><span class="opt-icon">👍</span><span class="opt-label">Yes — I can cover 3–6 months of expenses</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'finance','blocked',5)"><span class="opt-icon">🏦</span><span class="opt-label">Yes — I can open a blocked account (€11,208)</span><span class="opt-check"></span></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="prevQ(7)">← Back</button>
+      <button class="btn-next" onclick="nextQ(7)" id="next7" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <div class="q-card" id="q8">
+    <div class="q-num">Question 8 of 8</div>
+    <div class="q-text">Where are you from? (This affects visa requirements)</div>
+    <div class="q-options">
+      <div class="q-option" onclick="selectOption(this,'origin','eu',5)"><span class="opt-icon">🇪🇺</span><span class="opt-label">EU / EEA country (no visa needed)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'origin','balkans',4)"><span class="opt-icon">🌍</span><span class="opt-label">Western Balkans (Albania, Bosnia, Kosovo, Serbia, N. Macedonia, Montenegro)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'origin','asia',4)"><span class="opt-icon">🌏</span><span class="opt-label">Asia (India, Philippines, Vietnam, Nepal, etc.)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'origin','africa',4)"><span class="opt-icon">🌍</span><span class="opt-label">Africa (Nigeria, Ghana, Kenya, etc.)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'origin','latam',4)"><span class="opt-icon">🌎</span><span class="opt-label">Latin America (Brazil, Colombia, Peru, etc.)</span><span class="opt-check"></span></div>
+      <div class="q-option" onclick="selectOption(this,'origin','other',3)"><span class="opt-icon">🌐</span><span class="opt-label">Other country</span><span class="opt-check"></span></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="prevQ(8)">← Back</button>
+      <button class="btn-next" onclick="calculateScore()" id="next8" disabled>Calculate My Score 🎯</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="result-card" id="resultCard">
+    <div class="score-ring" id="scoreRing">
+      <svg width="160" height="160" viewBox="0 0 160 160">
+        <circle cx="80" cy="80" r="68" fill="none" stroke="#e2e8f0" stroke-width="12"/>
+        <circle cx="80" cy="80" r="68" fill="none" stroke="#1a56ff" stroke-width="12" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="427" id="scoreCircle" style="transition:stroke-dashoffset 1.2s ease;"/>
+      </svg>
+      <div class="score-text">
+        <div class="score-num" id="scoreNum">0</div>
+        <div class="score-sub">/ 100</div>
+      </div>
+    </div>
+    <div class="score-label" id="scoreLabel"></div>
+    <div class="score-desc" id="scoreDesc"></div>
+    <div class="breakdown" id="breakdown"></div>
+    <div class="result-actions" id="resultActions"></div>
+  </div>
+</main>
+
+<script>
+const answers = {};
+let currentQ = 1;
+const totalQ = 8;
+
+function updateProgress(q) {
+  const steps = document.getElementById('progressSteps');
+  steps.innerHTML = Array.from({length:totalQ}, (_,i) => `<div class="ps-step ${i+1<q?'done':i+1===q?'active':''}"></div>`).join('');
+  document.getElementById('progressLabel').textContent = `Question ${q} of ${totalQ}`;
+}
+
+function selectOption(el, key, value, score) {
+  el.closest('.q-options').querySelectorAll('.q-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[key] = { value, score };
+  const qNum = el.closest('.q-card').id.replace('q','');
+  const btn = document.getElementById('next'+qNum);
+  if (btn) btn.disabled = false;
+}
+
+function nextQ(current) {
+  document.getElementById('q'+current).classList.remove('active');
+  const next = current + 1;
+  if (next <= totalQ) {
+    document.getElementById('q'+next).classList.add('active');
+    currentQ = next;
+    updateProgress(next);
+  }
+}
+
+function prevQ(current) {
+  document.getElementById('q'+current).classList.remove('active');
+  const prev = current - 1;
+  document.getElementById('q'+prev).classList.add('active');
+  currentQ = prev;
+  updateProgress(prev);
+}
+
+function calculateScore() {
+  const totalScore = Object.values(answers).reduce((sum, a) => sum + (a.score || 0), 0);
+  const maxScore = 30+20+15+10+5+5+5+5; // max possible
+  const pct = Math.round((totalScore / maxScore) * 100);
+
+  // Hide questions, show result
+  document.querySelectorAll('.q-card').forEach(q => q.classList.remove('active'));
+  document.getElementById('progressSteps').innerHTML = '';
+  document.getElementById('progressLabel').textContent = '';
+
+  const result = document.getElementById('resultCard');
+  result.classList.add('show');
+
+  // Animate score
+  let displayed = 0;
+  const interval = setInterval(() => {
+    displayed = Math.min(displayed + 2, pct);
+    document.getElementById('scoreNum').textContent = displayed;
+    const offset = 427 - (427 * displayed / 100);
+    document.getElementById('scoreCircle').style.strokeDashoffset = offset;
+    const color = displayed >= 70 ? '#00c48c' : displayed >= 50 ? '#f5a623' : '#ff4757';
+    document.getElementById('scoreCircle').style.stroke = color;
+    if (displayed >= pct) clearInterval(interval);
+  }, 20);
+
+  // Label and description
+  let label, desc, labelColor;
+  if (pct >= 80) { label = '🎉 Excellent Eligibility!'; desc = 'You have a very strong profile for Ausbildung in Germany. You are ready to start applying now!'; labelColor = '#00c48c'; }
+  else if (pct >= 65) { label = '👍 Good Eligibility!'; desc = 'You have a solid profile. With a few improvements, you can be very competitive. Check the breakdown below.'; labelColor = '#1a56ff'; }
+  else if (pct >= 45) { label = '⚠️ Fair Eligibility'; desc = 'You can apply, but you need to improve a few things first — especially your German language level. See the breakdown below.'; labelColor = '#f5a623'; }
+  else { label = '📚 More Preparation Needed'; desc = 'Do not be discouraged! Focus on improving the areas below, especially German, and you will be ready to apply.'; labelColor = '#ff4757'; }
+
+  document.getElementById('scoreLabel').textContent = label;
+  document.getElementById('scoreLabel').style.color = labelColor;
+  document.getElementById('scoreDesc').textContent = desc;
+
+  // Breakdown
+  const breakdownItems = [
+    { key: 'german', label: '🗣️ German Language', max: 30, tip: answers.german?.value === 'B1' || answers.german?.value === 'B2' || answers.german?.value === 'C1+' ? 'Great! Your German meets or exceeds the minimum required (B1 per §16a AufenthG).' : 'This is the most critical factor. You need at least B1 (e.g. Goethe-Zertifikat B1) before your visa can be issued.' },
+    { key: 'education', label: '🎓 Education Level', max: 20, tip: answers.education?.score >= 15 ? 'Your education meets requirements.' : 'Complete at minimum high school (Class 10) before applying.' },
+    { key: 'age', label: '📅 Age', max: 15, tip: answers.age?.value === '19-25' ? 'Ideal age range.' : 'No strict age limit for the Ausbildung visa (§16a AufenthG). However the Ausbildungsplatzsuche-Visa (job-search visa) requires under 35. Most employers prefer applicants aged 18-30. Over 35 is still possible — apply directly with a contract.' },
+    { key: 'experience', label: '💼 Work Experience', max: 10, tip: 'Work experience helps but is not required for most Ausbildung programs.' },
+    { key: 'passport', label: '🛂 Passport', max: 5, tip: answers.passport?.value === 'valid' ? 'Valid passport — ready to go!' : 'Get a valid passport immediately. It is essential for the visa application.' },
+    { key: 'finance', label: '💰 Financial Readiness', max: 5, tip: 'You will need a blocked account (Sperrkonto) of ~€11,208 for the visa.' },
+  ];
+
+  document.getElementById('breakdown').innerHTML = breakdownItems.map(item => {
+    const score = answers[item.key]?.score || 0;
+    const pctItem = Math.round((score / item.max) * 100);
+    const cls = pctItem >= 70 ? 'good' : pctItem >= 40 ? 'medium' : 'bad';
+    return `<div class="breakdown-item">
+      <div class="bi-header"><span class="bi-label">${item.label}</span><span class="bi-score ${cls}">${score}/${item.max}</span></div>
+      <div class="bi-bar"><div class="bi-fill ${cls}" style="width:${pctItem}%"></div></div>
+      <div class="bi-tip">${item.tip}</div>
+    </div>`;
+  }).join('');
+
+  // Action buttons
+  const field = answers.field?.value || 'it';
+  document.getElementById('resultActions').innerHTML = `
+    <a href="/jobs.html" class="ra-btn">🔍 Search Jobs in ${field.toUpperCase()}</a>
+    <a href="/timeline.html" class="ra-btn secondary">📅 Create My Timeline</a>
+    <a href="/checklist.html" class="ra-btn secondary">📋 Get Document Checklist</a>
+    <button onclick="location.reload()" class="ra-btn secondary">🔄 Retake Quiz</button>`;
+}
+
+// Init
+updateProgress(1);
+</script>
+<!-- ── UNIVERSAL NAV JS + i18n + GA4 ── -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEV3ZNRJ2P"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BEV3ZNRJ2P');
+</script>
+<script>
+// ── Nav helpers ──
+function toggleMenu(){
+  const h=document.getElementById('uHamburger');
+  const m=document.getElementById('uMobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function toggleLang(e){
+  e.stopPropagation();
+  document.getElementById('uLang').classList.toggle('open');
+}
+document.addEventListener('click',()=>document.getElementById('uLang')?.classList.remove('open'));
+
+// Highlight active page
+(function(){
+  const path=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.u-link,.u-mob-link').forEach(a=>{
+    if(a.getAttribute('href')===('/'+path)||a.getAttribute('href')==='/'+path){
+      a.classList.add('active');
+    }
+  });
+})();
+
+// ── i18n translations ──
+const TRANSLATIONS = {
+  en:{nav_jobs:'Job Finder',nav_sectors:'Sectors',nav_eligibility:'Eligibility',nav_timeline:'Timeline',nav_embassy:'Embassy',nav_generator:'Documents',nav_chat:'AI Chat',nav_myapp:'🗂️ My Application',nav_tools:'Tools',nav_resources:'Resources',nav_checklist:'Checklist'},
+  de:{nav_jobs:'Jobs finden',nav_sectors:'Branchen',nav_eligibility:'Eignung prüfen',nav_timeline:'Zeitplan',nav_embassy:'Botschaft',nav_generator:'Dokumente',nav_chat:'KI-Chat',nav_myapp:'🗂️ Meine Bewerbung',nav_tools:'Tools',nav_resources:'Ressourcen',nav_checklist:'Checkliste'},
+  ar:{nav_jobs:'البحث عن وظيفة',nav_sectors:'القطاعات',nav_eligibility:'التأهل',nav_timeline:'الجدول الزمني',nav_embassy:'السفارة',nav_generator:'المستندات',nav_chat:'الدردشة',nav_myapp:'🗂️ طلبي',nav_tools:'الأدوات',nav_resources:'الموارد',nav_checklist:'قائمة التحقق'},
+  tr:{nav_jobs:'İş Bul',nav_sectors:'Sektörler',nav_eligibility:'Uygunluk',nav_timeline:'Zaman Çizelgesi',nav_embassy:'Büyükelçilik',nav_generator:'Belgeler',nav_chat:'Yapay Zeka',nav_myapp:'🗂️ Başvurum',nav_tools:'Araçlar',nav_resources:'Kaynaklar',nav_checklist:'Kontrol Listesi'},
+  fr:{nav_jobs:'Chercher emploi',nav_sectors:'Secteurs',nav_eligibility:'Éligibilité',nav_timeline:'Calendrier',nav_embassy:'Ambassade',nav_generator:'Documents',nav_chat:'IA Chat',nav_myapp:'🗂️ Ma Candidature',nav_tools:'Outils',nav_resources:'Ressources',nav_checklist:'Liste de contrôle'},
+  hi:{nav_jobs:'नौकरी खोजें',nav_sectors:'क्षेत्र',nav_eligibility:'पात्रता',nav_timeline:'समयरेखा',nav_embassy:'दूतावास',nav_generator:'दस्तावेज़',nav_chat:'AI चैट',nav_myapp:'🗂️ मेरा आवेदन',nav_tools:'टूल्स',nav_resources:'संसाधन',nav_checklist:'चेकलिस्ट'},
+  ur:{nav_jobs:'ملازمت تلاش کریں',nav_sectors:'شعبہ جات',nav_eligibility:'اہلیت',nav_timeline:'ٹائم لائن',nav_embassy:'سفارت خانہ',nav_generator:'دستاویزات',nav_chat:'AI چیٹ',nav_myapp:'🗂️ میری درخواست',nav_tools:'ٹولز',nav_resources:'وسائل',nav_checklist:'چیک لسٹ'},
+  sw:{nav_jobs:'Tafuta Kazi',nav_sectors:'Sekta',nav_eligibility:'Ustahili',nav_timeline:'Ratiba',nav_embassy:'Ubalozi',nav_generator:'Nyaraka',nav_chat:'Mazungumzo ya AI',nav_myapp:'🗂️ Maombi Yangu',nav_tools:'Zana',nav_resources:'Rasilimali',nav_checklist:'Orodha ya Ukaguzi'},
+  bn:{nav_jobs:'চাকরি খুঁজুন',nav_sectors:'সেক্টর',nav_eligibility:'যোগ্যতা',nav_timeline:'সময়রেখা',nav_embassy:'দূতাবাস',nav_generator:'নথিপত্র',nav_chat:'AI চ্যাট',nav_myapp:'🗂️ আমার আবেদন',nav_tools:'টুলস',nav_resources:'রিসোর্স',nav_checklist:'চেকলিস্ট'},
+  tl:{nav_jobs:'Maghanap ng Trabaho',nav_sectors:'Sektor',nav_eligibility:'Kwalipikasyon',nav_timeline:'Timeline',nav_embassy:'Embahada',nav_generator:'Mga Dokumento',nav_chat:'AI Chat',nav_myapp:'🗂️ Aking Aplikasyon',nav_tools:'Mga Tool',nav_resources:'Mga Mapagkukunan',nav_checklist:'Checklist'},
+  es:{nav_jobs:'Buscar empleo',nav_sectors:'Sectores',nav_eligibility:'Elegibilidad',nav_timeline:'Cronograma',nav_embassy:'Embajada',nav_generator:'Documentos',nav_chat:'Chat IA',nav_myapp:'🗂️ Mi Solicitud',nav_tools:'Herramientas',nav_resources:'Recursos',nav_checklist:'Lista de verificación'},
+};
+
+function setLang(lang){
+  localStorage.setItem('aig_lang', lang);
+  document.getElementById('uLangLabel').textContent = lang.toUpperCase();
+  document.getElementById('uLang').classList.remove('open');
+  // Update nav items
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(t[key]) el.textContent = t[key];
+  });
+  // Update active lang button
+  document.querySelectorAll('.u-mob-lang').forEach(b=>{
+    b.classList.toggle('active-lang', b.textContent.includes(lang.toUpperCase()));
+  });
+  // Store and trigger page-level translations if available
+  if(typeof applyPageTranslations === 'function') applyPageTranslations(lang);
+}
+
+// Apply saved language on load
+(function(){
+  const saved = localStorage.getItem('aig_lang') || 'en';
+  setLang(saved);
+})();
+</script>
+
+
+<!-- Share & Feedback Bar -->
+<div id="shareBar" style="position:fixed;bottom:24px;left:24px;z-index:8888;display:flex;flex-direction:column;gap:8px;">
+  <button onclick="shareWhatsApp()" title="Share on WhatsApp" style="width:44px;height:44px;border-radius:50%;border:none;background:#25D366;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</button>
+  <button onclick="shareFacebook()" title="Share on Facebook" style="width:44px;height:44px;border-radius:50%;border:none;background:#1877F2;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">f</button>
+  <button onclick="copyLink()" title="Copy link" style="width:44px;height:44px;border-radius:50%;border:none;background:#0a1628;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🔗</button>
+  <button onclick="toggleFeedback()" title="Send feedback" style="width:44px;height:44px;border-radius:50%;border:none;background:#f5a623;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💡</button>
+</div>
+
+<!-- Feedback Panel -->
+<div id="feedbackPanel" style="display:none;position:fixed;bottom:24px;left:76px;z-index:8889;background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;padding:20px;width:300px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <strong style="font-family:'Outfit',sans-serif;font-size:15px;color:#0a1628;">💡 Send Feedback</strong>
+    <button onclick="toggleFeedback()" style="background:none;border:none;font-size:18px;cursor:pointer;color:#718096;">×</button>
+  </div>
+  <p style="font-size:13px;color:#4a5568;margin-bottom:12px;">Found a bug, missing feature, or have a suggestion? Tell us!</p>
+  <select id="fbType" style="width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:8px 12px;outline:none;margin-bottom:10px;">
+    <option>🐛 Bug / Something broken</option>
+    <option>💡 Feature suggestion</option>
+    <option>✏️ Wrong information</option>
+    <option>🌍 Language / translation issue</option>
+    <option>👍 General feedback</option>
+  </select>
+  <textarea id="fbText" placeholder="Describe the issue or idea..." style="width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:10px 12px;outline:none;resize:none;min-height:80px;margin-bottom:10px;"></textarea>
+  <button onclick="submitFeedback()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:9px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;padding:10px;cursor:pointer;transition:all .15s;">Send Feedback</button>
+</div>
+
+<script>
+function shareWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent('Check out AusbildungInGermany.org — the free platform to find Ausbildung in Germany! '+window.location.href),'_blank');}
+function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank');}
+function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>{const b=document.querySelector('[title="Copy link"]');const orig=b.textContent;b.textContent='✅';b.style.background='#00c48c';setTimeout(()=>{b.textContent=orig;b.style.background='#0a1628';},2000);});}
+function toggleFeedback(){const p=document.getElementById('feedbackPanel');p.style.display=p.style.display==='none'?'block':'none';}
+function submitFeedback(){
+  const type=document.getElementById('fbType').value;
+  const text=document.getElementById('fbText').value.trim();
+  if(!text){alert('Please write your feedback!');return;}
+  // Send to a simple endpoint or just log for now
+  console.log('Feedback:', type, text);
+  document.getElementById('feedbackPanel').innerHTML='<div style="text-align:center;padding:20px;"><div style="font-size:32px;margin-bottom:10px;">🙏</div><strong style="font-family:Outfit,sans-serif;font-size:16px;color:#0a1628;">Thank you!</strong><p style="font-size:13px;color:#718096;margin-top:8px;">Your feedback helps us improve AusbildungInGermany for everyone.</p></div>';
+  setTimeout(()=>{document.getElementById('feedbackPanel').style.display='none';},3000);
+}
+</script>
+</body>
+</html>

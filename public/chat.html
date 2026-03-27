@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="description" content="Ask our free AI chatbot anything about Ausbildung in Germany in your language. Get instant expert answers 24/7." />
+  <meta name="keywords" content="Ausbildung chatbot, ask about Ausbildung, Germany apprenticeship help, free Ausbildung advice AI" />
+  <meta name="author" content="AusbildungInGermany.org" />
+  <meta property="og:title" content="AI Chatbot – Ask Anything About Ausbildung in Germany" />
+  <meta property="og:description" content="Ask our free AI chatbot anything about Ausbildung in Germany in your language. Get instant expert answers 24/7." />
+  <meta property="og:url" content="https://ausbildungingermany.org/chat.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Chatbot – Ask Anything About Ausbildung in Germany" />
+  <meta name="twitter:description" content="Ask our free AI chatbot anything about Ausbildung in Germany in your language. Get instant expert answers 24/7." />
+  <link rel="canonical" href="https://ausbildungingermany.org/chat.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Chatbot – Ask Anything About Ausbildung in Germany</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #14171f;
+    --surface2: #1c2030;
+    --border: #252a38;
+    --accent: #4f8ef7;
+    --accent2: #f7c04f;
+    --text: #e8eaf0;
+    --text-muted: #737a96;
+    --user-bubble: #1a2540;
+    --bot-bubble: #181d2a;
+    --success: #4fc87a;
+    --radius: 16px;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-top: 68px; /* account for fixed universal navbar */
+  }
+
+  /* ── Header ── */
+  header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .logo {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--accent), #7b5ef7);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .header-text h1 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+  }
+
+  .header-text h1 span { color: var(--accent); }
+
+  .header-text p {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  .status-pill {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--success);
+    background: rgba(79,200,122,0.1);
+    border: 1px solid rgba(79,200,122,0.2);
+    border-radius: 20px;
+    padding: 4px 12px;
+    flex-shrink: 0;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+  }
+
+  /* ── Main layout ── */
+  .chat-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: 220px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 16px;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+
+  .topic-btn {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 9px 12px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .topic-btn:hover {
+    background: var(--surface2);
+    color: var(--text);
+    border-color: var(--border);
+  }
+
+  .sidebar-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 10px 0;
+  }
+
+  .lang-section { margin-top: auto; }
+
+  .lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .lang-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 12px;
+    padding: 6px 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+
+  .lang-btn:hover, .lang-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* ── Chat area ── */
+  .chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    scroll-behavior: smooth;
+  }
+
+  #messages::-webkit-scrollbar { width: 4px; }
+  #messages::-webkit-scrollbar-track { background: transparent; }
+  #messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  /* ── Messages ── */
+  .msg {
+    display: flex;
+    gap: 12px;
+    max-width: 720px;
+    animation: fadeUp 0.3s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg.user { align-self: flex-end; flex-direction: row-reverse; }
+
+  .avatar {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .avatar.bot {
+    background: linear-gradient(135deg, var(--accent), #7b5ef7);
+  }
+
+  .avatar.user {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+  }
+
+  .bubble {
+    padding: 13px 17px;
+    border-radius: var(--radius);
+    line-height: 1.65;
+    font-size: 14.5px;
+    max-width: 580px;
+  }
+
+  .msg.bot .bubble {
+    background: var(--bot-bubble);
+    border: 1px solid var(--border);
+    border-top-left-radius: 4px;
+  }
+
+  .msg.user .bubble {
+    background: var(--user-bubble);
+    border: 1px solid rgba(79,142,247,0.2);
+    border-top-right-radius: 4px;
+    color: var(--text);
+  }
+
+  .bubble p { margin-bottom: 8px; }
+  .bubble p:last-child { margin-bottom: 0; }
+
+  .bubble ul, .bubble ol {
+    padding-left: 20px;
+    margin: 8px 0;
+  }
+
+  .bubble li { margin-bottom: 4px; }
+
+  .bubble strong { color: var(--accent2); font-weight: 600; }
+
+  .bubble a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(79,142,247,0.4);
+  }
+
+  .bubble a:hover { border-bottom-style: solid; }
+
+  /* Quick chips */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* Typing indicator */
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 14px 17px;
+  }
+
+  .typing-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    animation: bounce 1.2s ease infinite;
+  }
+
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+
+  /* ── Input area ── */
+  .input-area {
+    padding: 16px 28px 20px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .input-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    transition: border-color 0.2s;
+  }
+
+  .input-row:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79,142,247,0.08);
+  }
+
+  #userInput {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.5;
+    resize: none;
+    max-height: 120px;
+    outline: none;
+  }
+
+  #userInput::placeholder { color: var(--text-muted); }
+
+  #userInput::-webkit-scrollbar { width: 3px; }
+  #userInput::-webkit-scrollbar-thumb { background: var(--border); }
+
+  .send-btn {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #6aa0f9; transform: scale(1.05); }
+  .send-btn:disabled { background: var(--border); cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* Welcome screen */
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+    padding: 40px 24px;
+    gap: 16px;
+  }
+
+  .welcome-icon {
+    font-size: 52px;
+    margin-bottom: 4px;
+  }
+
+  .welcome h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .welcome h2 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .welcome p {
+    color: var(--text-muted);
+    font-size: 14px;
+    max-width: 420px;
+    line-height: 1.7;
+  }
+
+  .welcome-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    max-width: 560px;
+  }
+
+  .welcome-chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 9px 18px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .welcome-chip:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  @media (max-width: 640px) {
+    .sidebar { display: none; }
+    #messages { padding: 16px; }
+    .input-area { padding: 12px 16px 16px; }
+  }
+</style>
+<!-- ── UNIVERSAL NAV ── -->
+<style>
+:root{--nav-h:68px;}
+.u-nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(248,250,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid #e2e8f0;height:var(--nav-h);display:flex;align-items:center;padding:0 32px;gap:8px;}
+.u-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0a1628;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;flex-shrink:0;}
+.u-logo-mark{width:36px;height:36px;background:#0a1628;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.u-links{display:flex;align-items:center;gap:2px;margin-left:24px;}
+.u-link{color:#4a5568;text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:8px;transition:all .15s;font-family:'Outfit',sans-serif;white-space:nowrap;}
+.u-link:hover{background:#e2e8f0;color:#0a1628;}
+.u-link.active{background:rgba(26,86,255,.08);color:#1a56ff;}
+.u-spacer{flex:1;}
+.u-lang{position:relative;}
+.u-lang-btn{background:none;border:1.5px solid #e2e8f0;border-radius:8px;color:#4a5568;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;padding:6px 12px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s;}
+.u-lang-btn:hover{border-color:#1a56ff;color:#1a56ff;}
+.u-lang-drop{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;padding:6px;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:none;z-index:10000;}
+.u-lang.open .u-lang-drop{display:block;}
+.u-lang-opt{display:block;width:100%;background:none;border:none;border-radius:7px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:8px 12px;cursor:pointer;text-align:left;transition:background .1s;}
+.u-lang-opt:hover{background:#f8faff;}
+.u-myapp{background:#0a1628;color:#fff;text-decoration:none;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;border-radius:10px;white-space:nowrap;transition:all .15s;margin-left:8px;}
+.u-myapp:hover{background:#0f2040;}
+.u-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:8px;flex-direction:column;gap:5px;}
+.u-hamburger span{display:block;width:22px;height:2px;background:#0a1628;border-radius:2px;transition:all .25s;}
+.u-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.u-hamburger.open span:nth-child(2){opacity:0;}
+.u-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.u-mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:rgba(248,250,255,.98);backdrop-filter:blur(20px);z-index:9998;overflow-y:auto;padding:20px 24px 40px;}
+.u-mobile-menu.open{display:block;}
+.u-mob-section{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#718096;margin:20px 0 8px;font-family:'Outfit',sans-serif;}
+.u-mob-link{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;text-decoration:none;color:#0a1628;font-family:'Outfit',sans-serif;font-size:15px;font-weight:500;transition:all .15s;margin-bottom:4px;}
+.u-mob-link:hover,.u-mob-link.active{background:rgba(26,86,255,.07);color:#1a56ff;}
+.u-mob-link .mob-icon{font-size:20px;flex-shrink:0;}
+.u-mob-myapp{display:block;background:#0a1628;color:#fff;text-decoration:none;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;padding:14px 20px;border-radius:14px;text-align:center;margin-top:16px;}
+.u-mob-langs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.u-mob-lang{background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#4a5568;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;padding:6px 14px;cursor:pointer;transition:all .15s;}
+.u-mob-lang:hover,.u-mob-lang.active-lang{background:#0a1628;border-color:#0a1628;color:#fff;}
+@media(max-width:960px){.u-links{display:none;}.u-hamburger{display:flex;}}
+@media(max-width:480px){.u-nav{padding:0 16px;}.u-lang{display:none;}}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEV3ZNRJ2P"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BEV3ZNRJ2P');
+</script>
+</head>
+<body>
+
+<nav class="u-nav" id="uNav">
+  <a href="/" class="u-logo"><div class="u-logo-mark">🎓</div><span>AusbildungInGermany</span></a>
+  <div class="u-links">
+    <a href="/jobs.html" class="u-link" data-i18n="nav_jobs">Job Finder</a>
+    <a href="/sectors.html" class="u-link" data-i18n="nav_sectors">Sectors</a>
+    <a href="/eligibility.html" class="u-link" data-i18n="nav_eligibility">Eligibility</a>
+    <a href="/timeline.html" class="u-link" data-i18n="nav_timeline">Timeline</a>
+    <a href="/embassy.html" class="u-link" data-i18n="nav_embassy">Embassy</a>
+    <a href="/generator.html" class="u-link" data-i18n="nav_generator">Documents</a>
+    <a href="/chat.html" class="u-link" data-i18n="nav_chat">AI Chat</a>
+  </div>
+  <div class="u-spacer"></div>
+  <div class="u-lang" id="uLang">
+    <button class="u-lang-btn" onclick="toggleLang(event)">🌐 <span id="uLangLabel">EN</span> ▾</button>
+    <div class="u-lang-drop" id="uLangDrop">
+      <button class="u-lang-opt" onclick="setChatLang('en')">🇬🇧 English</button>
+      <button class="u-lang-opt" onclick="setChatLang('de')">🇩🇪 Deutsch</button>
+      <button class="u-lang-opt" onclick="setChatLang('ar')">🇸🇦 العربية</button>
+      <button class="u-lang-opt" onclick="setChatLang('tr')">🇹🇷 Türkçe</button>
+      <button class="u-lang-opt" onclick="setChatLang('fr')">🇫🇷 Français</button>
+      <button class="u-lang-opt" onclick="setChatLang('es')">🇪🇸 Español</button>
+    </div>
+  </div>
+  <a href="/myapplication.html" class="u-myapp" data-i18n="nav_myapp">🗂️ My Application</a>
+  <button class="u-hamburger" id="uHamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="u-mobile-menu" id="uMobileMenu">
+  <div class="u-mob-section" data-i18n="nav_tools">Tools</div>
+  <a href="/jobs.html" class="u-mob-link"><span class="mob-icon">🔍</span><span data-i18n="nav_jobs">Job Finder</span></a>
+  <a href="/generator.html" class="u-mob-link"><span class="mob-icon">📄</span><span data-i18n="nav_generator">Document Generator</span></a>
+  <a href="/embassy.html" class="u-mob-link"><span class="mob-icon">🗺️</span><span data-i18n="nav_embassy">Embassy Finder</span></a>
+  <a href="/checklist.html" class="u-mob-link"><span class="mob-icon">📋</span><span data-i18n="nav_checklist">Document Checklist</span></a>
+  <a href="/chat.html" class="u-mob-link"><span class="mob-icon">🤖</span><span data-i18n="nav_chat">AI Chatbot</span></a>
+  <div class="u-mob-section" data-i18n="nav_resources">Resources</div>
+  <a href="/eligibility.html" class="u-mob-link"><span class="mob-icon">🎯</span><span data-i18n="nav_eligibility">Eligibility Checker</span></a>
+  <a href="/sectors.html" class="u-mob-link"><span class="mob-icon">🏭</span><span data-i18n="nav_sectors">Sector Explorer</span></a>
+  <a href="/timeline.html" class="u-mob-link"><span class="mob-icon">📅</span><span data-i18n="nav_timeline">Timeline Planner</span></a>
+  <a href="/salary.html" class="u-mob-link"><span class="mob-icon">💰</span>Salary Calculator</a>
+  <a href="/sperrkonto.html" class="u-mob-link"><span class="mob-icon">🏦</span>Sperrkonto Calculator</a>
+  <a href="/recognition.html" class="u-mob-link"><span class="mob-icon">🎓</span>Qualification Recognition</a>
+  <a href="/phrases.html" class="u-mob-link"><span class="mob-icon">💬</span>German Phrases</a>
+  <a href="/templates.html" class="u-mob-link"><span class="mob-icon">📧</span>Email Templates</a>
+  <a href="/housing.html" class="u-mob-link"><span class="mob-icon">🏠</span>Housing Guide</a>
+  <div class="u-mob-section">Language / Sprache</div>
+  <div class="u-mob-langs">
+    <button class="u-mob-lang" onclick="setChatLang('en')">🇬🇧 EN</button>
+    <button class="u-mob-lang" onclick="setChatLang('de')">🇩🇪 DE</button>
+    <button class="u-mob-lang" onclick="setChatLang('ar')">🇸🇦 AR</button>
+    <button class="u-mob-lang" onclick="setChatLang('tr')">🇹🇷 TR</button>
+    <button class="u-mob-lang" onclick="setChatLang('fr')">🇫🇷 FR</button>
+    <button class="u-mob-lang" onclick="setChatLang('es')">🇪🇸 ES</button>
+  </div>
+  <a href="/myapplication.html" class="u-mob-myapp" data-i18n="nav_myapp">🗂️ My Application</a>
+</div>
+
+
+<div style="background:var(--surface);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:68px;z-index:99;">
+  <a href="/" style="display:flex;align-items:center;gap:7px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;color:var(--text-muted);font-family:var(--font-body);font-size:13px;font-weight:600;padding:7px 16px;text-decoration:none;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">← Home</a>
+  <a href="/jobs.html" style="display:flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;color:var(--text-muted);font-family:var(--font-body);font-size:13px;font-weight:500;padding:7px 14px;text-decoration:none;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">🔍 Jobs</a>
+  <a href="/eligibility.html" style="display:flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;color:var(--text-muted);font-family:var(--font-body);font-size:13px;font-weight:500;padding:7px 14px;text-decoration:none;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">🎯 Eligibility</a>
+  <a href="/generator.html" style="display:flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;color:var(--text-muted);font-family:var(--font-body);font-size:13px;font-weight:500;padding:7px 14px;text-decoration:none;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">📄 Generator</a>
+  <span style="font-size:13px;color:var(--text-muted);margin-left:4px;">🤖 AI Chatbot</span>
+</div>
+
+<div class="chat-wrapper">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-label">Quick Topics</div>
+    <button class="topic-btn" onclick="sendPrompt('What is Ausbildung and how does it work?')">🇩🇪 What is Ausbildung?</button>
+    <button class="topic-btn" onclick="sendPrompt('How do I find Ausbildung programs in Germany?')">🔍 Find Programs</button>
+    <button class="topic-btn" onclick="sendPrompt('How do I apply for Ausbildung as a foreigner?')">📝 How to Apply</button>
+    <button class="topic-btn" onclick="sendPrompt('What visa do I need for Ausbildung in Germany?')">✈️ Visa & Documents</button>
+    <button class="topic-btn" onclick="sendPrompt('What salary can I expect during Ausbildung?')">💰 Salary & Benefits</button>
+    <button class="topic-btn" onclick="sendPrompt('Which sectors have the most Ausbildung openings in Germany?')">🏭 Top Sectors</button>
+    <button class="topic-btn" onclick="sendPrompt('What German language level do I need for Ausbildung?')">🗣️ German Requirements</button>
+    <button class="topic-btn" onclick="sendPrompt('What happens after completing Ausbildung?')">🚀 Career After</button>
+
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-label">Tools</div>
+    <a href="/jobs.html" class="topic-btn" style="text-decoration:none;background:linear-gradient(135deg,rgba(79,200,122,0.15),rgba(79,142,247,0.15));border:1px solid rgba(79,200,122,0.3);">🔍 Job Finder</a>
+    <a href="/embassy.html" class="topic-btn" style="text-decoration:none;background:linear-gradient(135deg,rgba(247,192,79,0.15),rgba(79,142,247,0.15));border:1px solid rgba(247,192,79,0.3);">🗺️ Embassy Finder</a>
+    <a href="/checklist.html" class="topic-btn" style="text-decoration:none;background:linear-gradient(135deg,rgba(79,200,122,0.15),rgba(123,95,247,0.15));border:1px solid rgba(79,200,122,0.3);">📋 Document Checklist</a>
+    <a href="/generator.html" class="topic-btn" style="text-decoration:none;background:linear-gradient(135deg,rgba(79,142,247,0.15),rgba(123,95,247,0.15));border:1px solid rgba(79,142,247,0.3);">📄 Document Generator</a>
+    <div class="sidebar-divider"></div>
+
+    <div class="lang-section">
+      <div class="sidebar-label">Language</div>
+      <div class="lang-grid">
+        <button class="lang-btn active" id="lang-en" onclick="setChatLang('en')">🇬🇧 EN</button>
+        <button class="lang-btn" id="lang-de" onclick="setChatLang('de')">🇩🇪 DE</button>
+        <button class="lang-btn" id="lang-ar" onclick="setChatLang('ar')">🇸🇦 AR</button>
+        <button class="lang-btn" id="lang-tr" onclick="setChatLang('tr')">🇹🇷 TR</button>
+        <button class="lang-btn" id="lang-fr" onclick="setChatLang('fr')">🇫🇷 FR</button>
+        <button class="lang-btn" id="lang-es" onclick="setChatLang('es')">🇪🇸 ES</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Chat -->
+  <div class="chat-container">
+    <div id="messages">
+      <div class="welcome" id="welcome">
+        <div class="welcome-icon">🎓</div>
+        <h2>Find Your <em>Ausbildung</em> in Germany</h2>
+        <p>I can help you understand the German dual-education system, find apprenticeship programs, and guide you through the application process — no matter where you're from.</p>
+        <div class="welcome-chips">
+          <button class="welcome-chip" onclick="sendPrompt('What is Ausbildung and how does it work?')">🇩🇪 What is Ausbildung?</button>
+          <button class="welcome-chip" onclick="sendPrompt('I am from outside the EU. Can I do Ausbildung in Germany?')">🌍 Can I apply from abroad?</button>
+          <button class="welcome-chip" onclick="sendPrompt('Which Ausbildung requires the least German language level?')">🗣️ Language requirements</button>
+          <button class="welcome-chip" onclick="sendPrompt('Show me the best websites to search for Ausbildung programs')">🔍 Where to search</button>
+          <button class="welcome-chip" onclick="sendPrompt('Help me write a cover letter for Ausbildung application')">✍️ Write cover letter</button>
+          <button class="welcome-chip" onclick="sendPrompt('What is the difference between Ausbildung and Studium?')">🎓 Ausbildung vs. Studium</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <div class="input-row">
+        <textarea id="userInput" rows="1" placeholder="Ask me anything about Ausbildung in Germany…" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="Send">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <div class="input-hint">AusbildungBot can make mistakes — always verify important info with official sources.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SYSTEM_PROMPT = `You are AusbildungBot, a friendly and expert assistant that helps people from all over the world find and apply for Ausbildung (vocational apprenticeship training) in Germany.
+
+Your expertise covers:
+- Explaining what Ausbildung is and how the dual education system works
+- Helping users find suitable Ausbildung programs based on their interests, skills, and background
+- Guiding foreigners (non-EU and EU alike) through visa requirements (Ausbildungsvisum, §16a AufenthG), residence permits
+- Explaining document requirements (transcripts, language certificates, Lebenslauf, Bewerbungsschreiben)
+- Listing and explaining top job portals: Bundesagentur für Arbeit (www.arbeitsagentur.de), Ausbildung.de, Azubi.de, Make it in Germany (www.make-it-in-germany.com), IHK portals
+- Advising on German language requirements (usually B1–B2 for most programs)
+- Explaining Ausbildungsvergütung (training salary) ranges by sector
+- Comparing Ausbildung vs. Studium
+- Helping draft cover letters (Bewerbungsschreiben) and CVs in German style
+- Explaining the timeline: application season (Sept–Nov for next year), dual system (company + Berufsschule)
+- Post-Ausbildung career paths, PR, and citizenship possibilities
+
+Rules:
+- Be warm, encouraging, and supportive — many users are nervous about this process
+- Use clear, simple language; define German terms when you use them
+- Always recommend official German government sources when relevant
+- If the user writes in a language other than English, respond in THAT language
+- Format responses with short paragraphs, use bullet points for steps/lists
+- When listing resources, include the actual URLs
+- Be honest when you don't know something; suggest where to find the answer`;
+
+let conversationHistory = [];
+let currentLang = 'en';
+
+const langNames = {
+  en: 'English', de: 'German', ar: 'Arabic', tr: 'Turkish', fr: 'French', es: 'Spanish'
+};
+
+function setChatLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('lang-' + lang).classList.add('active');
+  const placeholder = {
+    en: 'Ask me anything about Ausbildung in Germany…',
+    de: 'Frag mich alles über Ausbildung in Deutschland…',
+    ar: 'اسألني أي شيء عن التدريب المهني في ألمانيا…',
+    tr: 'Almanya\'daki Ausbildung hakkında her şeyi sorabilirsiniz…',
+    fr: 'Posez-moi des questions sur l\'Ausbildung en Allemagne…',
+    es: 'Pregúntame sobre la formación profesional en Alemania…'
+  };
+  document.getElementById('userInput').placeholder = placeholder[lang] || placeholder.en;
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function sendPrompt(text) {
+  document.getElementById('userInput').value = text;
+  sendMessage();
+}
+
+function hideWelcome() {
+  const w = document.getElementById('welcome');
+  if (w) w.remove();
+}
+
+function appendMessage(role, html, chips = []) {
+  hideWelcome();
+  const container = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar ' + role;
+  avatar.textContent = role === 'bot' ? '🎓' : '👤';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerHTML = html;
+
+  if (chips.length > 0) {
+    const chipRow = document.createElement('div');
+    chipRow.className = 'chips';
+    chips.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'chip';
+      btn.textContent = c;
+      btn.onclick = () => sendPrompt(c);
+      chipRow.appendChild(btn);
+    });
+    bubble.appendChild(chipRow);
+  }
+
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return bubble;
+}
+
+function showTyping() {
+  hideWelcome();
+  const container = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.id = 'typing-msg';
+
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar bot';
+  avatar.textContent = '🎓';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble typing-indicator';
+  bubble.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-msg');
+  if (t) t.remove();
+}
+
+function markdownToHtml(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/`(.*?)`/g, '<code style="background:rgba(79,142,247,0.12);border-radius:4px;padding:1px 5px;font-size:13px;">$1</code>')
+    .replace(/\[(.*?)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/^### (.+)$/gm, '<strong style="font-size:15px;display:block;margin-top:10px;">$1</strong>')
+    .replace(/^## (.+)$/gm, '<strong style="font-size:16px;display:block;margin-top:12px;color:var(--accent2)">$1</strong>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/gs, m => '<ul>' + m + '</ul>')
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    .split(/\n{2,}/)
+    .map(p => p.startsWith('<') ? p : `<p>${p}</p>`)
+    .join('');
+}
+
+async function sendMessage() {
+  const input = document.getElementById('userInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const btn = document.getElementById('sendBtn');
+  btn.disabled = true;
+  input.value = '';
+  input.style.height = 'auto';
+
+  appendMessage('user', `<p>${text.replace(/</g, '&lt;')}</p>`);
+
+  // Add lang instruction if non-English
+  let userContent = text;
+  if (currentLang !== 'en') {
+    userContent += `\n\n[Please respond in ${langNames[currentLang]}]`;
+  }
+
+  conversationHistory.push({ role: 'user', content: userContent });
+
+  showTyping();
+
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: SYSTEM_PROMPT,
+        messages: conversationHistory
+      })
+    });
+
+    const data = await response.json();
+    removeTyping();
+
+    if (data.error) {
+      appendMessage('bot', `<p>⚠️ Error: ${data.error.message}. Please check your API key.</p>`);
+      return;
+    }
+
+    const reply = data.content?.map(b => b.text || '').join('') || 'No response.';
+    conversationHistory.push({ role: 'assistant', content: reply });
+
+    // Suggest follow-up chips contextually
+    let chips = [];
+    const lower = text.toLowerCase();
+    if (lower.includes('visa') || lower.includes('foreigner') || lower.includes('abroad')) {
+      chips = ['What documents do I need?', 'How long does visa take?', 'Can I work while applying?'];
+    } else if (lower.includes('find') || lower.includes('search') || lower.includes('program')) {
+      chips = ['Top sectors for foreigners', 'IT Ausbildung options', 'Healthcare Ausbildung'];
+    } else if (lower.includes('apply') || lower.includes('application') || lower.includes('letter')) {
+      chips = ['Write my cover letter', 'CV tips for Germany', 'Interview preparation'];
+    } else if (lower.includes('salary') || lower.includes('pay') || lower.includes('money')) {
+      chips = ['Best paid Ausbildung', 'Benefits after completing', 'Tax info for trainees'];
+    }
+
+    appendMessage('bot', markdownToHtml(reply), chips);
+  } catch (err) {
+    removeTyping();
+    appendMessage('bot', `<p>⚠️ Connection error. Please check your internet connection and try again.</p>`);
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    input.focus();
+  }
+}
+</script>
+<!-- ── UNIVERSAL NAV JS + i18n + GA4 ── -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEV3ZNRJ2P"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BEV3ZNRJ2P');
+</script>
+<script>
+// ── Nav helpers ──
+function toggleMenu(){
+  const h=document.getElementById('uHamburger');
+  const m=document.getElementById('uMobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function toggleLang(e){
+  e.stopPropagation();
+  document.getElementById('uLang').classList.toggle('open');
+}
+document.addEventListener('click',()=>document.getElementById('uLang')?.classList.remove('open'));
+
+// Highlight active page
+(function(){
+  const path=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.u-link,.u-mob-link').forEach(a=>{
+    if(a.getAttribute('href')===('/'+path)||a.getAttribute('href')==='/'+path){
+      a.classList.add('active');
+    }
+  });
+})();
+
+// ── i18n translations ──
+const TRANSLATIONS = {
+  en:{nav_jobs:'Job Finder',nav_sectors:'Sectors',nav_eligibility:'Eligibility',nav_timeline:'Timeline',nav_embassy:'Embassy',nav_generator:'Documents',nav_chat:'AI Chat',nav_myapp:'🗂️ My Application',nav_tools:'Tools',nav_resources:'Resources',nav_checklist:'Checklist'},
+  de:{nav_jobs:'Jobs finden',nav_sectors:'Branchen',nav_eligibility:'Eignung prüfen',nav_timeline:'Zeitplan',nav_embassy:'Botschaft',nav_generator:'Dokumente',nav_chat:'KI-Chat',nav_myapp:'🗂️ Meine Bewerbung',nav_tools:'Tools',nav_resources:'Ressourcen',nav_checklist:'Checkliste'},
+  ar:{nav_jobs:'البحث عن وظيفة',nav_sectors:'القطاعات',nav_eligibility:'التأهل',nav_timeline:'الجدول الزمني',nav_embassy:'السفارة',nav_generator:'المستندات',nav_chat:'الدردشة',nav_myapp:'🗂️ طلبي',nav_tools:'الأدوات',nav_resources:'الموارد',nav_checklist:'قائمة التحقق'},
+  tr:{nav_jobs:'İş Bul',nav_sectors:'Sektörler',nav_eligibility:'Uygunluk',nav_timeline:'Zaman Çizelgesi',nav_embassy:'Büyükelçilik',nav_generator:'Belgeler',nav_chat:'Yapay Zeka',nav_myapp:'🗂️ Başvurum',nav_tools:'Araçlar',nav_resources:'Kaynaklar',nav_checklist:'Kontrol Listesi'},
+  fr:{nav_jobs:'Chercher emploi',nav_sectors:'Secteurs',nav_eligibility:'Éligibilité',nav_timeline:'Calendrier',nav_embassy:'Ambassade',nav_generator:'Documents',nav_chat:'IA Chat',nav_myapp:'🗂️ Ma Candidature',nav_tools:'Outils',nav_resources:'Ressources',nav_checklist:'Liste de contrôle'},
+  hi:{nav_jobs:'नौकरी खोजें',nav_sectors:'क्षेत्र',nav_eligibility:'पात्रता',nav_timeline:'समयरेखा',nav_embassy:'दूतावास',nav_generator:'दस्तावेज़',nav_chat:'AI चैट',nav_myapp:'🗂️ मेरा आवेदन',nav_tools:'टूल्स',nav_resources:'संसाधन',nav_checklist:'चेकलिस्ट'},
+  ur:{nav_jobs:'ملازمت تلاش کریں',nav_sectors:'شعبہ جات',nav_eligibility:'اہلیت',nav_timeline:'ٹائم لائن',nav_embassy:'سفارت خانہ',nav_generator:'دستاویزات',nav_chat:'AI چیٹ',nav_myapp:'🗂️ میری درخواست',nav_tools:'ٹولز',nav_resources:'وسائل',nav_checklist:'چیک لسٹ'},
+  sw:{nav_jobs:'Tafuta Kazi',nav_sectors:'Sekta',nav_eligibility:'Ustahili',nav_timeline:'Ratiba',nav_embassy:'Ubalozi',nav_generator:'Nyaraka',nav_chat:'Mazungumzo ya AI',nav_myapp:'🗂️ Maombi Yangu',nav_tools:'Zana',nav_resources:'Rasilimali',nav_checklist:'Orodha ya Ukaguzi'},
+  bn:{nav_jobs:'চাকরি খুঁজুন',nav_sectors:'সেক্টর',nav_eligibility:'যোগ্যতা',nav_timeline:'সময়রেখা',nav_embassy:'দূতাবাস',nav_generator:'নথিপত্র',nav_chat:'AI চ্যাট',nav_myapp:'🗂️ আমার আবেদন',nav_tools:'টুলস',nav_resources:'রিসোর্স',nav_checklist:'চেকলিস্ট'},
+  tl:{nav_jobs:'Maghanap ng Trabaho',nav_sectors:'Sektor',nav_eligibility:'Kwalipikasyon',nav_timeline:'Timeline',nav_embassy:'Embahada',nav_generator:'Mga Dokumento',nav_chat:'AI Chat',nav_myapp:'🗂️ Aking Aplikasyon',nav_tools:'Mga Tool',nav_resources:'Mga Mapagkukunan',nav_checklist:'Checklist'},
+  es:{nav_jobs:'Buscar empleo',nav_sectors:'Sectores',nav_eligibility:'Elegibilidad',nav_timeline:'Cronograma',nav_embassy:'Embajada',nav_generator:'Documentos',nav_chat:'Chat IA',nav_myapp:'🗂️ Mi Solicitud',nav_tools:'Herramientas',nav_resources:'Recursos',nav_checklist:'Lista de verificación'},
+};
+
+function setLang(lang){
+  localStorage.setItem('aig_lang', lang);
+  document.getElementById('uLangLabel').textContent = lang.toUpperCase();
+  document.getElementById('uLang').classList.remove('open');
+  // Update nav items
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(t[key]) el.textContent = t[key];
+  });
+  // Update active lang button
+  document.querySelectorAll('.u-mob-lang').forEach(b=>{
+    b.classList.toggle('active-lang', b.textContent.includes(lang.toUpperCase()));
+  });
+  // Store and trigger page-level translations if available
+  if(typeof applyPageTranslations === 'function') applyPageTranslations(lang);
+}
+
+// Apply saved language on load
+(function(){
+  const saved = localStorage.getItem('aig_lang') || 'en';
+  setLang(saved);
+})();
+</script>
+
+
+<!-- Share & Feedback Bar -->
+<div id="shareBar" style="position:fixed;bottom:24px;left:24px;z-index:8888;display:flex;flex-direction:column;gap:8px;">
+  <button onclick="shareWhatsApp()" title="Share on WhatsApp" style="width:44px;height:44px;border-radius:50%;border:none;background:#25D366;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</button>
+  <button onclick="shareFacebook()" title="Share on Facebook" style="width:44px;height:44px;border-radius:50%;border:none;background:#1877F2;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">f</button>
+  <button onclick="copyLink()" title="Copy link" style="width:44px;height:44px;border-radius:50%;border:none;background:#0a1628;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🔗</button>
+  <button onclick="toggleFeedback()" title="Send feedback" style="width:44px;height:44px;border-radius:50%;border:none;background:#f5a623;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💡</button>
+</div>
+
+<!-- Feedback Panel -->
+<div id="feedbackPanel" style="display:none;position:fixed;bottom:24px;left:76px;z-index:8889;background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;padding:20px;width:300px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <strong style="font-family:'Outfit',sans-serif;font-size:15px;color:#0a1628;">💡 Send Feedback</strong>
+    <button onclick="toggleFeedback()" style="background:none;border:none;font-size:18px;cursor:pointer;color:#718096;">×</button>
+  </div>
+  <p style="font-size:13px;color:#4a5568;margin-bottom:12px;">Found a bug, missing feature, or have a suggestion? Tell us!</p>
+  <select id="fbType" style="width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:8px 12px;outline:none;margin-bottom:10px;">
+    <option>🐛 Bug / Something broken</option>
+    <option>💡 Feature suggestion</option>
+    <option>✏️ Wrong information</option>
+    <option>🌍 Language / translation issue</option>
+    <option>👍 General feedback</option>
+  </select>
+  <textarea id="fbText" placeholder="Describe the issue or idea..." style="width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:10px 12px;outline:none;resize:none;min-height:80px;margin-bottom:10px;"></textarea>
+  <button onclick="submitFeedback()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:9px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;padding:10px;cursor:pointer;transition:all .15s;">Send Feedback</button>
+</div>
+
+<script>
+function shareWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent('Check out AusbildungInGermany.org — the free platform to find Ausbildung in Germany! '+window.location.href),'_blank');}
+function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank');}
+function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>{const b=document.querySelector('[title="Copy link"]');const orig=b.textContent;b.textContent='✅';b.style.background='#00c48c';setTimeout(()=>{b.textContent=orig;b.style.background='#0a1628';},2000);});}
+function toggleFeedback(){const p=document.getElementById('feedbackPanel');p.style.display=p.style.display==='none'?'block':'none';}
+function submitFeedback(){
+  const type=document.getElementById('fbType').value;
+  const text=document.getElementById('fbText').value.trim();
+  if(!text){alert('Please write your feedback!');return;}
+  // Send to a simple endpoint or just log for now
+  console.log('Feedback:', type, text);
+  document.getElementById('feedbackPanel').innerHTML='<div style="text-align:center;padding:20px;"><div style="font-size:32px;margin-bottom:10px;">🙏</div><strong style="font-family:Outfit,sans-serif;font-size:16px;color:#0a1628;">Thank you!</strong><p style="font-size:13px;color:#718096;margin-top:8px;">Your feedback helps us improve AusbildungInGermany for everyone.</p></div>';
+  setTimeout(()=>{document.getElementById('feedbackPanel').style.display='none';},3000);
+}
+</script>
+</body>
+</html>
