@@ -476,6 +476,29 @@
     #messages { padding: 16px; }
     .input-area { padding: 12px 16px 16px; }
   }
+
+  /* Streaming cursor */
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  .stream-cursor { display: inline-block; animation: blink 1s ease infinite; color: var(--accent); font-weight: bold; margin-left: 1px; }
+
+  /* Copy message button */
+  .copy-msg-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 8px; background: none;
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 6px;
+    color: var(--text-muted); font-family: var(--font-body);
+    font-size: 11px; padding: 3px 8px; cursor: pointer; transition: all 0.15s;
+  }
+  .copy-msg-btn:hover { background: var(--surface2); color: var(--text); }
+
+  /* Clear chat button */
+  .clear-btn {
+    background: none; border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text-muted); font-family: var(--font-body); font-size: 12px;
+    padding: 5px 12px; cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; gap: 5px; white-space: nowrap;
+  }
+  .clear-btn:hover { border-color: #ff4757; color: #ff4757; }
 </style>
 <!-- ── UNIVERSAL NAV ── -->
 <style>
@@ -604,6 +627,7 @@ gtag('config', 'G-BEV3ZNRJ2P');
   <a href="/eligibility.html" style="display:flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;color:var(--text-muted);font-family:var(--font-body);font-size:13px;font-weight:500;padding:7px 14px;text-decoration:none;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">🎯 Eligibility</a>
   <a href="/generator.html" style="display:flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;color:var(--text-muted);font-family:var(--font-body);font-size:13px;font-weight:500;padding:7px 14px;text-decoration:none;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">📄 Generator</a>
   <span style="font-size:13px;color:var(--text-muted);margin-left:4px;">🤖 AI Chatbot</span>
+  <button class="clear-btn" onclick="clearChat()" style="margin-left:auto;">🗑️ New Chat</button>
 </div>
 
 <div class="chat-wrapper">
@@ -637,6 +661,11 @@ gtag('config', 'G-BEV3ZNRJ2P');
         <button class="lang-btn" id="lang-tr" onclick="setChatLang('tr')">🇹🇷 TR</button>
         <button class="lang-btn" id="lang-fr" onclick="setChatLang('fr')">🇫🇷 FR</button>
         <button class="lang-btn" id="lang-es" onclick="setChatLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" id="lang-hi" onclick="setChatLang('hi')">🇮🇳 HI</button>
+        <button class="lang-btn" id="lang-ur" onclick="setChatLang('ur')">🇵🇰 UR</button>
+        <button class="lang-btn" id="lang-bn" onclick="setChatLang('bn')">🇧🇩 BN</button>
+        <button class="lang-btn" id="lang-sw" onclick="setChatLang('sw')">🌍 SW</button>
+        <button class="lang-btn" id="lang-tl" onclick="setChatLang('tl')">🇵🇭 TL</button>
       </div>
     </div>
   </aside>
@@ -675,47 +704,56 @@ gtag('config', 'G-BEV3ZNRJ2P');
 const SYSTEM_PROMPT = `You are AusbildungBot, a friendly and expert assistant that helps people from all over the world find and apply for Ausbildung (vocational apprenticeship training) in Germany.
 
 Your expertise covers:
-- Explaining what Ausbildung is and how the dual education system works
-- Helping users find suitable Ausbildung programs based on their interests, skills, and background
-- Guiding foreigners (non-EU and EU alike) through visa requirements (Ausbildungsvisum, §16a AufenthG), residence permits
-- Explaining document requirements (transcripts, language certificates, Lebenslauf, Bewerbungsschreiben)
-- Listing and explaining top job portals: Bundesagentur für Arbeit (www.arbeitsagentur.de), Ausbildung.de, Azubi.de, Make it in Germany (www.make-it-in-germany.com), IHK portals
-- Advising on German language requirements (usually B1–B2 for most programs)
-- Explaining Ausbildungsvergütung (training salary) ranges by sector
-- Comparing Ausbildung vs. Studium
-- Helping draft cover letters (Bewerbungsschreiben) and CVs in German style
-- Explaining the timeline: application season (Sept–Nov for next year), dual system (company + Berufsschule)
-- Post-Ausbildung career paths, PR, and citizenship possibilities
+- Explaining what Ausbildung is and how the dual education system works in detail (company training + Berufsschule)
+- Helping users find suitable Ausbildung programs based on their interests, skills, background, and German level
+- Guiding foreigners (non-EU and EU alike) through visa requirements (Ausbildungsvisum §16a AufenthG), Sperrkonto, health insurance, residence permits
+- Explaining document requirements: Lebenslauf, Bewerbungsschreiben, certified translations, diploma recognition (anabin, KMK)
+- Top job portals with URLs: Bundesagentur für Arbeit (www.arbeitsagentur.de/jobsuche), Ausbildung.de, Azubi.de, Make it in Germany (www.make-it-in-germany.com), IHK portals, company websites
+- German language requirements by field: B1 minimum for most, B2 for healthcare/social work, some accept A2
+- Ausbildungsvergütung (training salary) by sector: legal minimum €724/month (2026), average €1,133/month
+- Comparing Ausbildung vs. Studium — pros/cons for international applicants
+- Helping draft Bewerbungsschreiben and Lebenslauf following German standards
+- Application timeline: companies recruit Sept–Nov for the following year (some year-round)
+- Post-Ausbildung paths: full-time employment, Meister/Techniker, Studium, PR after 2+ years, citizenship pathway
+- Practical tips: Sperrkonto (€720/month), health insurance (TK, AOK), recognition of foreign diplomas
 
 Rules:
-- Be warm, encouraging, and supportive — many users are nervous about this process
-- Use clear, simple language; define German terms when you use them
-- Always recommend official German government sources when relevant
-- If the user writes in a language other than English, respond in THAT language
-- Format responses with short paragraphs, use bullet points for steps/lists
-- When listing resources, include the actual URLs
-- Be honest when you don't know something; suggest where to find the answer`;
+- Be warm, encouraging, and supportive — many users are nervous and new to this
+- Define every German term you use the first time
+- Always cite official sources: arbeitsagentur.de, make-it-in-germany.com, bamf.de, anabin.kmk.org
+- If the user writes in any language, detect it and respond in THAT same language
+- Use short paragraphs and bullet points; never write walls of text
+- Include actual URLs when listing resources
+- Be honest when uncertain; direct users to official sources
+- Never discourage applicants — there is always a path forward`;
 
 let conversationHistory = [];
 let currentLang = 'en';
 
 const langNames = {
-  en: 'English', de: 'German', ar: 'Arabic', tr: 'Turkish', fr: 'French', es: 'Spanish'
+  en: 'English', de: 'German', ar: 'Arabic', tr: 'Turkish', fr: 'French',
+  es: 'Spanish', hi: 'Hindi', ur: 'Urdu', bn: 'Bengali', sw: 'Swahili', tl: 'Filipino'
 };
 
 function setChatLang(lang) {
   currentLang = lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('lang-' + lang).classList.add('active');
-  const placeholder = {
+  const btn = document.getElementById('lang-' + lang);
+  if (btn) btn.classList.add('active');
+  const placeholders = {
     en: 'Ask me anything about Ausbildung in Germany…',
     de: 'Frag mich alles über Ausbildung in Deutschland…',
     ar: 'اسألني أي شيء عن التدريب المهني في ألمانيا…',
-    tr: 'Almanya\'daki Ausbildung hakkında her şeyi sorabilirsiniz…',
-    fr: 'Posez-moi des questions sur l\'Ausbildung en Allemagne…',
-    es: 'Pregúntame sobre la formación profesional en Alemania…'
+    tr: "Almanya'daki Ausbildung hakkında her şeyi sorabilirsiniz…",
+    fr: "Posez-moi des questions sur l'Ausbildung en Allemagne…",
+    es: 'Pregúntame sobre la formación profesional en Alemania…',
+    hi: 'जर्मनी में Ausbildung के बारे में कुछ भी पूछें…',
+    ur: 'جرمنی میں Ausbildung کے بارے میں کچھ بھی پوچھیں…',
+    bn: 'জার্মানিতে Ausbildung সম্পর্কে যেকোনো প্রশ্ন করুন…',
+    sw: 'Uliza chochote kuhusu Ausbildung Ujerumani…',
+    tl: 'Magtanong tungkol sa Ausbildung sa Germany…',
   };
-  document.getElementById('userInput').placeholder = placeholder[lang] || placeholder.en;
+  document.getElementById('userInput').placeholder = placeholders[lang] || placeholders.en;
 }
 
 function autoResize(el) {
@@ -724,10 +762,7 @@ function autoResize(el) {
 }
 
 function handleKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendMessage();
-  }
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
 }
 
 function sendPrompt(text) {
@@ -738,6 +773,24 @@ function sendPrompt(text) {
 function hideWelcome() {
   const w = document.getElementById('welcome');
   if (w) w.remove();
+}
+
+function clearChat() {
+  conversationHistory = [];
+  document.getElementById('messages').innerHTML = `
+    <div class="welcome" id="welcome">
+      <div class="welcome-icon">🎓</div>
+      <h2>Find Your <em>Ausbildung</em> in Germany</h2>
+      <p>I can help you understand the German dual-education system, find apprenticeship programs, and guide you through the application process — no matter where you're from.</p>
+      <div class="welcome-chips">
+        <button class="welcome-chip" onclick="sendPrompt('What is Ausbildung and how does it work?')">🇩🇪 What is Ausbildung?</button>
+        <button class="welcome-chip" onclick="sendPrompt('I am from outside the EU. Can I do Ausbildung in Germany?')">🌍 Can I apply from abroad?</button>
+        <button class="welcome-chip" onclick="sendPrompt('Which Ausbildung requires the least German language level?')">🗣️ Language requirements</button>
+        <button class="welcome-chip" onclick="sendPrompt('Show me the best websites to search for Ausbildung programs')">🔍 Where to search</button>
+        <button class="welcome-chip" onclick="sendPrompt('Help me write a cover letter for Ausbildung application')">✍️ Write cover letter</button>
+        <button class="welcome-chip" onclick="sendPrompt('What is the difference between Ausbildung and Studium?')">🎓 Ausbildung vs. Studium</button>
+      </div>
+    </div>`;
 }
 
 function appendMessage(role, html, chips = []) {
@@ -759,8 +812,7 @@ function appendMessage(role, html, chips = []) {
     chipRow.className = 'chips';
     chips.forEach(c => {
       const btn = document.createElement('button');
-      btn.className = 'chip';
-      btn.textContent = c;
+      btn.className = 'chip'; btn.textContent = c;
       btn.onclick = () => sendPrompt(c);
       chipRow.appendChild(btn);
     });
@@ -774,30 +826,38 @@ function appendMessage(role, html, chips = []) {
   return bubble;
 }
 
-function showTyping() {
+function appendStreamingMessage() {
   hideWelcome();
   const container = document.getElementById('messages');
   const div = document.createElement('div');
   div.className = 'msg bot';
-  div.id = 'typing-msg';
 
   const avatar = document.createElement('div');
   avatar.className = 'avatar bot';
   avatar.textContent = '🎓';
 
   const bubble = document.createElement('div');
-  bubble.className = 'bubble typing-indicator';
-  bubble.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  bubble.className = 'bubble';
+  bubble.innerHTML = '<span class="stream-cursor">▋</span>';
 
   div.appendChild(avatar);
   div.appendChild(bubble);
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
+  return bubble;
 }
 
-function removeTyping() {
-  const t = document.getElementById('typing-msg');
-  if (t) t.remove();
+function addCopyBtn(bubble, text) {
+  const btn = document.createElement('button');
+  btn.className = 'copy-msg-btn';
+  btn.innerHTML = '📋 Copy';
+  btn.title = 'Copy message';
+  btn.onclick = () => {
+    navigator.clipboard.writeText(text);
+    btn.innerHTML = '✅ Copied';
+    setTimeout(() => btn.innerHTML = '📋 Copy', 2000);
+  };
+  bubble.appendChild(btn);
 }
 
 function markdownToHtml(text) {
@@ -826,56 +886,95 @@ async function sendMessage() {
   input.value = '';
   input.style.height = 'auto';
 
-  appendMessage('user', `<p>${text.replace(/</g, '&lt;')}</p>`);
+  appendMessage('user', `<p>${text.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>`);
 
-  // Add lang instruction if non-English
   let userContent = text;
   if (currentLang !== 'en') {
     userContent += `\n\n[Please respond in ${langNames[currentLang]}]`;
   }
-
   conversationHistory.push({ role: 'user', content: userContent });
-
-  showTyping();
 
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system: SYSTEM_PROMPT,
-        messages: conversationHistory
-      })
+      body: JSON.stringify({ system: SYSTEM_PROMPT, messages: conversationHistory, stream: true })
     });
 
-    const data = await response.json();
-    removeTyping();
-
-    if (data.error) {
-      appendMessage('bot', `<p>⚠️ Error: ${data.error.message}. Please check your API key.</p>`);
+    if (!response.ok || !response.body) {
+      let errMsg = 'Something went wrong. Please try again.';
+      if (response.status === 429) errMsg = 'Too many requests — please wait a moment and try again.';
+      else if (response.status === 401) errMsg = 'API key error. Please contact support.';
+      else if (response.status === 529) errMsg = 'Service is overloaded. Please try again in a few seconds.';
+      appendMessage('bot', `<p>⚠️ ${errMsg}</p>`);
+      conversationHistory.pop();
+      btn.disabled = false; input.focus();
       return;
     }
 
-    const reply = data.content?.map(b => b.text || '').join('') || 'No response.';
-    conversationHistory.push({ role: 'assistant', content: reply });
+    const bubble = appendStreamingMessage();
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let fullText = '';
+    let buffer = '';
+    const messages = document.getElementById('messages');
 
-    // Suggest follow-up chips contextually
-    let chips = [];
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop();
+
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6).trim();
+        if (!data || data === '[DONE]') continue;
+        try {
+          const json = JSON.parse(data);
+          if (json.type === 'content_block_delta' && json.delta?.type === 'text_delta') {
+            fullText += json.delta.text;
+            bubble.innerHTML = markdownToHtml(fullText) + '<span class="stream-cursor">▋</span>';
+            messages.scrollTop = messages.scrollHeight;
+          }
+        } catch {}
+      }
+    }
+
+    if (!fullText) fullText = 'No response received.';
+    bubble.innerHTML = markdownToHtml(fullText);
+    conversationHistory.push({ role: 'assistant', content: fullText });
+
+    // Contextual follow-up chips
     const lower = text.toLowerCase();
+    let chips = [];
     if (lower.includes('visa') || lower.includes('foreigner') || lower.includes('abroad')) {
-      chips = ['What documents do I need?', 'How long does visa take?', 'Can I work while applying?'];
+      chips = ['What documents do I need?', 'How long does the visa take?', 'Can I work while applying?'];
     } else if (lower.includes('find') || lower.includes('search') || lower.includes('program')) {
       chips = ['Top sectors for foreigners', 'IT Ausbildung options', 'Healthcare Ausbildung'];
     } else if (lower.includes('apply') || lower.includes('application') || lower.includes('letter')) {
       chips = ['Write my cover letter', 'CV tips for Germany', 'Interview preparation'];
     } else if (lower.includes('salary') || lower.includes('pay') || lower.includes('money')) {
-      chips = ['Best paid Ausbildung', 'Benefits after completing', 'Tax info for trainees'];
+      chips = ['Best paid Ausbildung sectors', 'Benefits after completing', 'Tax info for trainees'];
     }
 
-    appendMessage('bot', markdownToHtml(reply), chips);
+    if (chips.length > 0) {
+      const chipRow = document.createElement('div');
+      chipRow.className = 'chips';
+      chips.forEach(c => {
+        const chipBtn = document.createElement('button');
+        chipBtn.className = 'chip'; chipBtn.textContent = c;
+        chipBtn.onclick = () => sendPrompt(c);
+        chipRow.appendChild(chipBtn);
+      });
+      bubble.appendChild(chipRow);
+    }
+
+    addCopyBtn(bubble, fullText);
+
   } catch (err) {
-    removeTyping();
-    appendMessage('bot', `<p>⚠️ Connection error. Please check your internet connection and try again.</p>`);
+    appendMessage('bot', '<p>⚠️ Connection error. Please check your internet connection and try again.</p>');
+    conversationHistory.pop();
     console.error(err);
   } finally {
     btn.disabled = false;
@@ -883,15 +982,7 @@ async function sendMessage() {
   }
 }
 </script>
-<!-- ── UNIVERSAL NAV JS + i18n + GA4 ── -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEV3ZNRJ2P"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-BEV3ZNRJ2P');
-</script>
+<!-- ── UNIVERSAL NAV JS + i18n ── -->
 <script>
 // ── Nav helpers ──
 function toggleMenu(){
