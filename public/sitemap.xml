@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ausbildungingermany.org/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://ausbildungingermany.org/jobs.html</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://ausbildungingermany.org/eligibility.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://ausbildungingermany.org/sectors.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ausbildungingermany.org/generator.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ausbildungingermany.org/embassy.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ausbildungingermany.org/checklist.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ausbildungingermany.org/timeline.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ausbildungingermany.org/salary.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ausbildungingermany.org/sperrkonto.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ausbildungingermany.org/recognition.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ausbildungingermany.org/phrases.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ausbildungingermany.org/templates.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ausbildungingermany.org/housing.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ausbildungingermany.org/chat.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ausbildungingermany.org/myapplication.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ausbildungingermany.org/</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://ausbildungingermany.org/jobs.html</loc><lastmod>2026-03-30</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ausbildungingermany.org/eligibility.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ausbildungingermany.org/sectors.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ausbildungingermany.org/generator.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ausbildungingermany.org/embassy.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ausbildungingermany.org/checklist.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ausbildungingermany.org/timeline.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ausbildungingermany.org/salary.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ausbildungingermany.org/sperrkonto.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ausbildungingermany.org/recognition.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ausbildungingermany.org/phrases.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ausbildungingermany.org/templates.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ausbildungingermany.org/housing.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ausbildungingermany.org/chat.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ausbildungingermany.org/myapplication.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ausbildungingermany.org/landing.html</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
 </urlset>
