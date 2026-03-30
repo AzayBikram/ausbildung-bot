@@ -41,7 +41,7 @@ export default function Eligibility() {
 
     window.calculateScore = function() {
       const totalScore = Object.values(answers).reduce((sum,a)=>sum+(a.score||0),0);
-      const maxScore = 30+20+15+10+5+5+5+5;
+      const maxScore = 100;
       const pct = Math.round((totalScore/maxScore)*100);
       document.querySelectorAll('.q-card').forEach(q=>q.classList.remove('active'));
       document.getElementById('progressSteps').innerHTML='';
@@ -67,7 +67,7 @@ export default function Eligibility() {
       document.getElementById('scoreLabel').style.color=labelColor;
       document.getElementById('scoreDesc').textContent=desc;
       const breakdownItems=[
-        {key:'german',label:'🗣️ German Language',max:30,tip:answers.german?.value==='B1'||answers.german?.value==='B2'||answers.german?.value==='C1+'?'Great! Your German meets or exceeds the minimum required (B1 per §16a AufenthG).':'This is the most critical factor. You need at least B1 (e.g. Goethe-Zertifikat B1) before your visa can be issued.'},
+        {key:'german',label:'🗣️ German Language',max:35,tip:answers.german?.value==='B1'||answers.german?.value==='B2'||answers.german?.value==='C1+'?'Great! Your German meets or exceeds the minimum required (B1 per §16a AufenthG).':'This is the most critical factor. You need at least B1 (e.g. Goethe-Zertifikat B1) before your visa can be issued.'},
         {key:'education',label:'🎓 Education Level',max:20,tip:answers.education?.score>=15?'Your education meets requirements.':'Complete at minimum high school (Class 10) before applying.'},
         {key:'age',label:'📅 Age',max:15,tip:answers.age?.value==='19-25'?'Ideal age range.':'No strict age limit for the Ausbildung visa (§16a AufenthG). Most employers prefer applicants aged 18-30.'},
         {key:'experience',label:'💼 Work Experience',max:10,tip:'Work experience helps but is not required for most Ausbildung programs.'},
@@ -113,7 +113,7 @@ export default function Eligibility() {
           <div className="q-num">Question 1 of 8</div>
           <div className="q-text">What is your current German language level?</div>
           <div className="q-options">
-            {[['😅','No German at all','none',0],['🔤','A1 – Can say hello and basic words','A1',5],['📖','A2 – Can handle simple conversations','A2',10],['💬','B1 – Can communicate at work (minimum required)','B1',20],['🗣️','B2 – Comfortable in most situations','B2',25],['🎯','C1/C2 – Near-native level','C1+',30]].map(([icon,label,val,score]) => (
+            {[['😅','No German at all','none',0],['🔤','A1 – Can say hello and basic words','A1',5],['📖','A2 – Can handle simple conversations','A2',10],['💬','B1 – Can communicate at work (minimum required)','B1',20],['🗣️','B2 – Comfortable in most situations','B2',25],['🎯','C1/C2 – Near-native level','C1+',35]].map(([icon,label,val,score]) => (
               <div key={val} className="q-option" onClick={e=>window.selectOption&&window.selectOption(e.currentTarget,'german',val,score)}><span className="opt-icon">{icon}</span><span className="opt-label">{label}</span><span className="opt-check"></span></div>
             ))}
           </div>
