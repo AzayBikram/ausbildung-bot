@@ -1047,48 +1047,5 @@ function setLang(lang){
   setLang(saved);
 })();
 </script>
-
-
-<!-- Share & Feedback Bar -->
-<div id="shareBar" style="position:fixed;bottom:24px;left:24px;z-index:8888;display:flex;flex-direction:column;gap:8px;">
-  <button onclick="shareWhatsApp()" title="Share on WhatsApp" style="width:44px;height:44px;border-radius:50%;border:none;background:#25D366;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</button>
-  <button onclick="shareFacebook()" title="Share on Facebook" style="width:44px;height:44px;border-radius:50%;border:none;background:#1877F2;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">f</button>
-  <button onclick="copyLink()" title="Copy link" style="width:44px;height:44px;border-radius:50%;border:none;background:#0a1628;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🔗</button>
-  <button onclick="toggleFeedback()" title="Send feedback" style="width:44px;height:44px;border-radius:50%;border:none;background:#f5a623;color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💡</button>
-</div>
-
-<!-- Feedback Panel -->
-<div id="feedbackPanel" style="display:none;position:fixed;bottom:24px;left:76px;z-index:8889;background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;padding:20px;width:300px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-    <strong style="font-family:'Outfit',sans-serif;font-size:15px;color:#0a1628;">💡 Send Feedback</strong>
-    <button onclick="toggleFeedback()" style="background:none;border:none;font-size:18px;cursor:pointer;color:#718096;">×</button>
-  </div>
-  <p style="font-size:13px;color:#4a5568;margin-bottom:12px;">Found a bug, missing feature, or have a suggestion? Tell us!</p>
-  <select id="fbType" style="width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:8px 12px;outline:none;margin-bottom:10px;">
-    <option>🐛 Bug / Something broken</option>
-    <option>💡 Feature suggestion</option>
-    <option>✏️ Wrong information</option>
-    <option>🌍 Language / translation issue</option>
-    <option>👍 General feedback</option>
-  </select>
-  <textarea id="fbText" placeholder="Describe the issue or idea..." style="width:100%;background:#f8faff;border:1.5px solid #e2e8f0;border-radius:8px;color:#0a1628;font-family:'Outfit',sans-serif;font-size:13px;padding:10px 12px;outline:none;resize:none;min-height:80px;margin-bottom:10px;"></textarea>
-  <button onclick="submitFeedback()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:9px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;padding:10px;cursor:pointer;transition:all .15s;">Send Feedback</button>
-</div>
-
-<script>
-function shareWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent('Check out AusbildungInGermany.org — the free platform to find Ausbildung in Germany! '+window.location.href),'_blank');}
-function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank');}
-function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>{const b=document.querySelector('[title="Copy link"]');const orig=b.textContent;b.textContent='✅';b.style.background='#00c48c';setTimeout(()=>{b.textContent=orig;b.style.background='#0a1628';},2000);});}
-function toggleFeedback(){const p=document.getElementById('feedbackPanel');p.style.display=p.style.display==='none'?'block':'none';}
-function submitFeedback(){
-  const type=document.getElementById('fbType').value;
-  const text=document.getElementById('fbText').value.trim();
-  if(!text){alert('Please write your feedback!');return;}
-  // Send to a simple endpoint or just log for now
-  console.log('Feedback:', type, text);
-  document.getElementById('feedbackPanel').innerHTML='<div style="text-align:center;padding:20px;"><div style="font-size:32px;margin-bottom:10px;">🙏</div><strong style="font-family:Outfit,sans-serif;font-size:16px;color:#0a1628;">Thank you!</strong><p style="font-size:13px;color:#718096;margin-top:8px;">Your feedback helps us improve AusbildungInGermany for everyone.</p></div>';
-  setTimeout(()=>{document.getElementById('feedbackPanel').style.display='none';},3000);
-}
-</script>
 </body>
 </html>
