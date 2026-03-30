@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Checklist() {
+  const { lang } = useLang();
   useEffect(() => {
     const countryNames = {NP:'Nepal',NG:'Nigeria',IN:'India',PK:'Pakistan',PH:'Philippines',GH:'Ghana',VN:'Vietnam',TR:'Turkey',BD:'Bangladesh',KE:'Kenya',EG:'Egypt',MA:'Morocco',TN:'Tunisia',LK:'Sri Lanka',ID:'Indonesia',BR:'Brazil',CO:'Colombia',MX:'Mexico',ET:'Ethiopia',CM:'Cameroon',UZ:'Uzbekistan',KZ:'Kazakhstan',UA:'Ukraine',GE:'Georgia',OTHER:'your country'};
     let checkedState = {};
@@ -15,6 +18,7 @@ export default function Checklist() {
     };
 
     window.generateChecklist = function() {
+      const cl = localStorage.getItem('aig_lang') || 'en';
       const country = document.getElementById('countrySelect').value;
       const education = document.getElementById('educationSelect').value;
       const german = document.getElementById('germanSelect').value;
@@ -47,21 +51,21 @@ export default function Checklist() {
       items.push({title:'Proof of Previous Work Experience',desc:'Employment references or certificates from previous jobs, especially if relevant to the Ausbildung field.',cat:'optional',req:false});
 
       checkedState = {};
-      renderChecklist(items, cName, education, german);
+      renderChecklist(items, cName, education, german, cl);
     };
 
-    function renderChecklist(items, cName, education, german) {
+    function renderChecklist(items, cName, education, german, cl) {
       const r = document.getElementById('results');
       const totalReq = items.filter(i => i.req).length;
       const cats = [
-        {key:'essential',label:'Essential'},
-        {key:'visa',label:'Visa'},
-        {key:'financial',label:'Financial'},
-        {key:'optional',label:'Optional'}
+        {key:'essential',label:t(cl,'checklist.cat_essential')},
+        {key:'visa',label:t(cl,'checklist.cat_visa')},
+        {key:'financial',label:t(cl,'checklist.cat_financial')},
+        {key:'optional',label:t(cl,'checklist.cat_optional')}
       ];
 
       let html = '';
-      html += `<div class="progress-card" id="progressCard"><div class="progress-header"><span>Your progress: <span id="checkedCount">0</span> / ${items.length} items checked</span><span class="progress-sub">${totalReq} required</span></div><div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div></div>`;
+      html += `<div class="progress-card" id="progressCard"><div class="progress-header"><span>${t(cl,'checklist.progress',{done:'<span id="checkedCount">0</span>',total:items.length})}</span><span class="progress-sub">${t(cl,'checklist.req_count',{n:totalReq})}</span></div><div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div></div>`;
       html += `<div class="summary-card"><h3>📍 Checklist for ${cName}</h3><p>Based on your profile (${education}, ${german}), here are all the documents you need to apply for Ausbildung in Germany. Required items are marked with a red badge. Check off items as you complete them.</p></div>`;
 
       cats.forEach(cat => {
@@ -181,13 +185,13 @@ body{padding-top:68px;}
       <Nav />
 
       <div className="page-section">
-        <h1 className="page-title">📋 Document <span className="highlight">Checklist</span></h1>
-        <p className="page-subtitle">Get a personalized list of every document you need to apply for Ausbildung in Germany — tailored to your country, education level, and visa type.</p>
+        <h1 className="page-title">{t(lang,'checklist.title')}</h1>
+        <p className="page-subtitle">{t(lang,'checklist.sub')}</p>
 
         <div className="form-card">
           <div className="form-grid">
             <div>
-              <label className="form-label">Your Country</label>
+              <label className="form-label">{t(lang,'checklist.country_label')}</label>
               <select className="form-select" id="countrySelect">
                 <option value="NP">NP Nepal</option>
                 <option value="NG">NG Nigeria</option>
@@ -217,7 +221,7 @@ body{padding-top:68px;}
               </select>
             </div>
             <div>
-              <label className="form-label">Education Level</label>
+              <label className="form-label">{t(lang,'checklist.education_label')}</label>
               <select className="form-select" id="educationSelect">
                 <option>High School Diploma</option>
                 <option>Vocational Certificate</option>
@@ -227,7 +231,7 @@ body{padding-top:68px;}
               </select>
             </div>
             <div>
-              <label className="form-label">German Level</label>
+              <label className="form-label">{t(lang,'checklist.german_label')}</label>
               <select className="form-select" id="germanSelect">
                 <option>A1 – Beginner</option>
                 <option>A2 – Elementary</option>
@@ -241,13 +245,13 @@ body{padding-top:68px;}
           </div>
 
           <div className="quick-row">
-            <span className="quick-label">Quick:</span>
+            <span className="quick-label">{t(lang,'checklist.quick')}</span>
             {[['NG','Nigeria'],['IN','India'],['PK','Pakistan'],['PH','Philippines'],['NP','Nepal'],['GH','Ghana'],['VN','Vietnam'],['TR','Turkey']].map(([code, name]) => (
               <button key={code} className="quick-btn" onClick={() => window.setQuick && window.setQuick(code)}>{code} {name}</button>
             ))}
           </div>
 
-          <button className="btn-generate" onClick={() => window.generateChecklist && window.generateChecklist()}>📋 Get Checklist</button>
+          <button className="btn-generate" onClick={() => window.generateChecklist && window.generateChecklist()}>{t(lang,'checklist.btn_generate')}</button>
         </div>
 
         <div id="results"></div>
@@ -284,7 +288,7 @@ body{padding-top:68px;}
 
       {/* Related Resources */}
       <section style={{maxWidth:'900px',margin:'0 auto',padding:'0 24px 60px'}}>
-        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>Related Resources</h2>
+        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>{t(lang,'common.related')}</h2>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))',gap:'10px'}}>
           {[
             {href:'/recognition',icon:'🎓',title:'Qualification Recognition',sub:'Get your degree recognized'},

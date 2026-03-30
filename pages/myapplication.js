@@ -2,8 +2,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Nav from '../components/Nav';
 import { useEffect } from 'react';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function MyApplication() {
+  const { lang } = useLang();
   useEffect(() => {
     const S = {
       get: k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },

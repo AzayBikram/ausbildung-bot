@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 const SECTORS = [
   {id:'it',emoji:'💻',name:'IT & Technology',german:'Informationstechnologie',demand:'very',demandLabel:'🔥 Very High Demand',salary1:'€800–€1,100',salary3:'€1,000–€1,300',duration:'3 years',german_req:'B1 minimum (B2 recommended)',jobs:['Fachinformatiker Anwendungsentwicklung','Fachinformatiker Systemintegration','IT-Kaufmann','Digitaler Medienkonsument'],desc:'Germany has a massive shortage of IT professionals. Programs combine coding, networking, and business skills. IHK-certified and internationally respected.',tags:['Remote work possible','High job security','Good for career changers'],categories:['high','highpay','foreigners']},
@@ -18,6 +20,7 @@ const SECTORS = [
 ];
 
 export default function Sectors() {
+  const { lang } = useLang();
   useEffect(() => {
     window.filterSectors = function(cat, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -151,9 +154,9 @@ main{max-width:1100px;margin:0 auto;padding:40px 24px 80px;}
       <Nav />
 
       <main>
-        <div className="page-label">Sector Explorer</div>
-        <div className="page-title">Find the right Ausbildung<br />for you</div>
-        <div className="page-sub">Explore all major sectors with salary ranges, demand levels, German requirements, and career paths. Filter by what matters to you.</div>
+        <div className="page-label">{t(lang,'sectors.label')}</div>
+        <div className="page-title">{t(lang,'sectors.title')}</div>
+        <div className="page-sub">{t(lang,'sectors.sub')}</div>
         <div style={{background:'rgba(26,86,255,0.06)',border:'1px solid rgba(26,86,255,0.2)',borderRadius:'12px',padding:'14px 18px',marginBottom:'28px',fontSize:'13px',color:'#4a5568',lineHeight:'1.6'}}>
           📌 <strong>2026 legal minimum salary:</strong> €724/month (Year 1) · €854 (Year 2) · €977 (Year 3). Salaries shown are <em>typical ranges</em> — most employers pay above the minimum. National average: €1,133/month (BIBB 2024). All figures are gross before tax deductions.
         </div>

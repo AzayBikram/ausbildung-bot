@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Nav from '../components/Nav';
 import { useEffect } from 'react';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 const PHRASES = [
   {de:'Guten Morgen, ich bin [Name].',en:'Good morning, I am [Name].',ph:'GOO-ten MOR-gen',ctx:'First thing to say when entering the workplace',cat:'workplace'},
@@ -41,6 +43,7 @@ const PHRASES = [
 ];
 
 export default function Phrases() {
+  const { lang } = useLang();
   useEffect(() => {
     window.speak = function(text) {
       if ('speechSynthesis' in window) {
@@ -131,9 +134,9 @@ main{max-width:960px;margin:0 auto;padding:32px 24px 80px;}
       <Nav />
 
       <main>
-        <div className="page-label">German Phrase Helper</div>
-        <div className="page-title">Essential German phrases<br/>for your Ausbildung</div>
-        <div className="page-sub">Learn the most important German phrases for workplace, school, interviews, and emails — with pronunciation guides. Click 🔊 to hear each phrase.</div>
+        <div className="page-label">{t(lang,'phrases.label')}</div>
+        <div className="page-title">{t(lang,'phrases.title')}</div>
+        <div className="page-sub">{t(lang,'phrases.sub')}</div>
 
         <input type="text" className="search-bar" placeholder="🔍 Search phrases in English or German..." onInput={(e) => window.filterPhrases && window.filterPhrases(e.target.value)} />
 

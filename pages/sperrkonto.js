@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Sperrkonto() {
+  const { lang } = useLang();
   useEffect(() => {
     window.calculate = function() {
       const salary = parseInt(document.getElementById('sectorSel').value);
@@ -107,9 +110,9 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
       <Nav />
 
       <main>
-        <div className="page-label">Sperrkonto Calculator</div>
-        <div className="page-title">How much blocked account<br />do you need?</div>
-        <div className="page-sub">Calculate your exact Sperrkonto requirement, compare providers, and understand how the blocked account system works.</div>
+        <div className="page-label">{t(lang,'sperrkonto.label')}</div>
+        <div className="page-title">{t(lang,'sperrkonto.title')}</div>
+        <div className="page-sub">{t(lang,'sperrkonto.sub')}</div>
 
         <div className="info-box">
           💡 <strong>What is a Sperrkonto?</strong> A blocked account (Sperrkonto) may be needed for your Ausbildung visa. <strong>Important 2026 update:</strong> If your company-based Ausbildung salary is at least <strong>€1,048 gross / €822 net per month</strong>, your salary alone is proof enough — you do NOT need a separate blocked account. If your salary is below this, you supplement the difference. The blocked account is <strong>YOUR money</strong> — not a fee. You withdraw it monthly once training starts.
@@ -119,7 +122,7 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
           <h2>🧮 Calculate My Sperrkonto</h2>
           <div className="calc-grid">
             <div className="cg-group">
-              <label className="cg-label">Ausbildung start month</label>
+              <label className="cg-label">{t(lang,'sperrkonto.start_label')}</label>
               <select className="cg-input" id="startMonth">
                 {['January','February','March','April','May','June','July','August','September','October','November','December'].map((m,i) => (
                   <option key={m} value={i+1}>{m}</option>
@@ -127,7 +130,7 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
               </select>
             </div>
             <div className="cg-group">
-              <label className="cg-label">Your Ausbildung sector</label>
+              <label className="cg-label">{t(lang,'sperrkonto.sector_label')}</label>
               <select className="cg-input" id="sectorSel">
                 <option value="800">IT & Technology (~€800–1,050/mo)</option>
                 <option value="1100">Healthcare & Nursing (~€1,100–1,300/mo)</option>
@@ -139,7 +142,7 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
               </select>
             </div>
             <div className="cg-group">
-              <label className="cg-label">City size</label>
+              <label className="cg-label">{t(lang,'sperrkonto.city_label')}</label>
               <select className="cg-input" id="citySize">
                 <option value="1200">Major city (Berlin, Munich, Hamburg, Frankfurt)</option>
                 <option value="900">Medium city (Cologne, Stuttgart, Düsseldorf)</option>
@@ -154,19 +157,19 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
               </select>
             </div>
           </div>
-          <button className="calc-btn" onClick={() => window.calculate && window.calculate()}>🧮 Calculate My Sperrkonto</button>
+          <button className="calc-btn" onClick={() => window.calculate && window.calculate()}>{t(lang,'sperrkonto.btn_calculate')}</button>
         </div>
 
         <div className="results-section" id="results">
           <div className="result-hero">
             <div className="result-amount" id="reqAmount">€11,208</div>
-            <div className="result-label">Recommended Sperrkonto Amount</div>
+            <div className="result-label">{t(lang,'sperrkonto.required_label')}</div>
             <div className="result-note">This is your money — you withdraw it monthly once your Ausbildung salary begins</div>
           </div>
           <div className="breakdown-grid" id="breakdownGrid"></div>
 
           <div className="calc-card">
-            <h2>🏦 Compare Sperrkonto Providers</h2>
+            <h2>{t(lang,'sperrkonto.provider_title')}</h2>
             <div className="providers-grid">
               <div className="provider-card">
                 <div className="pc-name">🟢 Fintiba</div>
@@ -197,7 +200,7 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
 
       {/* Related Resources */}
       <section style={{maxWidth:'900px',margin:'0 auto',padding:'0 24px 60px'}}>
-        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>Related Resources</h2>
+        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>{t(lang,'common.related')}</h2>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))',gap:'10px'}}>
           {[
             {href:'/salary',icon:'💰',title:'Salary Calculator',sub:'Check your expected income'},

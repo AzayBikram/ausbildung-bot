@@ -2,8 +2,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Nav from '../components/Nav';
 import { useEffect } from 'react';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Recognition() {
+  const { lang } = useLang();
   useEffect(() => {
     window.checkRecognition = function() {
       const country = document.getElementById('recCountry').value;
@@ -104,15 +107,15 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
       <Nav />
 
       <main>
-        <div className="page-label">Qualification Recognition</div>
-        <div className="page-title">Is your diploma<br/>recognized in Germany?</div>
-        <div className="page-sub">Check if your foreign school or university diploma is recognized in Germany — and how to get it officially recognized if needed.</div>
+        <div className="page-label">{t(lang,'recognition.label')}</div>
+        <div className="page-title">{t(lang,'recognition.title')}</div>
+        <div className="page-sub">{t(lang,'recognition.sub')}</div>
 
         <div className="check-card">
           <h2>🎓 Check My Qualification</h2>
           <div className="cg">
             <div className="cg-group">
-              <label className="cg-label">Your Country</label>
+              <label className="cg-label">{t(lang,'recognition.country_label')}</label>
               <select className="cg-input" id="recCountry">
                 <option value="Nigeria">Nigeria</option><option value="India">India</option>
                 <option value="Pakistan">Pakistan</option><option value="Philippines">Philippines</option>
@@ -125,7 +128,7 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
               </select>
             </div>
             <div className="cg-group">
-              <label className="cg-label">Your Diploma Type</label>
+              <label className="cg-label">{t(lang,'recognition.diploma_label')}</label>
               <select className="cg-input" id="diplomaType">
                 <option value="highschool">High School Diploma (Class 10 or 12)</option>
                 <option value="vocational">Vocational/Technical Certificate</option>
@@ -135,7 +138,7 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
               </select>
             </div>
             <div className="cg-group">
-              <label className="cg-label">Target Ausbildung Field</label>
+              <label className="cg-label">{t(lang,'recognition.field_label')}</label>
               <select className="cg-input" id="recField">
                 <option>IT &amp; Technology</option>
                 <option>Healthcare &amp; Nursing</option>
@@ -147,7 +150,7 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
               </select>
             </div>
             <div className="cg-group">
-              <label className="cg-label">Is your diploma translated to German?</label>
+              <label className="cg-label">{t(lang,'recognition.translated_label')}</label>
               <select className="cg-input" id="translated">
                 <option value="no">No, not yet</option>
                 <option value="yes">Yes, I have a German translation</option>
@@ -155,14 +158,14 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
               </select>
             </div>
           </div>
-          <button className="check-btn" onClick={() => window.checkRecognition && window.checkRecognition()}>🎓 Check Recognition Status</button>
+          <button className="check-btn" onClick={() => window.checkRecognition && window.checkRecognition()}>{t(lang,'recognition.btn_check')}</button>
         </div>
 
         <div className="result" id="recResult"></div>
       </main>
 
       <section style={{maxWidth:'900px',margin:'0 auto',padding:'0 24px 60px'}}>
-        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>Related Resources</h2>
+        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>{t(lang,'common.related')}</h2>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))',gap:'10px'}}>
           <Link href="/checklist" style={{display:'flex',alignItems:'center',gap:'10px',background:'#fff',border:'1.5px solid #e2e8f0',borderRadius:'12px',padding:'14px 16px',textDecoration:'none',color:'#0a1628',fontFamily:'Outfit,sans-serif',fontSize:'13px',fontWeight:500}}><span style={{fontSize:'22px'}}>📋</span><div><div style={{fontWeight:700,fontSize:'13px'}}>Document Checklist</div><div style={{color:'#718096',fontSize:'12px'}}>Documents needed for recognition</div></div></Link>
           <Link href="/timeline" style={{display:'flex',alignItems:'center',gap:'10px',background:'#fff',border:'1.5px solid #e2e8f0',borderRadius:'12px',padding:'14px 16px',textDecoration:'none',color:'#0a1628',fontFamily:'Outfit,sans-serif',fontSize:'13px',fontWeight:500}}><span style={{fontSize:'22px'}}>📅</span><div><div style={{fontWeight:700,fontSize:'13px'}}>Timeline Planner</div><div style={{color:'#718096',fontSize:'12px'}}>When to start the recognition process</div></div></Link>

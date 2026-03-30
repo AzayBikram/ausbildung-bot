@@ -2,8 +2,11 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
 import Script from 'next/script';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Jobs() {
+  const { lang } = useLang();
   useEffect(() => {
     let currentPage = 1;
     let selectedJob = null;
@@ -400,21 +403,21 @@ textarea{resize:vertical;min-height:80px;}
       <Nav />
 
       <main>
-        <div className="page-title">🔍 Ausbildung <span>Job Finder</span></div>
-        <p className="page-subtitle">Search real Ausbildung vacancies in Germany — and get guided through the entire application process, step by step, completely free.</p>
+        <div className="page-title">🔍 {t(lang,'jobs.title')}</div>
+        <p className="page-subtitle">{t(lang,'jobs.sub')}</p>
 
         <div className="search-box">
           <div className="search-grid">
             <div className="search-group">
-              <label>Job Title / Keyword</label>
+              <label>{t(lang,'jobs.placeholder')}</label>
               <input type="text" id="searchKeyword" placeholder="e.g. Kaufmann, IT, Koch..." onKeyDown={e => { if(e.key==='Enter') window.searchJobs && window.searchJobs(); }} />
             </div>
             <div className="search-group">
-              <label>City / Region</label>
+              <label>{t(lang,'jobs.location_ph')}</label>
               <input type="text" id="searchLocation" placeholder="e.g. Berlin, München..." onKeyDown={e => { if(e.key==='Enter') window.searchJobs && window.searchJobs(); }} />
             </div>
             <div className="search-group">
-              <label>Sector</label>
+              <label>{t(lang,'jobs.filter_sector')}</label>
               <select id="searchSector">
                 <option value="">All Sectors</option>
                 <option value="IT">💻 IT &amp; Technology</option>
@@ -429,7 +432,7 @@ textarea{resize:vertical;min-height:80px;}
                 <option value="Friseur">✂️ Hairdressing</option>
               </select>
             </div>
-            <button className="search-btn" onClick={() => window.searchJobs && window.searchJobs()} id="searchBtn">🔍 Search</button>
+            <button className="search-btn" onClick={() => window.searchJobs && window.searchJobs()} id="searchBtn">{t(lang,'common.search')}</button>
           </div>
           <div className="quick-searches">
             <span style={{fontSize:'12px',color:'var(--text-muted)',marginRight:'4px'}}>Popular:</span>

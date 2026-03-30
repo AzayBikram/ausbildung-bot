@@ -2,8 +2,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Nav from '../components/Nav';
 import { useEffect } from 'react';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Landing() {
+  const { lang } = useLang();
   useEffect(() => {
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {

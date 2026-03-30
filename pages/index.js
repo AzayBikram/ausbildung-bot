@@ -1,8 +1,10 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
+import { useLang } from '../context/LangContext';
 
 export default function Home() {
+  const { lang } = useLang();
   useEffect(() => {
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
@@ -65,15 +67,15 @@ export default function Home() {
       document.documentElement.dir = (lang === 'ar' || lang === 'ur') ? 'rtl' : 'ltr';
     };
 
-    // Listen for language changes from Nav
+    // Apply translations on load
+    const saved = typeof localStorage !== 'undefined' ? (localStorage.getItem('aig_lang') || 'en') : 'en';
+    if (window.applyPageTranslations) window.applyPageTranslations(saved);
+
+    // Listen for language changes
     const onLangChange = (e) => {
       if (window.applyPageTranslations) window.applyPageTranslations(e.detail.lang);
     };
     window.addEventListener('aig:langchange', onLangChange);
-
-    // Apply saved lang
-    const saved = typeof localStorage !== 'undefined' ? (localStorage.getItem('aig_lang') || 'en') : 'en';
-    if (window.applyPageTranslations) window.applyPageTranslations(saved);
 
     return () => {
       observer.disconnect();

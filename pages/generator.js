@@ -2,8 +2,11 @@ import Head from 'next/head';
 import Script from 'next/script';
 import Nav from '../components/Nav';
 import { useEffect, useRef } from 'react';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Generator() {
+  const { lang } = useLang();
   const currentDocRef = useRef('cv');
   const currentModeRef = useRef('form');
   const chatStepRef = useRef(0);
@@ -563,8 +566,8 @@ textarea { resize: vertical; min-height: 80px; }
       <Nav />
 
       <main>
-        <div className="page-title">📄 Document <span>Generator</span></div>
-        <p className="page-subtitle">Generate a professional German-style CV, cover letter, and interview tips — completely free, no agents needed.</p>
+        <div className="page-title">📄 {t(lang,'generator.title')}</div>
+        <p className="page-subtitle">{t(lang,'generator.sub')}</p>
 
         {/* Document type */}
         <div className="doc-selector">

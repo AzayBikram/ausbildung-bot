@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Nav from '../components/Nav';
 import { useEffect } from 'react';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 const TEMPLATES = [
   {icon:'📨',title:'Initial Application Email',badge:'Most Important',when:'Use when sending your application by email (CV + cover letter attached as PDF)',subject:'Bewerbung als [Stelle] – [Ihr Name]',text:`Sehr geehrte Damen und Herren,
@@ -92,28 +94,31 @@ Mit freundlichen Grüßen
 ];
 
 export default function Templates() {
+  const { lang } = useLang();
   useEffect(() => {
     window.copyTemplate = function(idx) {
-      const t = TEMPLATES[idx];
-      const text = `Betreff: ${t.subject}\n\n${t.text}`;
-      navigator.clipboard.writeText(text).then(() => alert('✅ Template copied to clipboard!'));
+      const cl = localStorage.getItem('aig_lang') || 'en';
+      const tmpl = TEMPLATES[idx];
+      const text = `Betreff: ${tmpl.subject}\n\n${tmpl.text}`;
+      navigator.clipboard.writeText(text).then(() => alert(t(cl, 'templates.copied')));
     };
 
-    document.getElementById('templatesGrid').innerHTML = TEMPLATES.map((t, i) => `
+    const cl = localStorage.getItem('aig_lang') || 'en';
+    document.getElementById('templatesGrid').innerHTML = TEMPLATES.map((tmpl, i) => `
       <div class="template-card">
         <div class="tc-header">
-          <span class="tc-icon">${t.icon}</span>
-          <span class="tc-title">${t.title}</span>
-          <span class="tc-badge">${t.badge}</span>
+          <span class="tc-icon">${tmpl.icon}</span>
+          <span class="tc-title">${tmpl.title}</span>
+          <span class="tc-badge">${tmpl.badge}</span>
         </div>
         <div class="tc-body">
-          <div class="tc-when">📌 When to use: ${t.when}</div>
+          <div class="tc-when">📌 When to use: ${tmpl.when}</div>
           <div class="tc-subject">Subject line (Betreff):</div>
-          <div class="tc-subject-val">${t.subject}</div>
-          <div class="tc-text">${t.text}</div>
+          <div class="tc-subject-val">${tmpl.subject}</div>
+          <div class="tc-text">${tmpl.text}</div>
         </div>
         <div class="tc-footer">
-          <button class="tc-btn" onclick="window.copyTemplate(${i})">📋 Copy Template</button>
+          <button class="tc-btn" onclick="window.copyTemplate(${i})">${t(cl,'templates.copy_btn')}</button>
         </div>
       </div>`).join('');
   }, []);
@@ -163,14 +168,14 @@ main{max-width:960px;margin:0 auto;padding:32px 24px 80px;}
       <Nav />
 
       <main>
-        <div className="page-label">Email Templates</div>
-        <div className="page-title">Professional German<br/>email templates</div>
-        <div className="page-sub">Copy and customize these German email templates for every stage of your Ausbildung application — from first contact to follow-up.</div>
+        <div className="page-label">{t(lang,'templates.label')}</div>
+        <div className="page-title">{t(lang,'templates.title')}</div>
+        <div className="page-sub">{t(lang,'templates.sub')}</div>
         <div className="templates-grid" id="templatesGrid"></div>
       </main>
 
       <section style={{maxWidth:'900px',margin:'0 auto',padding:'0 24px 60px'}}>
-        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>Related Resources</h2>
+        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>{t(lang,'common.related')}</h2>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))',gap:'10px'}}>
           <Link href="/phrases" style={{display:'flex',alignItems:'center',gap:'10px',background:'#fff',border:'1.5px solid #e2e8f0',borderRadius:'12px',padding:'14px 16px',textDecoration:'none',color:'#0a1628',fontFamily:'Outfit,sans-serif',fontSize:'13px',fontWeight:500}}><span style={{fontSize:'22px'}}>💬</span><div><div style={{fontWeight:700,fontSize:'13px'}}>German Phrases</div><div style={{color:'#718096',fontSize:'12px'}}>Key phrases for interviews</div></div></Link>
           <Link href="/checklist" style={{display:'flex',alignItems:'center',gap:'10px',background:'#fff',border:'1.5px solid #e2e8f0',borderRadius:'12px',padding:'14px 16px',textDecoration:'none',color:'#0a1628',fontFamily:'Outfit,sans-serif',fontSize:'13px',fontWeight:500}}><span style={{fontSize:'22px'}}>📋</span><div><div style={{fontWeight:700,fontSize:'13px'}}>Document Checklist</div><div style={{color:'#718096',fontSize:'12px'}}>Ensure your docs are complete</div></div></Link>

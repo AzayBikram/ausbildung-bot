@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Timeline() {
+  const { lang } = useLang();
   useEffect(() => {
     window.generateTimeline = function() {
       const season = document.getElementById('startSeason').value;
@@ -61,14 +64,14 @@ export default function Timeline() {
       </Head>
       <Nav />
       <main>
-        <div className="page-label">Application Timeline</div>
-        <div className="page-title">Your personalized<br />month-by-month plan</div>
-        <div className="page-sub">Tell us your target start date and current German level — we'll create a personalized timeline with exactly what to do each month.</div>
+        <div className="page-label">{t(lang,'timeline.label')}</div>
+        <div className="page-title">{t(lang,'timeline.title')}</div>
+        <div className="page-sub">{t(lang,'timeline.sub')}</div>
         <div className="setup-card">
           <h2>📅 Create My Timeline</h2>
           <div className="setup-grid">
             <div className="sg-group">
-              <label className="sg-label">When do you want to start Ausbildung?</label>
+              <label className="sg-label">{t(lang,'timeline.start_label')}</label>
               <select className="sg-input" id="startSeason">
                 <option value="summer2026">Summer 2026 (Aug/Sep 2026)</option>
                 <option value="winter2026">Winter 2026 (Feb/Mar 2027)</option>
@@ -109,12 +112,12 @@ export default function Timeline() {
               </select>
             </div>
           </div>
-          <button className="gen-btn" onClick={() => window.generateTimeline && window.generateTimeline()}>📅 Generate My Timeline</button>
+          <button className="gen-btn" onClick={() => window.generateTimeline && window.generateTimeline()}>{t(lang,'timeline.btn_generate')}</button>
         </div>
         <div className="timeline" id="timeline"></div>
       </main>
       <section style={{maxWidth:'900px',margin:'0 auto',padding:'0 24px 60px'}}>
-        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:'800',color:'#0a1628',marginBottom:'14px'}}>Related Resources</h2>
+        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:'800',color:'#0a1628',marginBottom:'14px'}}>{t(lang,'common.related')}</h2>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))',gap:'10px'}}>
           {[{href:'/checklist',icon:'📋',title:'Document Checklist',desc:'Start preparing your documents'},{href:'/salary',icon:'💰',title:'Salary Calculator',desc:'Know your expected earnings'},{href:'/housing',icon:'🏠',title:'Housing Guide',desc:'Plan your accommodation early'},{href:'/sperrkonto',icon:'🏦',title:'Sperrkonto Calculator',desc:'Prepare your blocked account'},{href:'/embassy',icon:'🗺️',title:'Embassy Finder',desc:'Book your visa appointment'},{href:'/generator',icon:'📄',title:'Document Generator',desc:'Create professional documents'}].map(r => (
             <a key={r.href} href={r.href} style={{display:'flex',alignItems:'center',gap:'10px',background:'#fff',border:'1.5px solid #e2e8f0',borderRadius:'12px',padding:'14px 16px',textDecoration:'none',color:'#0a1628',fontFamily:'Outfit,sans-serif',fontSize:'13px',fontWeight:'500',transition:'all .15s'}}>

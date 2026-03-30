@@ -1,10 +1,14 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Salary() {
+  const { lang } = useLang();
   useEffect(() => {
     window.calcSalary = function() {
+      const cl = localStorage.getItem('aig_lang') || 'en';
       const sectorVals = document.getElementById('sector').value.split(',').map(Number);
       const [y1g, y2g, y3g] = sectorVals;
       const rent = parseInt(document.getElementById('living').value);
@@ -14,9 +18,9 @@ export default function Salary() {
       const y3n = Math.round(y3g * (1 - deductPct));
 
       document.getElementById('yearsRow').innerHTML = `
-        <div class="year-card y1"><div class="yc-year">Year 1</div><div class="yc-gross" style="color:#1a56ff">€${y1g}</div><div class="yc-net">Net: ~€${y1n}/mo</div></div>
-        <div class="year-card y2"><div class="yc-year">Year 2</div><div class="yc-gross" style="color:#d4890a">€${y2g}</div><div class="yc-net">Net: ~€${y2n}/mo</div></div>
-        <div class="year-card y3"><div class="yc-year">Year 3</div><div class="yc-gross" style="color:#00c48c">€${y3g}</div><div class="yc-net">Net: ~€${y3n}/mo</div></div>`;
+        <div class="year-card y1"><div class="yc-year">${t(cl,'salary.year1')}</div><div class="yc-gross" style="color:#1a56ff">€${y1g}</div><div class="yc-net">${t(cl,'salary.net_label',{amount:y1n})}</div></div>
+        <div class="year-card y2"><div class="yc-year">${t(cl,'salary.year2')}</div><div class="yc-gross" style="color:#d4890a">€${y2g}</div><div class="yc-net">${t(cl,'salary.net_label',{amount:y2n})}</div></div>
+        <div class="year-card y3"><div class="yc-year">${t(cl,'salary.year3')}</div><div class="yc-gross" style="color:#00c48c">€${y3g}</div><div class="yc-net">${t(cl,'salary.net_label',{amount:y3n})}</div></div>`;
 
       const tax = Math.round(y1g * 0.08);
       const health = Math.round(y1g * 0.073);
@@ -29,20 +33,20 @@ export default function Salary() {
       const savings = net - rent - food - transport - misc;
 
       document.getElementById('breakdownTable').innerHTML = `
-        <thead><tr><th>Category</th><th>Monthly (Year 1)</th></tr></thead>
+        <thead><tr><th>${t(cl,'salary.col_category')}</th><th>${t(cl,'salary.col_monthly')}</th></tr></thead>
         <tbody>
-        <tr><td>Gross Salary (Ausbildungsvergütung)</td><td>€${y1g}</td></tr>
-        <tr><td class="td-red">Income Tax (Lohnsteuer)</td><td class="td-red">-€${tax}</td></tr>
-        <tr><td class="td-red">Health Insurance (Krankenversicherung)</td><td class="td-red">-€${health}</td></tr>
-        <tr><td class="td-red">Pension (Rentenversicherung)</td><td class="td-red">-€${pension}</td></tr>
-        <tr><td class="td-red">Unemployment (Arbeitslosenversicherung)</td><td class="td-red">-€${unemp}</td></tr>
-        <tr><td class="td-red">Care Insurance (Pflegeversicherung)</td><td class="td-red">-€${care}</td></tr>
-        <tr><td><strong>Net Take-Home Pay</strong></td><td class="td-green"><strong>€${net}</strong></td></tr>
-        <tr><td>Estimated Rent</td><td class="td-red">-€${rent}</td></tr>
-        <tr><td>Food & Groceries</td><td class="td-red">-€${food}</td></tr>
-        <tr><td>Transport (BVG/MVV pass)</td><td class="td-red">-€${transport}</td></tr>
-        <tr><td>Misc (phone, clothing, etc.)</td><td class="td-red">-€${misc}</td></tr>
-        <tr><td><strong>Estimated Monthly Savings</strong></td><td class="${savings >= 0 ? 'td-green' : 'td-red'}"><strong>${savings >= 0 ? '€' + savings : '⚠️ -€' + Math.abs(savings)}</strong></td></tr>
+        <tr><td>${t(cl,'salary.gross')}</td><td>€${y1g}</td></tr>
+        <tr><td class="td-red">${t(cl,'salary.tax')}</td><td class="td-red">-€${tax}</td></tr>
+        <tr><td class="td-red">${t(cl,'salary.health')}</td><td class="td-red">-€${health}</td></tr>
+        <tr><td class="td-red">${t(cl,'salary.pension')}</td><td class="td-red">-€${pension}</td></tr>
+        <tr><td class="td-red">${t(cl,'salary.unemp')}</td><td class="td-red">-€${unemp}</td></tr>
+        <tr><td class="td-red">${t(cl,'salary.care')}</td><td class="td-red">-€${care}</td></tr>
+        <tr><td><strong>${t(cl,'salary.net_takehome')}</strong></td><td class="td-green"><strong>€${net}</strong></td></tr>
+        <tr><td>${t(cl,'salary.rent')}</td><td class="td-red">-€${rent}</td></tr>
+        <tr><td>${t(cl,'salary.food')}</td><td class="td-red">-€${food}</td></tr>
+        <tr><td>${t(cl,'salary.transport')}</td><td class="td-red">-€${transport}</td></tr>
+        <tr><td>${t(cl,'salary.misc')}</td><td class="td-red">-€${misc}</td></tr>
+        <tr><td><strong>${t(cl,'salary.savings')}</strong></td><td class="${savings >= 0 ? 'td-green' : 'td-red'}"><strong>${savings >= 0 ? '€' + savings : '⚠️ -€' + Math.abs(savings)}</strong></td></tr>
         </tbody>`;
 
       document.getElementById('postRow').innerHTML = `
@@ -137,9 +141,9 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
       <Nav />
 
       <main>
-        <div className="page-label">Salary Calculator</div>
-        <div className="page-title">Your Ausbildung<br />salary breakdown</div>
-        <div className="page-sub">See your expected gross and net salary for each year of training, including all deductions and what you can realistically save.</div>
+        <div className="page-label">{t(lang,'salary.label')}</div>
+        <div className="page-title">{t(lang,'salary.title')}</div>
+        <div className="page-sub">{t(lang,'salary.sub')}</div>
 
         <div style={{background:'rgba(26,86,255,0.06)',border:'1px solid rgba(26,86,255,0.2)',borderRadius:'12px',padding:'16px',marginBottom:'28px',fontSize:'14px',color:'#4a5568',lineHeight:'1.7'}}>
           📌 <strong>Official 2026 Legal Minimum (BIBB):</strong> Year 1: <strong>€724/mo</strong> · Year 2: <strong>€854/mo</strong> · Year 3: <strong>€977/mo</strong>. Most employers pay significantly above this — the national average across all sectors was <strong>€1,133/month</strong> in 2024.
@@ -149,7 +153,7 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
           <h2 style={{fontSize:'18px',fontWeight:700,marginBottom:'20px'}}>💰 Calculate My Salary</h2>
           <div className="calc-grid">
             <div className="cg-group">
-              <label className="cg-label">Ausbildung Sector</label>
+              <label className="cg-label">{t(lang,'salary.sector_label')}</label>
               <select className="cg-input" id="sector">
                 <option value="900,1050,1200">IT & Technology (avg ~€1,050/mo)</option>
                 <option value="1000,1150,1300">Healthcare & Nursing</option>
@@ -163,7 +167,7 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
               </select>
             </div>
             <div className="cg-group">
-              <label className="cg-label">Federal State (affects tax slightly)</label>
+              <label className="cg-label">{t(lang,'salary.state_label')}</label>
               <select className="cg-input" id="state">
                 <option value="Bayern">Bavaria (Bayern)</option>
                 <option value="Berlin">Berlin</option>
@@ -174,7 +178,7 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
               </select>
             </div>
             <div className="cg-group">
-              <label className="cg-label">Ausbildung Duration</label>
+              <label className="cg-label">{t(lang,'salary.duration_label')}</label>
               <select className="cg-input" id="duration">
                 <option value="2">2 years</option>
                 <option value="3" defaultValue="3">3 years</option>
@@ -182,7 +186,7 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
               </select>
             </div>
             <div className="cg-group">
-              <label className="cg-label">Living situation</label>
+              <label className="cg-label">{t(lang,'salary.living_label')}</label>
               <select className="cg-input" id="living">
                 <option value="1200">Own flat — major city (€900–1,200 rent)</option>
                 <option value="900">Shared flat WG — major city (€600–900)</option>
@@ -191,13 +195,13 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
               </select>
             </div>
           </div>
-          <button className="calc-btn" onClick={() => window.calcSalary && window.calcSalary()}>💰 Calculate My Salary</button>
+          <button className="calc-btn" onClick={() => window.calcSalary && window.calcSalary()}>{t(lang,'salary.btn_calculate')}</button>
         </div>
 
         <div className="results" id="results">
           <div className="years-row" id="yearsRow"></div>
           <div className="calc-card">
-            <h2 style={{fontSize:'18px',fontWeight:700,marginBottom:'20px'}}>📊 Year 1 Detailed Breakdown</h2>
+            <h2 style={{fontSize:'18px',fontWeight:700,marginBottom:'20px'}}>{t(lang,'salary.breakdown_title')}</h2>
             <table className="breakdown-table" id="breakdownTable"></table>
           </div>
           <div className="post-row" id="postRow"></div>
@@ -209,7 +213,7 @@ main{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
 
       {/* Related Resources */}
       <section style={{maxWidth:'900px',margin:'0 auto',padding:'0 24px 60px'}}>
-        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>Related Resources</h2>
+        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>{t(lang,'common.related')}</h2>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))',gap:'10px'}}>
           {[
             {href:'/housing',icon:'🏠',title:'Housing Guide',sub:'Find affordable accommodation'},

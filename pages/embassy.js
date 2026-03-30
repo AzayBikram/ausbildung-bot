@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import { useEffect, useRef } from 'react';
 import Nav from '../components/Nav';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Embassy() {
+  const { lang } = useLang();
   const embassyDataRef = useRef(null);
   const selectedCountryRef = useRef('');
   const selectedGermanLevelRef = useRef('');
@@ -294,13 +297,13 @@ select:focus,input:focus{border-color:#1a56ff;}
       <Nav />
 
       <main>
-        <div className="page-title">🗺️ German Embassy <span>Finder</span></div>
-        <p className="page-subtitle">Find your nearest German embassy, check visa requirements and fees, verify your eligibility, and get step-by-step appointment guidance — all in one place.</p>
+        <div className="page-title">🗺️ {t(lang,'embassy.title')}</div>
+        <p className="page-subtitle">{t(lang,'embassy.sub')}</p>
 
         <div className="search-box">
           <div className="search-row">
             <div className="search-group">
-              <label>Your Country</label>
+              <label>{t(lang,'embassy.country_label')}</label>
               <select id="countrySelect">
                 <option value="">Select your country...</option>
                 <optgroup label="🌍 Africa">
@@ -375,7 +378,7 @@ select:focus,input:focus{border-color:#1a56ff;}
               </select>
             </div>
             <div className="search-group" style={{maxWidth:'200px'}}>
-              <label>Your German Level</label>
+              <label>{t(lang,'nav.eligibility')}</label>
               <select id="germanLevel">
                 <option value="">Select...</option>
                 <option value="A1">A1 – Beginner</option>
@@ -386,7 +389,7 @@ select:focus,input:focus{border-color:#1a56ff;}
                 <option value="C2">C2 – Mastery</option>
               </select>
             </div>
-            <button className="find-btn" onClick={() => window.findEmbassy && window.findEmbassy()} id="findBtn">🗺️ Find Embassy</button>
+            <button className="find-btn" onClick={() => window.findEmbassy && window.findEmbassy()} id="findBtn">{t(lang,'embassy.btn_find')}</button>
           </div>
           <div className="regions">
             <span style={{fontSize:'12px',color:'#718096',marginRight:'4px'}}>Quick select:</span>

@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Chat() {
+  const { lang } = useLang();
   useEffect(() => {
     const SYSTEM_PROMPT = `You are AusbildungBot, a friendly and expert assistant that helps people from all over the world find and apply for Ausbildung (vocational apprenticeship training) in Germany.
 
