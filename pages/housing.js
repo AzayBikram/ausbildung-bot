@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Nav from '../components/Nav';
+import { useLang } from '../context/LangContext';
+import { t } from '../lib/i18n';
 
 export default function Housing() {
+  const { lang } = useLang();
   return (
     <>
       <Head>
@@ -61,18 +64,18 @@ main{max-width:960px;margin:0 auto;padding:32px 24px 80px;}
       <Nav />
 
       <main>
-        <div className="page-label">Housing Guide</div>
+        <div className="page-label">{t(lang,'housing.label')}</div>
         <div className="page-title">Finding accommodation<br/>in Germany</div>
-        <div className="page-sub">Unlike university students, Ausbildung trainees cannot use student dorms. Finding housing is one of the biggest challenges — here is everything you need to know.</div>
+        <div className="page-sub">{t(lang,'housing.sub')}</div>
 
         <div className="info-grid">
-          <div className="info-card"><div className="ic-icon">🏠</div><div className="ic-title">Shared Flat (WG)</div><div className="ic-text">A Wohngemeinschaft (WG) is a shared apartment with other people. Cheapest and most common option for trainees. Includes utilities, internet, and kitchen access.</div><span className="ic-badge badge-green">✅ Recommended for trainees</span></div>
-          <div className="info-card"><div className="ic-icon">🏢</div><div className="ic-title">Own Apartment (Eigene Wohnung)</div><div className="ic-text">Renting your own flat gives privacy but costs more. Requires 2–3 months deposit (Kaution) upfront. Usually too expensive on trainee salary alone.</div><span className="ic-badge badge-gold">⚠️ Possible after Year 2+</span></div>
-          <div className="info-card"><div className="ic-icon">🏭</div><div className="ic-title">Company Housing</div><div className="ic-text">Some companies (especially in healthcare, construction, and rural areas) provide or subsidize housing. Always ask your employer! This can save €400–700/month.</div><span className="ic-badge badge-green">✅ Ask your employer first!</span></div>
-          <div className="info-card"><div className="ic-icon">🛏️</div><div className="ic-title">Temporary Housing</div><div className="ic-text">For first 2–4 weeks, use hostels or temporary rentals (Airbnb, booking.com) while you search for permanent housing. Budget €30–60/night.</div><span className="ic-badge badge-gold">⚠️ Short-term only</span></div>
+          <div className="info-card"><div className="ic-icon">🏠</div><div className="ic-title">{t(lang,'housing.wg_title')}</div><div className="ic-text">{t(lang,'housing.wg_text')}</div><span className="ic-badge badge-green">{t(lang,'housing.wg_badge')}</span></div>
+          <div className="info-card"><div className="ic-icon">🏢</div><div className="ic-title">{t(lang,'housing.apt_title')}</div><div className="ic-text">{t(lang,'housing.apt_text')}</div><span className="ic-badge badge-gold">{t(lang,'housing.apt_badge')}</span></div>
+          <div className="info-card"><div className="ic-icon">🏭</div><div className="ic-title">{t(lang,'housing.company_title')}</div><div className="ic-text">{t(lang,'housing.company_text')}</div><span className="ic-badge badge-green">{t(lang,'housing.company_badge')}</span></div>
+          <div className="info-card"><div className="ic-icon">🛏️</div><div className="ic-title">{t(lang,'housing.temp_title')}</div><div className="ic-text">{t(lang,'housing.temp_text')}</div><span className="ic-badge badge-gold">{t(lang,'housing.temp_badge')}</span></div>
         </div>
 
-        <div className="section-title">📱 Best Platforms to Find Housing</div>
+        <div className="section-title">{t(lang,'housing.platforms_title')}</div>
         <div className="platform-grid">
           <a href="https://www.wg-gesucht.de" target="_blank" rel="noopener noreferrer" className="platform-card"><div className="pc-name">🏠 WG-Gesucht.de</div><div className="pc-desc">Germany&apos;s #1 platform for shared flats. Free to search. Most listings. Create a profile and apply to rooms.</div><div className="pc-tags"><span className="pc-tag">Free</span><span className="pc-tag">WG rooms</span><span className="pc-tag">Best for trainees</span></div></a>
           <a href="https://www.immoscout24.de" target="_blank" rel="noopener noreferrer" className="platform-card"><div className="pc-name">🏢 ImmobilienScout24</div><div className="pc-desc">Germany&apos;s largest real estate platform. Good for own apartments. Many listings across all cities.</div><div className="pc-tags"><span className="pc-tag">All types</span><span className="pc-tag">Large database</span></div></a>
@@ -80,9 +83,9 @@ main{max-width:960px;margin:0 auto;padding:32px 24px 80px;}
           <a href="https://www.ebay-kleinanzeigen.de" target="_blank" rel="noopener noreferrer" className="platform-card"><div className="pc-name">📋 eBay Kleinanzeigen</div><div className="pc-desc">Classifieds with many private listings. Often cheaper than agencies. Now called &quot;Kleinanzeigen&quot;.</div><div className="pc-tags"><span className="pc-tag">Private landlords</span><span className="pc-tag">Often cheaper</span></div></a>
         </div>
 
-        <div className="section-title">💰 Average Rental Costs by City</div>
+        <div className="section-title">{t(lang,'housing.costs_title')}</div>
         <table className="costs-table">
-          <thead><tr><th>City</th><th>WG Room (shared)</th><th>1-Room Apartment</th><th>2-Room Apartment</th></tr></thead>
+          <thead><tr><th>{t(lang,'housing.cost_city')}</th><th>{t(lang,'housing.cost_wg')}</th><th>{t(lang,'housing.cost_1room')}</th><th>{t(lang,'housing.cost_2room')}</th></tr></thead>
           <tbody>
             <tr><td>🏙️ Munich (München)</td><td>€700–1,000</td><td>€1,200–1,800</td><td>€1,600–2,400</td></tr>
             <tr><td>🏙️ Frankfurt</td><td>€600–900</td><td>€1,000–1,500</td><td>€1,400–2,000</td></tr>
@@ -94,19 +97,19 @@ main{max-width:960px;margin:0 auto;padding:32px 24px 80px;}
           </tbody>
         </table>
 
-        <div className="section-title">💡 Essential Housing Tips for Newcomers</div>
+        <div className="section-title">{t(lang,'housing.tips_title')}</div>
         <div className="tips-list">
-          <div className="tip-item"><div className="tip-icon">📝</div><div className="tip-text"><h4>Register your address (Anmeldung) within 2 weeks</h4><p>By law, you must register your address at the local Einwohnermeldeamt within 14 days of moving in. You need this for opening a bank account, getting health insurance, and many other things.</p></div></div>
-          <div className="tip-item"><div className="tip-icon">💳</div><div className="tip-text"><h4>Prepare for the deposit (Kaution)</h4><p>Landlords usually require 2–3 months rent as a deposit. For a €700/month room, that is €1,400–2,100 upfront. Plan for this in your budget.</p></div></div>
-          <div className="tip-item"><div className="tip-icon">🔍</div><div className="tip-text"><h4>Start searching 2–3 months before you arrive</h4><p>The German housing market is very competitive, especially in big cities. Start looking as soon as you have your Ausbildungsvertrag signed. Many landlords want to see your contract.</p></div></div>
-          <div className="tip-item"><div className="tip-icon">🗣️</div><div className="tip-text"><h4>Write a personal introduction (Selbstvorstellung)</h4><p>When applying for a WG room, write a friendly message in German about yourself, your Ausbildung, and why you would be a good housemate. Landlords prefer tenants who communicate well.</p></div></div>
-          <div className="tip-item"><div className="tip-icon">🏢</div><div className="tip-text"><h4>Ask your employer about housing support</h4><p>Many companies, especially in healthcare, construction, and rural areas, help with housing or have contacts. Always ask HR: &quot;Können Sie mir bei der Wohnungssuche helfen?&quot;</p></div></div>
-          <div className="tip-item"><div className="tip-icon">⚠️</div><div className="tip-text"><h4>Watch out for scams</h4><p>Never send money without viewing the apartment first (even by video call). If a deal seems too good to be true, it usually is. Legitimate landlords never ask for money via Western Union or cryptocurrency.</p></div></div>
+          <div className="tip-item"><div className="tip-icon">📝</div><div className="tip-text"><h4>{t(lang,'housing.tip1_title')}</h4><p>{t(lang,'housing.tip1_text')}</p></div></div>
+          <div className="tip-item"><div className="tip-icon">💳</div><div className="tip-text"><h4>{t(lang,'housing.tip2_title')}</h4><p>{t(lang,'housing.tip2_text')}</p></div></div>
+          <div className="tip-item"><div className="tip-icon">🔍</div><div className="tip-text"><h4>{t(lang,'housing.tip3_title')}</h4><p>{t(lang,'housing.tip3_text')}</p></div></div>
+          <div className="tip-item"><div className="tip-icon">🗣️</div><div className="tip-text"><h4>{t(lang,'housing.tip4_title')}</h4><p>{t(lang,'housing.tip4_text')}</p></div></div>
+          <div className="tip-item"><div className="tip-icon">🏢</div><div className="tip-text"><h4>{t(lang,'housing.tip5_title')}</h4><p>{t(lang,'housing.tip5_text')}</p></div></div>
+          <div className="tip-item"><div className="tip-icon">⚠️</div><div className="tip-text"><h4>{t(lang,'housing.tip6_title')}</h4><p>{t(lang,'housing.tip6_text')}</p></div></div>
         </div>
       </main>
 
       <section style={{maxWidth:'900px',margin:'0 auto',padding:'0 24px 60px'}}>
-        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>Related Resources</h2>
+        <h2 style={{fontFamily:'Outfit,sans-serif',fontSize:'17px',fontWeight:800,color:'#0a1628',marginBottom:'14px'}}>{t(lang,'common.related')}</h2>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))',gap:'10px'}}>
           <Link href="/salary" style={{display:'flex',alignItems:'center',gap:'10px',background:'#fff',border:'1.5px solid #e2e8f0',borderRadius:'12px',padding:'14px 16px',textDecoration:'none',color:'#0a1628',fontFamily:'Outfit,sans-serif',fontSize:'13px',fontWeight:500}}><span style={{fontSize:'22px'}}>💰</span><div><div style={{fontWeight:700,fontSize:'13px'}}>Salary Calculator</div><div style={{color:'#718096',fontSize:'12px'}}>Check net pay by sector</div></div></Link>
           <Link href="/sperrkonto" style={{display:'flex',alignItems:'center',gap:'10px',background:'#fff',border:'1.5px solid #e2e8f0',borderRadius:'12px',padding:'14px 16px',textDecoration:'none',color:'#0a1628',fontFamily:'Outfit,sans-serif',fontSize:'13px',fontWeight:500}}><span style={{fontSize:'22px'}}>🏦</span><div><div style={{fontWeight:700,fontSize:'13px'}}>Sperrkonto Calculator</div><div style={{color:'#718096',fontSize:'12px'}}>Blocked account requirements</div></div></Link>

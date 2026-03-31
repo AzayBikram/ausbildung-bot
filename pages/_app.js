@@ -1,10 +1,11 @@
 import '../styles/globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from 'next/script';
+import { LangProvider } from '../context/LangContext';
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
+    <LangProvider>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-BEV3ZNRJ2P"
         strategy="afterInteractive"
@@ -17,6 +18,6 @@ export default function App({ Component, pageProps }) {
       `}</Script>
       <Component {...pageProps} />
       <SpeedInsights />
-    </>
+    </LangProvider>
   );
 }
