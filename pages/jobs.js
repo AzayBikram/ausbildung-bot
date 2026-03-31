@@ -30,9 +30,10 @@ export default function Jobs() {
       btn.disabled = true; btn.textContent = '⏳ Searching...';
       document.getElementById('resultsArea').innerHTML = '<div class="loading"><div class="spinner"></div>Searching real vacancies in Germany...</div>';
       try {
-        let url = `/api/jobs?was=${encodeURIComponent(searchTerm)}&page=${page}&size=10`;
-        if (location) url += `&wo=${encodeURIComponent(location)}`;
-        const response = await fetch(url);
+        const response = await fetch('/api/chat', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'jobs', was: searchTerm, wo: location || undefined, page, size: 10 })
+        });
         if (!response.ok) throw new Error('API error');
         const data = await response.json();
         window.displayResults && window.displayResults(data.stellenangebote || [], data.maxErgebnisse || 0, searchTerm, location, page);
