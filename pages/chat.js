@@ -138,10 +138,10 @@ Rules:
       try {
         const response = await fetch('/api/chat', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ system: SYSTEM_PROMPT, messages: conversationHistory, stream: false })
+          body: JSON.stringify({ system: SYSTEM_PROMPT, messages: conversationHistory, stream: true })
         });
 
-        if (!response.ok) {
+        if (!response.ok || !response.body) {
           let errMsg = 'Something went wrong. Please try again.';
           if (response.status === 429) errMsg = 'Too many requests — please wait a moment.';
           bubble.innerHTML = `<p>⚠️ ${errMsg}</p>`;
@@ -149,8 +149,34 @@ Rules:
           btn.disabled = false; input.focus(); return;
         }
 
-        const data = await response.json();
-        const fullText = data?.content?.[0]?.text || 'No response received.';
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let fullText = ''; let buffer = '';
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop();
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue;
+            const data = line.slice(6).trim();
+            if (!data || data === '[DONE]') continue;
+            try {
+              const json = JSON.parse(data);
+              if (json.type === 'content_block_delta' && json.delta?.type === 'text_delta') {
+                fullText += json.delta.text;
+                bubble.innerHTML = markdownToHtml(fullText) + '<span class="stream-cursor">▋</span>';
+                container.scrollTop = container.scrollHeight;
+              }
+            } catch {}
+          }
+        }
+
+        if (!fullText) {
+          const errData = (() => { try { return JSON.parse(buffer); } catch { return null; } })();
+          fullText = errData?.error?.message || 'No response received.';
+        }
         bubble.innerHTML = markdownToHtml(fullText);
         conversationHistory.push({ role: 'assistant', content: fullText });
 
