@@ -30,9 +30,9 @@ export default function Jobs() {
       btn.disabled = true; btn.textContent = '⏳ Searching...';
       document.getElementById('resultsArea').innerHTML = '<div class="loading"><div class="spinner"></div>Searching real vacancies in Germany...</div>';
       try {
-        let url = `https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v4/jobs?was=${encodeURIComponent(searchTerm)}&angebotsart=4&page=${page}&size=10`;
+        let url = `/api/jobs?was=${encodeURIComponent(searchTerm)}&page=${page}&size=10`;
         if (location) url += `&wo=${encodeURIComponent(location)}`;
-        const response = await fetch(url, { headers: { 'X-API-Key': 'jobboerse-jobsuche', 'Accept': 'application/json' } });
+        const response = await fetch(url);
         if (!response.ok) throw new Error('API error');
         const data = await response.json();
         window.displayResults && window.displayResults(data.stellenangebote || [], data.maxErgebnisse || 0, searchTerm, location, page);
