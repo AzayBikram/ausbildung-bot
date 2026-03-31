@@ -69,19 +69,41 @@ Rules:
     };
 
     function markdownToHtml(text) {
-      return text
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/`(.*?)`/g, '<code style="background:rgba(79,142,247,0.12);border-radius:4px;padding:1px 5px;font-size:13px;">$1</code>')
-        .replace(/\[(.*?)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-        .replace(/^### (.+)$/gm, '<strong style="font-size:15px;display:block;margin-top:10px;">$1</strong>')
-        .replace(/^## (.+)$/gm, '<strong style="font-size:16px;display:block;margin-top:12px;color:var(--accent2)">$1</strong>')
-        .replace(/^- (.+)$/gm, '<li>$1</li>')
-        .replace(/(<li>.*<\/li>)/gs, m => '<ul>' + m + '</ul>')
-        .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-        .split(/\n{2,}/)
-        .map(p => p.startsWith('<') ? p : `<p>${p}</p>`)
-        .join('');
+      const lines = text.split('\n');
+      let html = '';
+      let inUl = false;
+      let inOl = false;
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i]
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')
+          .replace(/`(.*?)`/g, '<code style="background:rgba(79,142,247,0.12);border-radius:4px;padding:1px 5px;font-size:13px;">$1</code>')
+          .replace(/\[(.*?)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+        if (/^### (.+)$/.test(line)) {
+          if (inUl) { html += '</ul>'; inUl = false; }
+          if (inOl) { html += '</ol>'; inOl = false; }
+          html += `<strong style="font-size:15px;display:block;margin-top:10px;">${line.replace(/^### /, '')}</strong>`;
+        } else if (/^## (.+)$/.test(line)) {
+          if (inUl) { html += '</ul>'; inUl = false; }
+          if (inOl) { html += '</ol>'; inOl = false; }
+          html += `<strong style="font-size:16px;display:block;margin-top:12px;color:var(--accent2)">${line.replace(/^## /, '')}</strong>`;
+        } else if (/^- (.+)$/.test(line)) {
+          if (inOl) { html += '</ol>'; inOl = false; }
+          if (!inUl) { html += '<ul>'; inUl = true; }
+          html += `<li>${line.replace(/^- /, '')}</li>`;
+        } else if (/^\d+\. (.+)$/.test(line)) {
+          if (inUl) { html += '</ul>'; inUl = false; }
+          if (!inOl) { html += '<ol>'; inOl = true; }
+          html += `<li>${line.replace(/^\d+\. /, '')}</li>`;
+        } else {
+          if (inUl) { html += '</ul>'; inUl = false; }
+          if (inOl) { html += '</ol>'; inOl = false; }
+          if (line.trim()) html += `<p>${line}</p>`;
+        }
+      }
+      if (inUl) html += '</ul>';
+      if (inOl) html += '</ol>';
+      return html;
     }
 
     window.sendMessage = async function() {
@@ -116,10 +138,10 @@ Rules:
       try {
         const response = await fetch('/api/chat', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ system: SYSTEM_PROMPT, messages: conversationHistory, stream: true })
+          body: JSON.stringify({ system: SYSTEM_PROMPT, messages: conversationHistory, stream: false })
         });
 
-        if (!response.ok || !response.body) {
+        if (!response.ok) {
           let errMsg = 'Something went wrong. Please try again.';
           if (response.status === 429) errMsg = 'Too many requests — please wait a moment.';
           bubble.innerHTML = `<p>⚠️ ${errMsg}</p>`;
@@ -127,31 +149,8 @@ Rules:
           btn.disabled = false; input.focus(); return;
         }
 
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let fullText = ''; let buffer = '';
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split('\n');
-          buffer = lines.pop();
-          for (const line of lines) {
-            if (!line.startsWith('data: ')) continue;
-            const data = line.slice(6).trim();
-            if (!data || data === '[DONE]') continue;
-            try {
-              const json = JSON.parse(data);
-              if (json.type === 'content_block_delta' && json.delta?.type === 'text_delta') {
-                fullText += json.delta.text;
-                bubble.innerHTML = markdownToHtml(fullText) + '<span class="stream-cursor">▋</span>';
-                container.scrollTop = container.scrollHeight;
-              }
-            } catch {}
-          }
-        }
-
-        if (!fullText) fullText = 'No response received.';
+        const data = await response.json();
+        const fullText = data?.content?.[0]?.text || 'No response received.';
         bubble.innerHTML = markdownToHtml(fullText);
         conversationHistory.push({ role: 'assistant', content: fullText });
 
@@ -197,9 +196,7 @@ Rules:
 
   const css = `
 :root{--bg:#0d0f14;--surface:#14171f;--surface2:#1c2030;--border:#252a38;--accent:#4f8ef7;--accent2:#f7c04f;--text:#e8eaf0;--text-muted:#737a96;--user-bubble:#1a2540;--bot-bubble:#181d2a;--success:#4fc87a;--radius:16px;--font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;height:100vh;display:flex;flex-direction:column;overflow:hidden;padding-top:68px;}
-.chat-page-wrap{display:flex;flex-direction:column;flex:1;overflow:hidden;}
+.chat-page-wrap{position:fixed;top:68px;left:0;right:0;bottom:0;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;}
 header.chat-header{display:flex;align-items:center;gap:14px;padding:16px 24px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;}
 .logo-chat{width:42px;height:42px;background:linear-gradient(135deg,var(--accent),#7b5ef7);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .header-text h1{font-size:18px;font-weight:800;letter-spacing:-0.3px;line-height:1.1;}
@@ -208,8 +205,8 @@ header.chat-header{display:flex;align-items:center;gap:14px;padding:16px 24px;ba
 .status-pill{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--success);background:rgba(79,200,122,0.1);border:1px solid rgba(79,200,122,0.2);border-radius:20px;padding:4px 12px;flex-shrink:0;}
 .status-dot{width:6px;height:6px;border-radius:50%;background:var(--success);animation:pulse 2s ease infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.chat-wrapper{display:flex;flex:1;overflow:hidden;}
-.sidebar{width:220px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:20px 16px;gap:6px;flex-shrink:0;}
+.chat-wrapper{display:flex;flex:1;overflow:hidden;min-height:0;}
+.sidebar{width:220px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:20px 16px;gap:6px;flex-shrink:0;overflow-y:auto;}
 .sidebar-label{font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;padding-left:4px;}
 .topic-btn{background:none;border:1px solid transparent;border-radius:10px;color:var(--text-muted);font-family:var(--font-body);font-size:13px;padding:9px 12px;text-align:left;cursor:pointer;transition:all 0.15s ease;display:flex;align-items:center;gap:8px;}
 .topic-btn:hover{background:var(--surface2);color:var(--text);border-color:var(--border);}
@@ -218,8 +215,8 @@ header.chat-header{display:flex;align-items:center;gap:14px;padding:16px 24px;ba
 .lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;}
 .lang-btn{background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text-muted);font-family:var(--font-body);font-size:12px;padding:6px 8px;cursor:pointer;transition:all 0.15s;text-align:center;}
 .lang-btn:hover,.lang-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-.chat-container{flex:1;display:flex;flex-direction:column;overflow:hidden;}
-#messages{flex:1;overflow-y:auto;padding:24px 28px;display:flex;flex-direction:column;gap:20px;scroll-behavior:smooth;}
+.chat-container{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;}
+#messages{flex:1;overflow-y:auto;padding:24px 28px;display:flex;flex-direction:column;gap:20px;scroll-behavior:smooth;min-height:0;}
 #messages::-webkit-scrollbar{width:4px;}
 #messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
 .msg{display:flex;gap:12px;max-width:720px;animation:fadeUp 0.3s ease;}
