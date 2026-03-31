@@ -1,6 +1,17 @@
-export default async function handler(req, res) {
-  const { was, wo, page = 1, size = 10 } = req.query;
-  if (!was) return res.status(400).json({ error: 'Missing search term' });
+export const config = { runtime: 'edge' };
+
+export default async function handler(req) {
+  const { searchParams } = new URL(req.url);
+  const was = searchParams.get('was');
+  const wo = searchParams.get('wo');
+  const page = searchParams.get('page') || 1;
+  const size = searchParams.get('size') || 10;
+
+  if (!was) {
+    return new Response(JSON.stringify({ error: 'Missing search term' }), {
+      status: 400, headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   let url = `https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v4/jobs?was=${encodeURIComponent(was)}&angebotsart=4&page=${page}&size=${size}`;
   if (wo) url += `&wo=${encodeURIComponent(wo)}`;
@@ -9,10 +20,14 @@ export default async function handler(req, res) {
     const response = await fetch(url, {
       headers: { 'X-API-Key': 'jobboerse-jobsuche', 'Accept': 'application/json' },
     });
-    if (!response.ok) return res.status(response.status).json({ error: 'Upstream error' });
-    const data = await response.json();
-    res.status(200).json(data);
+    const data = await response.text();
+    return new Response(data, {
+      status: response.status,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (err) {
-    res.status(500).json({ error: 'Proxy error' });
+    return new Response(JSON.stringify({ error: 'Proxy error' }), {
+      status: 500, headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
