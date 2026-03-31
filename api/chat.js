@@ -28,6 +28,21 @@ export default async function handler(req) {
     });
   }
 
+  // Jobs proxy branch
+  if (body.type === 'jobs') {
+    const { was, wo, page = 1, size = 10 } = body;
+    if (!was) return new Response(JSON.stringify({ error: 'Missing search term' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+    let url = `https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v4/jobs?was=${encodeURIComponent(was)}&angebotsart=4&page=${page}&size=${size}`;
+    if (wo) url += `&wo=${encodeURIComponent(wo)}`;
+    try {
+      const r = await fetch(url, { headers: { 'X-API-Key': 'jobboerse-jobsuche', 'Accept': 'application/json' } });
+      const data = await r.text();
+      return new Response(data, { status: r.status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+    } catch {
+      return new Response(JSON.stringify({ error: 'Proxy error' }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+    }
+  }
+
   const { messages, system, stream: useStream } = body;
 
   if (!messages || !Array.isArray(messages)) {
@@ -46,8 +61,8 @@ export default async function handler(req) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1024,
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 800,
         stream: !!useStream,
         system,
         messages,
