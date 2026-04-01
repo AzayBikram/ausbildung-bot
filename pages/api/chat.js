@@ -43,7 +43,7 @@ export default async function handler(req) {
     }
   }
 
-  const { messages, system, stream: useStream } = body;
+  const { messages, system, stream: useStream, max_tokens: maxTokens } = body;
 
   if (!messages || !Array.isArray(messages)) {
     return new Response(JSON.stringify({ error: 'Invalid request body' }), {
@@ -62,7 +62,7 @@ export default async function handler(req) {
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 800,
+        max_tokens: maxTokens || 800,
         stream: !!useStream,
         system,
         messages,

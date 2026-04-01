@@ -33,6 +33,7 @@ export default function Embassy() {
         const response = await fetch('/api/chat', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            max_tokens: 1500,
             system: 'You are an expert on German embassies and visa applications. Return ONLY valid JSON, no markdown, no other text.',
             messages: [{ role: 'user', content: `Provide complete German embassy/consulate information for ${country} for an Ausbildung visa application. Return ONLY this JSON:
 {
