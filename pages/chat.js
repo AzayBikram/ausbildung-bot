@@ -319,7 +319,19 @@ header.chat-header{display:flex;align-items:center;gap:14px;padding:16px 24px;ba
 .copy-msg-btn:hover{background:var(--surface2);color:var(--text);}
 .clear-btn{background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-muted);font-family:var(--font-body);font-size:12px;padding:5px 12px;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:5px;white-space:nowrap;}
 .clear-btn:hover{border-color:#ff4757;color:#ff4757;}
-@media(max-width:640px){.sidebar{display:none;}#messages{padding:16px;}.input-area{padding:12px 16px 16px;}}
+@media(max-width:640px){
+  .sidebar{display:none;}
+  #messages{padding:16px;}
+  .input-area{padding:12px 16px max(16px,env(safe-area-inset-bottom));}
+  .chat-page-wrap{top:60px;}
+  .bubble{font-size:13.5px;padding:11px 14px;max-width:100%;}
+  .msg{max-width:100%;}
+  .welcome h2{font-size:20px;}
+  .welcome{padding:24px 16px;}
+  .welcome-chips{gap:8px;}
+  .welcome-chip{font-size:12px;padding:7px 14px;}
+  header.chat-header{padding:10px 16px;}
+}
 `;
 
   return (
@@ -342,7 +354,7 @@ header.chat-header{display:flex;align-items:center;gap:14px;padding:16px 24px;ba
 
       <div className="chat-page-wrap">
         {/* Sub-header */}
-        <div style={{background:'var(--surface)',borderBottom:'1px solid var(--border)',padding:'10px 20px',display:'flex',alignItems:'center',gap:'12px',position:'sticky',top:'68px',zIndex:99}}>
+        <div style={{background:'var(--surface)',borderBottom:'1px solid var(--border)',padding:'10px 20px',display:'flex',alignItems:'center',gap:'12px',overflowX:'auto',flexShrink:0,WebkitOverflowScrolling:'touch'}}>
           <a href="/" style={{display:'flex',alignItems:'center',gap:'7px',background:'var(--surface2)',border:'1.5px solid var(--border)',borderRadius:'10px',color:'var(--text-muted)',fontSize:'13px',fontWeight:600,padding:'7px 16px',textDecoration:'none',transition:'all .15s'}}>← Home</a>
           <a href="/jobs" style={{display:'flex',alignItems:'center',gap:'6px',background:'var(--surface2)',border:'1.5px solid var(--border)',borderRadius:'10px',color:'var(--text-muted)',fontSize:'13px',fontWeight:500,padding:'7px 14px',textDecoration:'none',transition:'all .15s'}}>🔍 Jobs</a>
           <a href="/eligibility" style={{display:'flex',alignItems:'center',gap:'6px',background:'var(--surface2)',border:'1.5px solid var(--border)',borderRadius:'10px',color:'var(--text-muted)',fontSize:'13px',fontWeight:500,padding:'7px 14px',textDecoration:'none',transition:'all .15s'}}>🎯 Eligibility</a>
