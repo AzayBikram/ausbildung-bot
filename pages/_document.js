@@ -14,6 +14,11 @@ export default function Document() {
         <link rel="icon" href="/icon-192.png" />
         <meta name="author" content="AusbildungInGermany.org" />
         <meta name="google-site-verification" content="c3xdsLOdGaXDv_XWMxpWgMjxaqzIvkbxM-FPLrn8y8g" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3723010252629109"
+          crossOrigin="anonymous"
+        />
       </Head>
       <body>
         <Main />
