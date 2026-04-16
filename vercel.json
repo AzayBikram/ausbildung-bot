@@ -1,5 +1,11 @@
 {
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.ausbildungingermany.org" }],
+      "destination": "https://ausbildungingermany.org/:path*",
+      "permanent": true
+    },
     { "source": "/(.*)\\.html", "destination": "/$1", "permanent": true }
   ]
 }
