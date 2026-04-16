@@ -94,14 +94,14 @@ export default function Phrases() {
         <title>Essential German Phrases for Ausbildung – Workplace &amp; Interview</title>
         <meta name="description" content="Learn essential German phrases for Ausbildung interviews, workplace communication, and application emails." />
         <meta property="og:title" content="Essential German Phrases for Ausbildung" />
-        <meta property="og:url" content="https://ausbildungingermany.org/phrases" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
-        <link rel="canonical" href="https://ausbildungingermany.org/phrases" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/phrases" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/phrases" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Essential German Phrases for Ausbildung – Workplace & Interview",
-  "url": "https://ausbildungingermany.org/phrases",
+  "url": "https://www.ausbildungingermany.org/phrases",
   "description": "Learn essential German phrases for Ausbildung interviews, workplace communication, and application emails.",
   "author": {"@type": "Organization", "name": "AusbildungInGermany.org"},
   "publisher": {"@type": "Organization", "name": "AusbildungInGermany.org", "url": "https://ausbildungingermany.org"}

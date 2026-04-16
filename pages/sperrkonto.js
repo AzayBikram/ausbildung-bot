@@ -55,15 +55,15 @@ export default function Sperrkonto() {
         <title>Sperrkonto Calculator – German Blocked Account for Visa</title>
         <meta name="description" content="Calculate how much you need in your German Sperrkonto (blocked account) for your Ausbildung visa application." />
         <meta property="og:title" content="Sperrkonto Calculator – German Blocked Account for Visa" />
-        <meta property="og:url" content="https://ausbildungingermany.org/sperrkonto" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/sperrkonto" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
-        <link rel="canonical" href="https://ausbildungingermany.org/sperrkonto" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/sperrkonto" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Sperrkonto Calculator – German Blocked Account for Visa",
-  "url": "https://ausbildungingermany.org/sperrkonto",
+  "url": "https://www.ausbildungingermany.org/sperrkonto",
   "description": "Calculate how much you need in your German Sperrkonto (blocked account) for your Ausbildung visa application.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",

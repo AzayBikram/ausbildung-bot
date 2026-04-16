@@ -129,14 +129,14 @@ export default function Templates() {
         <title>German Email Templates for Ausbildung Applications</title>
         <meta name="description" content="Free copy-paste German email templates for Ausbildung applications — enquiry emails, follow-ups, and acceptance/rejection replies." />
         <meta property="og:title" content="German Email Templates for Ausbildung Applications" />
-        <meta property="og:url" content="https://ausbildungingermany.org/templates" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
-        <link rel="canonical" href="https://ausbildungingermany.org/templates" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/templates" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/templates" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "German Email Templates for Ausbildung Applications",
-  "url": "https://ausbildungingermany.org/templates",
+  "url": "https://www.ausbildungingermany.org/templates",
   "description": "Free copy-paste German email templates for Ausbildung applications.",
   "publisher": {"@type": "Organization", "name": "AusbildungInGermany.org", "url": "https://ausbildungingermany.org"}
 }` }} />

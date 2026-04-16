@@ -101,16 +101,16 @@ export default function Sectors() {
         <meta name="keywords" content="Ausbildung sectors, Ausbildung salary, best Ausbildung for foreigners, IT Ausbildung, healthcare Ausbildung Germany" />
         <meta property="og:title" content="Ausbildung Sectors & Fields – Salary, Demand & Requirements" />
         <meta property="og:description" content="Explore all 350+ Ausbildung training fields in Germany. Compare salaries, demand levels, German requirements and career paths." />
-        <meta property="og:url" content="https://ausbildungingermany.org/sectors" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/sectors" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://ausbildungingermany.org/sectors" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/sectors" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Ausbildung Sectors & Training Fields",
-  "url": "https://ausbildungingermany.org/sectors",
+  "url": "https://www.ausbildungingermany.org/sectors",
   "description": "Explore all 350+ Ausbildung training fields in Germany. Compare salaries, demand levels, German requirements and career paths.",
   "publisher": {"@type": "Organization", "name": "AusbildungInGermany.org", "url": "https://ausbildungingermany.org"}
 }` }} />

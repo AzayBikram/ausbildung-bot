@@ -212,16 +212,16 @@ export default function Embassy() {
         <meta name="keywords" content="German embassy, Ausbildungsvisum, Germany training visa, German visa appointment, §16a AufenthG visa" />
         <meta property="og:title" content="German Embassy Finder – Ausbildung Visa Guide" />
         <meta property="og:description" content="Find your nearest German embassy, visa requirements, fees and step-by-step appointment booking for the Ausbildungsvisum." />
-        <meta property="og:url" content="https://ausbildungingermany.org/embassy" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/embassy" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://ausbildungingermany.org/embassy" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/embassy" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "German Embassy Finder for Ausbildung Visa",
-  "url": "https://ausbildungingermany.org/embassy",
+  "url": "https://www.ausbildungingermany.org/embassy",
   "description": "Find your nearest German embassy, visa requirements, fees and step-by-step appointment booking for the Ausbildungsvisum.",
   "publisher": {"@type": "Organization", "name": "AusbildungInGermany.org", "url": "https://ausbildungingermany.org"},
   "about": {"@type": "Thing", "name": "Ausbildungsvisum", "description": "German apprenticeship visa (§16a AufenthG) for non-EU citizens"}

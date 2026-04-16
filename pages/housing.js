@@ -12,14 +12,14 @@ export default function Housing() {
         <title>Finding Housing in Germany for Ausbildung Trainees</title>
         <meta name="description" content="Guide to finding accommodation in Germany as an Ausbildung trainee — dormitories, WGs, and tips for international applicants." />
         <meta property="og:title" content="Finding Housing in Germany for Ausbildung Trainees" />
-        <meta property="og:url" content="https://ausbildungingermany.org/housing" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
-        <link rel="canonical" href="https://ausbildungingermany.org/housing" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/housing" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/housing" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Finding Housing in Germany for Ausbildung Trainees",
-  "url": "https://ausbildungingermany.org/housing",
+  "url": "https://www.ausbildungingermany.org/housing",
   "description": "Guide to finding accommodation in Germany as an Ausbildung trainee — dormitories, WGs, and tips for international applicants.",
   "author": {"@type": "Organization", "name": "AusbildungInGermany.org"},
   "publisher": {"@type": "Organization", "name": "AusbildungInGermany.org", "url": "https://ausbildungingermany.org"}

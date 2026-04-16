@@ -216,14 +216,14 @@ export default function MyApplication() {
         <title>My Application – AusbildungInGermany</title>
         <meta name="description" content="Track all your Ausbildung applications in one place — status updates, deadlines, and follow-up reminders." />
         <meta property="og:title" content="My Application – AusbildungInGermany" />
-        <meta property="og:url" content="https://ausbildungingermany.org/myapplication" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
-        <link rel="canonical" href="https://ausbildungingermany.org/myapplication" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/myapplication" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/myapplication" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Ausbildung Application Tracker",
-  "url": "https://ausbildungingermany.org/myapplication",
+  "url": "https://www.ausbildungingermany.org/myapplication",
   "description": "Track all your Ausbildung applications in one place.",
   "applicationCategory": "ProductivityApplication",
   "operatingSystem": "Web",

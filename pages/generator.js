@@ -474,16 +474,16 @@ Die Eingabe kann auf Englisch oder Deutsch sein. Du antwortest IMMER auf Deutsch
         <meta name="keywords" content="German CV generator, Lebenslauf erstellen, Bewerbungsschreiben Ausbildung, German cover letter, Ausbildung application documents" />
         <meta property="og:title" content="Free German CV & Cover Letter Generator – AI-Powered" />
         <meta property="og:description" content="Generate a professional German Lebenslauf (CV) and Bewerbungsschreiben (cover letter) for Ausbildung in seconds using AI." />
-        <meta property="og:url" content="https://ausbildungingermany.org/generator" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/generator" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://ausbildungingermany.org/generator" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/generator" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Ausbildung CV & Cover Letter Generator",
-  "url": "https://ausbildungingermany.org/generator",
+  "url": "https://www.ausbildungingermany.org/generator",
   "description": "Generate a professional German Lebenslauf (CV) and Bewerbungsschreiben (cover letter) for Ausbildung in seconds using AI.",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",

@@ -85,15 +85,15 @@ export default function Salary() {
         <meta name="description" content="Calculate your net Ausbildung salary after tax and social contributions. See minimum and average pay by sector for 2026." />
         <meta property="og:title" content="Ausbildung Salary Calculator 2026" />
         <meta property="og:description" content="Calculate your net Ausbildung salary after tax and social contributions." />
-        <meta property="og:url" content="https://ausbildungingermany.org/salary" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/salary" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
-        <link rel="canonical" href="https://ausbildungingermany.org/salary" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/salary" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Ausbildung Salary Calculator 2026",
-  "url": "https://ausbildungingermany.org/salary",
+  "url": "https://www.ausbildungingermany.org/salary",
   "description": "Calculate your net Ausbildung salary after tax and social contributions. See minimum and average pay by sector for 2026.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",

@@ -251,7 +251,7 @@ Rules:
     return () => window.removeEventListener('aig:langchange', onLangChange);
   }, []);
 
-  const jsonLd = `{"@context":"https://schema.org","@type":"WebApplication","name":"Ausbildung AI Chatbot","url":"https://ausbildungingermany.org/chat","description":"Ask our free AI chatbot anything about Ausbildung in Germany in your language.","applicationCategory":"ChatApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"AusbildungInGermany.org","url":"https://ausbildungingermany.org"}}`;
+  const jsonLd = `{"@context":"https://schema.org","@type":"WebApplication","name":"Ausbildung AI Chatbot","url":"https://www.ausbildungingermany.org/chat","description":"Ask our free AI chatbot anything about Ausbildung in Germany in your language.","applicationCategory":"ChatApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"AusbildungInGermany.org","url":"https://ausbildungingermany.org"}}`;
 
   const css = `
 :root{--bg:#0d0f14;--surface:#14171f;--surface2:#1c2030;--border:#252a38;--accent:#4f8ef7;--accent2:#f7c04f;--text:#e8eaf0;--text-muted:#737a96;--user-bubble:#1a2540;--bot-bubble:#181d2a;--success:#4fc87a;--radius:16px;--font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;}
@@ -341,11 +341,11 @@ header.chat-header{display:flex;align-items:center;gap:14px;padding:16px 24px;ba
         <meta name="description" content="Ask our free AI chatbot anything about Ausbildung in Germany in your language. Get instant expert answers 24/7." />
         <meta property="og:title" content="AI Chatbot – Ask Anything About Ausbildung in Germany" />
         <meta property="og:description" content="Ask our free AI chatbot anything about Ausbildung in Germany in your language." />
-        <meta property="og:url" content="https://ausbildungingermany.org/chat" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/chat" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://ausbildungingermany.org/chat" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/chat" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
         <style dangerouslySetInnerHTML={{ __html: css }} />

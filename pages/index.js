@@ -94,8 +94,8 @@ export default function Home() {
   "name": "AusbildungInGermany",
   "url": "https://ausbildungingermany.org",
   "description": "The complete free platform to find, apply and succeed in German Ausbildung vocational training — AI-powered, no agents, no fees.",
-  "potentialAction": {"@type": "SearchAction","target": "https://ausbildungingermany.org/jobs?q={search_term_string}","query-input": "required name=search_term_string"},
-  "publisher": {"@type": "Organization","name": "AusbildungInGermany.org","url": "https://ausbildungingermany.org","logo": {"@type": "ImageObject","url": "https://ausbildungingermany.org/icon-512.png"}}
+  "potentialAction": {"@type": "SearchAction","target": "https://www.ausbildungingermany.org/jobs?q={search_term_string}","query-input": "required name=search_term_string"},
+  "publisher": {"@type": "Organization","name": "AusbildungInGermany.org","url": "https://ausbildungingermany.org","logo": {"@type": "ImageObject","url": "https://www.ausbildungingermany.org/icon-512.png"}}
 }`;
 
   const jsonLd2 = `{
@@ -234,13 +234,13 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
         <meta name="keywords" content="Ausbildung Germany, apprenticeship Germany, vocational training Germany, Ausbildung for foreigners, Ausbildungsvisum, Germany training visa" />
         <meta property="og:title" content="AusbildungInGermany – Find Your Apprenticeship in Germany. Free. No Agents." />
         <meta property="og:description" content="The complete free platform to find, apply and succeed in German Ausbildung. AI-powered tools, job search, embassy finder, document generator — 100% free, no agents." />
-        <meta property="og:url" content="https://ausbildungingermany.org/" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AusbildungInGermany – Find Your Apprenticeship in Germany. Free. No Agents." />
         <meta name="twitter:description" content="The complete free platform to find, apply and succeed in German Ausbildung. AI-powered tools, job search, embassy finder, document generator — 100% free, no agents." />
-        <link rel="canonical" href="https://ausbildungingermany.org/" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd1 }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd2 }} />

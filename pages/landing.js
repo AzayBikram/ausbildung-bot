@@ -25,16 +25,16 @@ export default function Landing() {
         <title>AusbildungInGermany – Find Your Apprenticeship in Germany. Free. No Agents.</title>
         <meta name="description" content="The complete free platform to find, apply, and succeed in German Ausbildung. AI-powered tools, job search, embassy finder, document generator — no agents needed." />
         <meta property="og:title" content="AusbildungInGermany – Find Your Apprenticeship in Germany" />
-        <meta property="og:url" content="https://ausbildungingermany.org/landing" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
-        <link rel="canonical" href="https://ausbildungingermany.org/landing" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/landing" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/landing" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "AusbildungInGermany",
   "url": "https://ausbildungingermany.org",
   "description": "The complete free platform to find, apply, and succeed in German Ausbildung.",
-  "publisher": {"@type": "Organization", "name": "AusbildungInGermany.org", "url": "https://ausbildungingermany.org", "logo": {"@type": "ImageObject", "url": "https://ausbildungingermany.org/icon-512.png"}}
+  "publisher": {"@type": "Organization", "name": "AusbildungInGermany.org", "url": "https://ausbildungingermany.org", "logo": {"@type": "ImageObject", "url": "https://www.ausbildungingermany.org/icon-512.png"}}
 }` }} />
         <style dangerouslySetInnerHTML={{ __html: `
 :root{--navy:#0a1628;--navy2:#0f2040;--blue:#1a56ff;--blue2:#4f7fff;--gold:#f5a623;--green:#00c48c;--red:#ff4757;--text:#0a1628;--text2:#4a5568;--text3:#718096;--bg:#f8faff;--surface:#ffffff;--border:#e2e8f0;--font-display:'Outfit',sans-serif;--font-body:'Outfit',sans-serif;}

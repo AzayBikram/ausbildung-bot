@@ -310,7 +310,7 @@ export default function Jobs() {
     };
   }, []);
 
-  const jsonLd = `{"@context":"https://schema.org","@type":"WebApplication","name":"Ausbildung Job Search","url":"https://ausbildungingermany.org/jobs","description":"Search thousands of real Ausbildung vacancies from Germany's official job database.","applicationCategory":"JobSearchApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"AusbildungInGermany.org","url":"https://ausbildungingermany.org"}}`;
+  const jsonLd = `{"@context":"https://schema.org","@type":"WebApplication","name":"Ausbildung Job Search","url":"https://www.ausbildungingermany.org/jobs","description":"Search thousands of real Ausbildung vacancies from Germany's official job database.","applicationCategory":"JobSearchApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"AusbildungInGermany.org","url":"https://ausbildungingermany.org"}}`;
 
   const css = `
 :root{--bg:#f8faff;--surface:#ffffff;--surface2:#f1f5fd;--border:#e2e8f0;--accent:#1a56ff;--accent2:#f5a623;--text:#0a1628;--text-muted:#718096;--success:#00c48c;--danger:#ff4757;--radius:16px;--navy:#0a1628;--blue:#1a56ff;}
@@ -391,11 +391,11 @@ textarea{resize:vertical;min-height:80px;}
         <meta name="description" content="Search thousands of real Ausbildung vacancies from Germany's official job database. Find your apprenticeship and apply with AI-powered guidance." />
         <meta property="og:title" content="Search Ausbildung Jobs in Germany – Free Job Finder" />
         <meta property="og:description" content="Search thousands of real Ausbildung vacancies from Germany's official job database." />
-        <meta property="og:url" content="https://ausbildungingermany.org/jobs" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/jobs" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://ausbildungingermany.org/jobs" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/jobs" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
         <style dangerouslySetInnerHTML={{ __html: css }} />

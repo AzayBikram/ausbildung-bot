@@ -56,14 +56,14 @@ export default function Recognition() {
         <title>Foreign Diploma Recognition in Germany – Ausbildung Guide</title>
         <meta name="description" content="Step-by-step guide to getting your foreign school diploma or degree recognised in Germany for Ausbildung applications." />
         <meta property="og:title" content="Foreign Diploma Recognition in Germany" />
-        <meta property="og:url" content="https://ausbildungingermany.org/recognition" />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
-        <link rel="canonical" href="https://ausbildungingermany.org/recognition" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/recognition" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/recognition" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Foreign Diploma Recognition in Germany – Ausbildung Guide",
-  "url": "https://ausbildungingermany.org/recognition",
+  "url": "https://www.ausbildungingermany.org/recognition",
   "description": "Step-by-step guide to getting your foreign school diploma or degree recognised in Germany for Ausbildung applications.",
   "author": {"@type": "Organization", "name": "AusbildungInGermany.org"},
   "publisher": {"@type": "Organization", "name": "AusbildungInGermany.org", "url": "https://ausbildungingermany.org"}

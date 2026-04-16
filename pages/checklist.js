@@ -110,15 +110,15 @@ export default function Checklist() {
         <meta name="keywords" content="Ausbildung checklist, Germany visa documents, Ausbildung application documents, vocational training Germany checklist" />
         <meta property="og:title" content="Document Checklist – AusbildungInGermany" />
         <meta property="og:description" content="Get a personalized document checklist for your Ausbildung application in Germany." />
-        <meta property="og:image" content="https://ausbildungingermany.org/icon-512.png" />
-        <meta property="og:url" content="https://ausbildungingermany.org/checklist" />
+        <meta property="og:image" content="https://www.ausbildungingermany.org/icon-512.png" />
+        <meta property="og:url" content="https://www.ausbildungingermany.org/checklist" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://ausbildungingermany.org/checklist" />
+        <link rel="canonical" href="https://www.ausbildungingermany.org/checklist" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `{
   "@context": "https://schema.org",
   "@type": "HowTo",
   "name": "Ausbildung Application Document Checklist",
-  "url": "https://ausbildungingermany.org/checklist",
+  "url": "https://www.ausbildungingermany.org/checklist",
   "description": "Get a personalized document checklist for your Ausbildung application in Germany.",
   "step": [
     {"@type": "HowToStep", "name": "Gather personal documents", "text": "Collect passport, birth certificate, and ID documents."},
