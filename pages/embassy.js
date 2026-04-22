@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import Nav from '../components/Nav';
 import { useLang } from '../context/LangContext';
 import { t } from '../lib/i18n';
+import { embassyData } from '../data/embassyData';
 
 export default function Embassy() {
   const { lang } = useLang();
@@ -30,52 +31,21 @@ export default function Embassy() {
       document.getElementById('embassyPanel').style.display = 'none';
 
       try {
-        const response = await fetch('/api/chat', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            max_tokens: 1500,
-            system: 'You are an expert on German embassies and visa applications. Return ONLY valid JSON, no markdown, no other text.',
-            messages: [{ role: 'user', content: `Provide complete German embassy/consulate information for ${country} for an Ausbildung visa application. Return ONLY this JSON:
-{
-  "country": "${country}",
-  "flag": "flag emoji",
-  "embassyName": "full official name in English",
-  "city": "city",
-  "address": "full street address",
-  "phone": "phone with country code",
-  "email": "official visa email",
-  "website": "official embassy website URL",
-  "appointmentUrl": "visa appointment URL (use https://videx-asia.diplo.de or https://www.tls-visaservices.com or country-specific URL)",
-  "openingHours": "consular section opening hours",
-  "processingTime": "typical processing time for Ausbildung visa",
-  "consulates": ["other consulate cities if any"],
-  "languageRequirement": "German level required (usually B1)",
-  "languageCertificate": "accepted certificates e.g. Goethe-Zertifikat B1, TestDaF",
-  "academicRequirement": "minimum education required",
-  "ageRequirement": "age range",
-  "financialRequirement": "proof of financial means required",
-  "blockingAccount": "amount needed for blocked account in EUR",
-  "visaFee": "visa application fee in EUR",
-  "serviceFee": "any additional service/agency fee",
-  "appointmentFee": "appointment booking fee if any",
-  "totalEstimatedCost": "total estimated cost in EUR",
-  "requiredDocuments": ["list of required documents"],
-  "appointmentSteps": [
-    {"step": "step title", "detail": "step description", "link": "URL if applicable"}
-  ],
-  "importantNote": "country-specific important note",
-  "eligibilityTips": "tips specific to applicants from this country"
-}` }]
-          })
-        });
-        const data = await response.json();
-        const text = data.content?.map(b => b.text || '').join('') || '{}';
-        embassyDataRef.current = JSON.parse(text.replace(/```json|```/g, '').trim());
-        const d = embassyDataRef.current;
+        // Check if we have data for this country
+        const d = embassyData[country];
+
+        if (!d) {
+          // Country not yet in database
+          document.getElementById('resultsArea').innerHTML = `<div class="empty-state"><div class="icon">🏛️</div><h3>Embassy information coming soon</h3><p>Data for ${country} is being added. Please visit <a href="https://www.auswaertiges-amt.de" target="_blank" style="color:#1a56ff;">www.auswaertiges-amt.de</a> for current information, or contact the German embassy in ${country} directly.</p></div>`;
+          btn.disabled = false; btn.textContent = '🗺️ Find Embassy';
+          return;
+        }
+
+        embassyDataRef.current = d;
 
         document.getElementById('panelTitle').textContent = `${d.flag || '🏛️'} ${d.embassyName}`;
         document.getElementById('panelSubtitle').textContent = `📍 ${d.city}, ${d.country} — Ausbildungsvisum §16a AufenthG`;
-        document.getElementById('bookAppointmentBtn').href = d.appointmentUrl || 'https://www.auswaertiges-amt.de';
+        document.getElementById('bookAppointmentBtn').href = d.appointmentUrl || d.website || 'https://www.auswaertiges-amt.de';
         document.getElementById('embassyPanel').style.display = 'block';
         document.getElementById('embassyPanel').scrollIntoView({ behavior: 'smooth' });
         window.goToStep(1);
