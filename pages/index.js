@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
-import { useLang } from '../context/LangContext';
 
 export default function Home() {
-  const { lang } = useLang();
   useEffect(() => {
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
@@ -38,53 +36,8 @@ export default function Home() {
       setTimeout(() => { document.getElementById('feedbackPanel').style.display = 'none'; }, 3000);
     };
 
-    // Page translations
-    const PAGE_TRANSLATIONS = {
-      en: { hero_badge: '100% Free · No Agents · No Middlemen', hero_sub: 'The complete free platform for people from anywhere in the world to find, apply for, and succeed in German vocational training — powered by AI.', hero_cta1: '🎯 Check My Eligibility →', hero_cta2: '🔍 Search Jobs', hero_cta3: '💬 Ask AI', features_label: 'Everything You Need', trust1: 'No registration required', trust2: 'Your data stays on your device', trust3: 'Available in 6 languages', trust4: 'AI-powered document generation', trust5: 'Official embassy appointment guidance' },
-      de: { hero_badge: '100% Kostenlos · Keine Agenten · Keine Vermittler', hero_sub: 'Die komplette kostenlose Plattform für Menschen aus aller Welt, um eine Ausbildung in Deutschland zu finden und zu bewerben — KI-gestützt.', hero_cta1: '🎯 Eignung prüfen →', hero_cta2: '🔍 Jobs suchen', hero_cta3: '💬 KI fragen', features_label: 'Alles was du brauchst', trust1: 'Keine Registrierung erforderlich', trust2: 'Deine Daten bleiben auf deinem Gerät', trust3: 'In 6 Sprachen verfügbar', trust4: 'KI-gestützte Dokumentenerstellung', trust5: 'Offizielle Botschaftsberatung' },
-      ar: { hero_badge: 'مجاني 100٪ · بدون وكلاء · بدون وسطاء', hero_sub: 'المنصة المجانية الشاملة للناس من جميع أنحاء العالم للعثور على تدريب مهني في ألمانيا والتقدم إليه.', hero_cta1: '🎯 تحقق من أهليتي →', hero_cta2: '🔍 ابحث عن وظائف', hero_cta3: '💬 اسأل الذكاء الاصطناعي', features_label: 'كل ما تحتاجه', trust1: 'لا يلزم التسجيل', trust2: 'بياناتك تبقى على جهازك', trust3: 'متاح بـ 6 لغات', trust4: 'إنشاء وثائق بالذكاء الاصطناعي', trust5: 'إرشادات رسمية لموعد السفارة' },
-      tr: { hero_badge: '%100 Ücretsiz · Acente Yok · Aracı Yok', hero_sub: "Dünyanın her yerinden insanların Almanya'da mesleki eğitim bulmasına ve başvurmasına yardımcı olan ücretsiz platform.", hero_cta1: '🎯 Uygunluğumu Kontrol Et →', hero_cta2: '🔍 İş Ara', hero_cta3: "💬 Yapay Zeka'ya Sor", features_label: 'İhtiyacınız Olan Her Şey', trust1: 'Kayıt gerekmez', trust2: 'Verileriniz cihazınızda kalır', trust3: '6 dilde mevcut', trust4: 'Yapay zeka destekli belge oluşturma', trust5: 'Resmi büyükelçilik randevu rehberliği' },
-      fr: { hero_badge: '100% Gratuit · Sans agents · Sans intermédiaires', hero_sub: "La plateforme gratuite complète pour les personnes du monde entier pour trouver et postuler à une formation professionnelle en Allemagne.", hero_cta1: '🎯 Vérifier mon éligibilité →', hero_cta2: '🔍 Chercher des emplois', hero_cta3: "💬 Demander à l'IA", features_label: 'Tout ce dont vous avez besoin', trust1: 'Aucune inscription requise', trust2: 'Vos données restent sur votre appareil', trust3: 'Disponible en 6 langues', trust4: 'Génération de documents par IA', trust5: "Guide officiel pour rendez-vous ambassade" },
-      es: { hero_badge: '100% Gratis · Sin agentes · Sin intermediarios', hero_sub: 'La plataforma gratuita completa para personas de todo el mundo para encontrar y solicitar formación profesional en Alemania.', hero_cta1: '🎯 Verificar mi elegibilidad →', hero_cta2: '🔍 Buscar empleos', hero_cta3: '💬 Preguntar a la IA', features_label: 'Todo lo que necesitas', trust1: 'Sin registro requerido', trust2: 'Tus datos permanecen en tu dispositivo', trust3: 'Disponible en 6 idiomas', trust4: 'Generación de documentos con IA', trust5: 'Guía oficial para cita en embajada' },
-      hi: { hero_badge: '100% निःशुल्क · कोई एजेंट नहीं · कोई बिचौलिया नहीं', hero_sub: 'जर्मनी में व्यावसायिक प्रशिक्षण खोजने, आवेदन करने और सफल होने के लिए दुनिया भर के लोगों के लिए पूर्ण निःशुल्क मंच — AI द्वारा संचालित।', hero_cta1: '🎯 पात्रता जांचें →', hero_cta2: '🔍 नौकरी खोजें', hero_cta3: '💬 AI से पूछें', features_label: 'सब कुछ एक जगह', trust1: 'पंजीकरण की आवश्यकता नहीं', trust2: 'आपका डेटा आपके डिवाइस पर रहता है', trust3: '6 भाषाओं में उपलब्ध', trust4: 'AI-संचालित दस्तावेज़ निर्माण', trust5: 'आधिकारिक दूतावास अपॉइंटमेंट मार्गदर्शन' },
-      ur: { hero_badge: '100% مفت · کوئی ایجنٹ نہیں · کوئی بیچوان نہیں', hero_sub: 'جرمنی میں پیشہ ورانہ تربیت تلاش کرنے، درخواست دینے اور کامیاب ہونے کے لیے دنیا بھر کے لوگوں کے لیے مکمل مفت پلیٹ فارم — AI سے چلتا ہے۔', hero_cta1: '🎯 اہلیت جانچیں →', hero_cta2: '🔍 نوکریاں تلاش کریں', hero_cta3: '💬 AI سے پوچھیں', features_label: 'آپ کو جو چاہیے سب کچھ', trust1: 'رجسٹریشن کی ضرورت نہیں', trust2: 'آپ کا ڈیٹا آپ کے ڈیوائس پر رہتا ہے', trust3: '6 زبانوں میں دستیاب', trust4: 'AI سے دستاویز تیاری', trust5: 'سرکاری سفارت خانہ اپائنٹمنٹ رہنمائی' },
-      bn: { hero_badge: '১০০% বিনামূল্যে · কোনো এজেন্ট নেই · কোনো মধ্যস্থতাকারী নেই', hero_sub: 'জার্মানিতে বৃত্তিমূলক প্রশিক্ষণ খুঁজে পেতে, আবেদন করতে এবং সফল হতে বিশ্বের যেকোনো প্রান্তের মানুষের জন্য সম্পূর্ণ বিনামূল্যে প্ল্যাটফর্ম।', hero_cta1: '🎯 যোগ্যতা যাচাই করুন →', hero_cta2: '🔍 চাকরি খুঁজুন', hero_cta3: '💬 AI-কে জিজ্ঞেস করুন', features_label: 'আপনার যা দরকার সব', trust1: 'নিবন্ধনের প্রয়োজন নেই', trust2: 'আপনার ডেটা আপনার ডিভাইসে থাকে', trust3: '৬টি ভাষায় উপলব্ধ', trust4: 'AI-চালিত ডকুমেন্ট তৈরি', trust5: 'সরকারি দূতাবাস অ্যাপয়েন্টমেন্ট গাইড' },
-      sw: { hero_badge: '100% Bure · Hakuna Mawakala · Hakuna Wasuluhishi', hero_sub: 'Jukwaa kamili la bure kwa watu kutoka sehemu yoyote duniani kupata, kuomba, na kufanikiwa katika mafunzo ya ufundi nchini Ujerumani.', hero_cta1: '🎯 Angalia Ustahili Wangu →', hero_cta2: '🔍 Tafuta Kazi', hero_cta3: '💬 Uliza AI', features_label: 'Kila Unachohitaji', trust1: 'Hakuna usajili unaohitajika', trust2: 'Data yako inabaki kwenye kifaa chako', trust3: 'Inapatikana kwa lugha 6', trust4: 'Utengenezaji wa hati kwa AI', trust5: 'Mwongozo rasmi wa miadi ya ubalozi' },
-      tl: { hero_badge: '100% Libre · Walang Ahente · Walang Tagapamagitan', hero_sub: 'Ang kumpletong libreng platform para sa mga tao mula sa buong mundo upang mahanap, mag-apply, at magtagumpay sa vocational training sa Germany.', hero_cta1: '🎯 Suriin ang Aking Eligibility →', hero_cta2: '🔍 Maghanap ng Trabaho', hero_cta3: '💬 Magtanong sa AI', features_label: 'Lahat ng Kailangan Mo', trust1: 'Hindi kailangan ng pagpaparehistro', trust2: 'Ang iyong data ay nananatili sa iyong device', trust3: 'Available sa 6 na wika', trust4: 'AI-powered na paggawa ng dokumento', trust5: 'Opisyal na gabay sa appointment sa embahada' },
-    };
-
-    window.applyPageTranslations = function(lang) {
-      const t = PAGE_TRANSLATIONS[lang] || PAGE_TRANSLATIONS.en;
-      const badge = document.querySelector('.hero-badge');
-      if (badge) badge.innerHTML = `<div class="dot"></div>${t.hero_badge}`;
-      const heroP = document.querySelector('.hero p');
-      if (heroP) heroP.textContent = t.hero_sub;
-      const ctaBtns = document.querySelectorAll('.hero-actions a');
-      if (ctaBtns[0]) ctaBtns[0].textContent = t.hero_cta1;
-      if (ctaBtns[1]) ctaBtns[1].textContent = t.hero_cta2;
-      if (ctaBtns[2]) ctaBtns[2].textContent = t.hero_cta3;
-      const flabel = document.querySelector('.features-section .section-label');
-      if (flabel) flabel.textContent = t.features_label;
-      const trust = document.querySelectorAll('.trust-item');
-      ['trust1','trust2','trust3','trust4','trust5'].forEach((k, i) => {
-        if (trust[i]) trust[i].lastChild.textContent = t[k];
-      });
-      document.documentElement.dir = (lang === 'ar' || lang === 'ur') ? 'rtl' : 'ltr';
-    };
-
-    // Apply translations on load
-    const saved = typeof localStorage !== 'undefined' ? (localStorage.getItem('aig_lang') || 'en') : 'en';
-    if (window.applyPageTranslations) window.applyPageTranslations(saved);
-
-    // Listen for language changes
-    const onLangChange = (e) => {
-      if (window.applyPageTranslations) window.applyPageTranslations(e.detail.lang);
-    };
-    window.addEventListener('aig:langchange', onLangChange);
-
     return () => {
       observer.disconnect();
-      window.removeEventListener('aig:langchange', onLangChange);
     };
   }, []);
 
@@ -274,7 +227,6 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
       <div className="trust-bar">
         <div className="trust-item"><span className="ti-icon">✅</span> No registration required</div>
         <div className="trust-item"><span className="ti-icon">🔒</span> Your data stays on your device</div>
-        <div className="trust-item"><span className="ti-icon">🌍</span> Available in 6 languages</div>
         <div className="trust-item"><span className="ti-icon">🤖</span> AI-powered document generation</div>
         <div className="trust-item"><span className="ti-icon">🏛️</span> Official embassy appointment guidance</div>
       </div>
