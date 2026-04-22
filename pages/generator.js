@@ -231,7 +231,7 @@ export default function Generator() {
       if (!window.jspdf) { alert('PDF library still loading, please try again in a moment.'); return; }
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-      const pageW = 210, pageH = 297, marginL = 20, marginR = 20, marginT = 20;
+      const pageW = 210, pageH = 297, marginL = 25, marginR = 25, marginT = 25;
       const contentW = pageW - marginL - marginR;
       const titles = { cv: 'Lebenslauf', cover: 'Bewerbungsschreiben', interview: 'Interview Vorbereitung' };
       const fileName = titles[currentDocRef.current] || 'Dokument';
@@ -242,67 +242,74 @@ export default function Generator() {
       if (hasPhoto) {
         try {
           doc.addImage(uploadedPhotoRef.current, uploadedPhotoTypeRef.current || 'JPEG', photoX, photoY, photoW, photoH);
-          doc.setDrawColor(200, 200, 200);
-          doc.setLineWidth(0.3);
+          doc.setDrawColor(180, 180, 180);
+          doc.setLineWidth(0.5);
           doc.rect(photoX, photoY, photoW, photoH);
         } catch(e) { console.warn('Photo error:', e); }
       }
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(22);
-      doc.setTextColor(10, 22, 40);
-      const textAreaW = hasPhoto ? contentW - photoW - 8 : contentW;
-      doc.text(fileName, marginL, marginT + 8);
-      doc.setDrawColor(26, 86, 255);
-      doc.setLineWidth(0.8);
-      doc.line(marginL, marginT + 12, marginL + textAreaW, marginT + 12);
+      doc.setFontSize(20);
+      doc.setTextColor(0, 0, 0);
+      const textAreaW = hasPhoto ? contentW - photoW - 10 : contentW;
+      doc.text(fileName, marginL, marginT + 7);
+      doc.setDrawColor(0, 0, 0);
+      doc.setLineWidth(0.5);
+      doc.line(marginL, marginT + 10, marginL + textAreaW, marginT + 10);
       doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      doc.setTextColor(40, 40, 40);
-      let y = marginT + 20;
+      doc.setFontSize(11);
+      doc.setTextColor(0, 0, 0);
+      let y = marginT + 18;
       const lines = generatedTextRef.current.split('\n');
       lines.forEach(line => {
-        if (y > pageH - 20) { doc.addPage(); y = marginT; doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(40, 40, 40); }
+        if (y > pageH - 25) { doc.addPage(); y = marginT; doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(0, 0, 0); }
         const trimmed = line.trim();
-        if (trimmed && (trimmed === trimmed.toUpperCase() && trimmed.length > 2 && !/^\d/.test(trimmed)) || /^[A-ZÄÖÜ][^a-z]+:$/.test(trimmed)) {
-          y += 3;
-          doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(10, 22, 40);
-          doc.text(trimmed, marginL, y);
-          y += 1;
-          doc.setDrawColor(220, 228, 240); doc.setLineWidth(0.3);
-          doc.line(marginL, y + 1, marginL + contentW, y + 1);
-          y += 5;
-          doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(40, 40, 40);
+        if (trimmed && (trimmed === trimmed.toUpperCase() && trimmed.length > 2 && !/^\d/.test(trimmed) && !trimmed.includes('_')) || /^[A-ZÄÖÜ][^a-z]+:$/.test(trimmed)) {
+          if (trimmed !== fileName.toUpperCase()) {
+            y += 5;
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(0, 0, 0);
+            doc.text(trimmed, marginL, y);
+            doc.setDrawColor(100, 100, 100); doc.setLineWidth(0.3);
+            doc.line(marginL, y + 1.5, marginL + contentW, y + 1.5);
+            y += 7;
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(0, 0, 0);
+          }
           return;
         }
-        if (/^[A-ZÄÖÜa-zäöü\s]+:\s/.test(trimmed) && trimmed.length < 60) {
+        if (/^[A-ZÄÖÜa-zäöü\s]+:\s/.test(trimmed) && trimmed.length < 80) {
           const colonIdx = trimmed.indexOf(':');
           const label = trimmed.substring(0, colonIdx + 1);
           const value = trimmed.substring(colonIdx + 1).trim();
-          doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(10, 22, 40);
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(0, 0, 0);
           doc.text(label, marginL, y);
-          doc.setFont('helvetica', 'normal'); doc.setTextColor(40, 40, 40);
-          if (value) doc.text(value, marginL + doc.getTextWidth(label) + 2, y);
+          if (value) {
+            const labelWidth = doc.getTextWidth(label);
+            const wrapped = doc.splitTextToSize(value, contentW - labelWidth - 3);
+            wrapped.forEach((wl, idx) => {
+              doc.text(wl, marginL + labelWidth + 2, y);
+              if (idx < wrapped.length - 1) y += 5;
+            });
+          }
           y += 6; return;
         }
         if (trimmed.startsWith('•') || trimmed.startsWith('-') || trimmed.startsWith('·')) {
           const bulletText = '• ' + trimmed.replace(/^[•\-·]\s*/, '');
           const wrapped = doc.splitTextToSize(bulletText, contentW - 5);
-          wrapped.forEach((wl, wi) => { if (y > pageH - 20) { doc.addPage(); y = marginT; } doc.text(wi === 0 ? wl : '  ' + wl.trim(), marginL + 3, y); y += 5; });
+          wrapped.forEach((wl, wi) => { if (y > pageH - 25) { doc.addPage(); y = marginT; } doc.text(wi === 0 ? wl : '  ' + wl.trim(), marginL + 3, y); y += 5.5; });
           return;
         }
         if (trimmed.includes('[BEWERBUNGSFOTO]') || trimmed.includes('[PHOTO]')) return;
-        if (!trimmed) { y += 3; return; }
-        const maxW = (hasPhoto && y < photoY + photoH + 5) ? textAreaW : contentW;
+        if (!trimmed) { y += 4; return; }
+        if (trimmed.includes('_______')) {
+          y += 2;
+          doc.setLineWidth(0.3);
+          doc.line(marginL, y, marginL + 60, y);
+          y += 1;
+          return;
+        }
+        const maxW = (hasPhoto && y < photoY + photoH + 8) ? textAreaW : contentW;
         const wrapped = doc.splitTextToSize(trimmed, maxW);
-        wrapped.forEach(wl => { if (y > pageH - 20) { doc.addPage(); y = marginT; } doc.text(wl, marginL, y); y += 5; });
+        wrapped.forEach(wl => { if (y > pageH - 25) { doc.addPage(); y = marginT; } doc.text(wl, marginL, y); y += 5.5; });
       });
-      const totalPages = doc.getNumberOfPages();
-      for (let i = 1; i <= totalPages; i++) {
-        doc.setPage(i);
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(160, 160, 160);
-        doc.text(`${fileName} — Erstellt mit AusbildungInGermany.org`, marginL, pageH - 8);
-        if (totalPages > 1) doc.text(`${i} / ${totalPages}`, pageW - marginR, pageH - 8, { align: 'right' });
-      }
       doc.save(fileName + '.pdf');
     };
 
