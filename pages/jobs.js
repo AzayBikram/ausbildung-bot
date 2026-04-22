@@ -2,11 +2,8 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 import Nav from '../components/Nav';
 import Script from 'next/script';
-import { useLang } from '../context/LangContext';
-import { t } from '../lib/i18n';
 
 export default function Jobs() {
-  const { lang } = useLang();
   useEffect(() => {
     let currentPage = 1;
     let selectedJob = null;
@@ -259,8 +256,8 @@ export default function Jobs() {
     };
 
     window.downloadJobPDF = function() {
+      if (!generatedCV && !generatedCoverLetter) { alert('Please generate documents first!'); return; }
       const text = currentDocShown === 'cv' ? generatedCV : generatedCoverLetter;
-      if (!text) { alert('Please generate documents first!'); return; }
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF({ unit: 'mm', format: 'a4' });
       const pageW = 210, pageH = 297, marginL = 20, marginR = 20, marginT = 20;
@@ -404,21 +401,21 @@ textarea{resize:vertical;min-height:80px;}
       <Nav />
 
       <main>
-        <div className="page-title">🔍 {t(lang,'jobs.title')}</div>
-        <p className="page-subtitle">{t(lang,'jobs.sub')}</p>
+        <div className="page-title">🔍 Find Ausbildung Jobs</div>
+        <p className="page-subtitle">Search thousands of real Ausbildung vacancies from Germany's official job database.</p>
 
         <div className="search-box">
           <div className="search-grid">
             <div className="search-group">
-              <label>{t(lang,'jobs.placeholder')}</label>
+              <label>Job title or keyword</label>
               <input type="text" id="searchKeyword" placeholder="e.g. Kaufmann, IT, Koch..." onKeyDown={e => { if(e.key==='Enter') window.searchJobs && window.searchJobs(); }} />
             </div>
             <div className="search-group">
-              <label>{t(lang,'jobs.location_ph')}</label>
+              <label>City or region</label>
               <input type="text" id="searchLocation" placeholder="e.g. Berlin, München..." onKeyDown={e => { if(e.key==='Enter') window.searchJobs && window.searchJobs(); }} />
             </div>
             <div className="search-group">
-              <label>{t(lang,'jobs.filter_sector')}</label>
+              <label>Sector</label>
               <select id="searchSector">
                 <option value="">All Sectors</option>
                 <option value="IT">💻 IT &amp; Technology</option>
@@ -433,7 +430,7 @@ textarea{resize:vertical;min-height:80px;}
                 <option value="Friseur">✂️ Hairdressing</option>
               </select>
             </div>
-            <button className="search-btn" onClick={() => window.searchJobs && window.searchJobs()} id="searchBtn">{t(lang,'common.search')}</button>
+            <button className="search-btn" onClick={() => window.searchJobs && window.searchJobs()} id="searchBtn">🔍 Search</button>
           </div>
           <div className="quick-searches">
             <span style={{fontSize:'12px',color:'var(--text-muted)',marginRight:'4px'}}>Popular:</span>
