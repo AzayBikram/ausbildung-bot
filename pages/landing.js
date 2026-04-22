@@ -181,7 +181,6 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
       <div className="trust-bar">
         <div className="trust-item"><span className="ti-icon">✅</span> No registration required</div>
         <div className="trust-item"><span className="ti-icon">🔒</span> Your data stays on your device</div>
-        <div className="trust-item"><span className="ti-icon">🌍</span> Available in 6 languages</div>
         <div className="trust-item"><span className="ti-icon">🤖</span> AI-powered document generation</div>
         <div className="trust-item"><span className="ti-icon">🏛️</span> Official embassy appointment guidance</div>
       </div>
@@ -285,7 +284,6 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
                 <tr><td>Real Job Search</td><td className="highlight-col"><span className="check">✓</span> Official BA database</td><td>Limited listings</td><td>Some</td></tr>
                 <tr><td>Embassy Appointment Help</td><td className="highlight-col"><span className="check">✓</span> Step-by-step guidance</td><td>Extra fee</td><td><span className="cross">✗</span></td></tr>
                 <tr><td>Eligibility Score</td><td className="highlight-col"><span className="check">✓</span> Instant personalized score</td><td><span className="cross">✗</span></td><td><span className="cross">✗</span></td></tr>
-                <tr><td>Multilingual Support</td><td className="highlight-col"><span className="check">✓</span> 6 languages</td><td>Usually English only</td><td>German/English only</td></tr>
                 <tr><td>Privacy</td><td className="highlight-col"><span className="check">✓</span> Data stays on your device</td><td>Your data shared</td><td>Varies</td></tr>
               </tbody>
             </table>
