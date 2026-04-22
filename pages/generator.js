@@ -506,6 +506,7 @@ textarea { resize: vertical; min-height: 80px; }
               <div className="form-group full"><label>Highest Education Level</label>
                 <select id="eduLevel">
                   <option value="">Select...</option>
+                  <option>Secondary School (10th class)</option>
                   <option>High School Diploma</option>
                   <option>Vocational Certificate</option>
                   <option>Bachelor&apos;s Degree</option>
@@ -515,7 +516,7 @@ textarea { resize: vertical; min-height: 80px; }
               </div>
               <div className="form-group"><label>School / University Name</label><input type="text" id="schoolName" placeholder="e.g. University of Lagos" /></div>
               <div className="form-group"><label>Graduation Year</label><input type="text" id="gradYear" placeholder="e.g. 2022" /></div>
-              <div className="form-group full"><label>Field of Study / Major</label><input type="text" id="fieldOfStudy" placeholder="e.g. Electrical Engineering" /></div>
+              <div className="form-group full"><label>Field of Study / Major <span style={{color:'var(--text-muted)',fontWeight:400}}>(optional - leave empty for secondary/high school)</span></label><input type="text" id="fieldOfStudy" placeholder="e.g. Electrical Engineering (only for university/college)" /></div>
             </div>
           </div>
 
