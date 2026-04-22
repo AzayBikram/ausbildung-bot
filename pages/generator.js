@@ -321,10 +321,9 @@ export default function Generator() {
         if (trimmed.includes('[BEWERBUNGSFOTO]') || trimmed.includes('[PHOTO]')) return;
         if (!trimmed) { y += 3; return; }
         if (trimmed.includes('_______')) {
-          y += 2;
           doc.setLineWidth(0.3);
           doc.line(marginL, y, marginL + 60, y);
-          y += 1;
+          y += 6;
           return;
         }
         const maxW = (hasPhoto && y < photoY + photoH + 2) ? textAreaW : contentW;
