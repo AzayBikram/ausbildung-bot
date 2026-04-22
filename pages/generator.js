@@ -231,7 +231,7 @@ export default function Generator() {
       if (!window.jspdf) { alert('PDF library still loading, please try again in a moment.'); return; }
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-      const pageW = 210, pageH = 297, marginL = 25, marginR = 25, marginT = 25;
+      const pageW = 210, pageH = 297, marginL = 20, marginR = 20, marginT = 20;
       const contentW = pageW - marginL - marginR;
       const titles = { cv: 'Lebenslauf', cover: 'Bewerbungsschreiben', interview: 'Interview Vorbereitung' };
       const fileName = titles[currentDocRef.current] || 'Dokument';
@@ -248,30 +248,31 @@ export default function Generator() {
         } catch(e) { console.warn('Photo error:', e); }
       }
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(20);
+      doc.setFontSize(18);
       doc.setTextColor(0, 0, 0);
       const textAreaW = hasPhoto ? contentW - photoW - 10 : contentW;
-      doc.text(fileName, marginL, marginT + 7);
+      doc.text(fileName, marginL, marginT + 6);
       doc.setDrawColor(0, 0, 0);
       doc.setLineWidth(0.5);
-      doc.line(marginL, marginT + 10, marginL + textAreaW, marginT + 10);
+      doc.line(marginL, marginT + 9, marginL + textAreaW, marginT + 9);
       doc.setFont('helvetica', 'normal');
-      doc.setFontSize(11);
+      doc.setFontSize(10);
       doc.setTextColor(0, 0, 0);
-      let y = marginT + 18;
+      let y = marginT + 16;
       const lines = generatedTextRef.current.split('\n');
       lines.forEach(line => {
-        if (y > pageH - 25) { doc.addPage(); y = marginT; doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(0, 0, 0); }
+        if (y > pageH - 20) { doc.addPage(); y = marginT; doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(0, 0, 0); }
         const trimmed = line.trim();
         if (trimmed && (trimmed === trimmed.toUpperCase() && trimmed.length > 2 && !/^\d/.test(trimmed) && !trimmed.includes('_')) || /^[A-ZÄÖÜ][^a-z]+:$/.test(trimmed)) {
           if (trimmed !== fileName.toUpperCase()) {
-            y += 5;
-            doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(0, 0, 0);
+            y += 3;
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(0, 0, 0);
             doc.text(trimmed, marginL, y);
             doc.setDrawColor(100, 100, 100); doc.setLineWidth(0.3);
-            doc.line(marginL, y + 1.5, marginL + contentW, y + 1.5);
-            y += 7;
-            doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(0, 0, 0);
+            const lineEndX = (hasPhoto && y < photoY + photoH + 2) ? marginL + textAreaW : marginL + contentW;
+            doc.line(marginL, y + 1.5, lineEndX, y + 1.5);
+            y += 5;
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(0, 0, 0);
           }
           return;
         }
@@ -279,26 +280,28 @@ export default function Generator() {
           const colonIdx = trimmed.indexOf(':');
           const label = trimmed.substring(0, colonIdx + 1);
           const value = trimmed.substring(colonIdx + 1).trim();
-          doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(0, 0, 0);
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(0, 0, 0);
           doc.text(label, marginL, y);
           if (value) {
             const labelWidth = doc.getTextWidth(label);
-            const wrapped = doc.splitTextToSize(value, contentW - labelWidth - 3);
+            const maxValW = (hasPhoto && y < photoY + photoH + 2) ? textAreaW - labelWidth - 2 : contentW - labelWidth - 2;
+            const wrapped = doc.splitTextToSize(value, maxValW);
             wrapped.forEach((wl, idx) => {
               doc.text(wl, marginL + labelWidth + 2, y);
-              if (idx < wrapped.length - 1) y += 5;
+              if (idx < wrapped.length - 1) y += 4.5;
             });
           }
-          y += 6; return;
+          y += 5; return;
         }
         if (trimmed.startsWith('•') || trimmed.startsWith('-') || trimmed.startsWith('·')) {
           const bulletText = '• ' + trimmed.replace(/^[•\-·]\s*/, '');
-          const wrapped = doc.splitTextToSize(bulletText, contentW - 5);
-          wrapped.forEach((wl, wi) => { if (y > pageH - 25) { doc.addPage(); y = marginT; } doc.text(wi === 0 ? wl : '  ' + wl.trim(), marginL + 3, y); y += 5.5; });
+          const bulletW = (hasPhoto && y < photoY + photoH + 2) ? textAreaW - 5 : contentW - 5;
+          const wrapped = doc.splitTextToSize(bulletText, bulletW);
+          wrapped.forEach((wl, wi) => { if (y > pageH - 20) { doc.addPage(); y = marginT; } doc.text(wi === 0 ? wl : '  ' + wl.trim(), marginL + 3, y); y += 4.5; });
           return;
         }
         if (trimmed.includes('[BEWERBUNGSFOTO]') || trimmed.includes('[PHOTO]')) return;
-        if (!trimmed) { y += 4; return; }
+        if (!trimmed) { y += 3; return; }
         if (trimmed.includes('_______')) {
           y += 2;
           doc.setLineWidth(0.3);
@@ -306,9 +309,9 @@ export default function Generator() {
           y += 1;
           return;
         }
-        const maxW = (hasPhoto && y < photoY + photoH + 8) ? textAreaW : contentW;
+        const maxW = (hasPhoto && y < photoY + photoH + 2) ? textAreaW : contentW;
         const wrapped = doc.splitTextToSize(trimmed, maxW);
-        wrapped.forEach(wl => { if (y > pageH - 25) { doc.addPage(); y = marginT; } doc.text(wl, marginL, y); y += 5.5; });
+        wrapped.forEach(wl => { if (y > pageH - 20) { doc.addPage(); y = marginT; } doc.text(wl, marginL, y); y += 4.8; });
       });
       doc.save(fileName + '.pdf');
     };
