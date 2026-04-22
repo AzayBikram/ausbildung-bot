@@ -44,7 +44,7 @@ export default function Sectors() {
           <div class="sc-tags" style="margin-top:8px;">${s.jobs.slice(0,3).map(j=>`<span class="sc-tag">📋 ${j}</span>`).join('')}</div>
           <div class="sc-footer">
             <a href="/jobs?sector=${encodeURIComponent(s.name)}" class="sc-btn">🔍 Search ${s.name} Jobs</a>
-            <a href="/chat" class="sc-btn outline">💬 Ask AI</a>
+            <a href="/generator" class="sc-btn outline">📄 Generate Documents</a>
           </div>
         </div>`).join('');
     };
@@ -68,7 +68,7 @@ export default function Sectors() {
         <div class="sc-tags" style="margin-top:8px;">${s.jobs.slice(0,3).map(j=>`<span class="sc-tag">📋 ${j}</span>`).join('')}</div>
         <div class="sc-footer">
           <a href="/jobs?sector=${encodeURIComponent(s.name)}" class="sc-btn">🔍 Search ${s.name} Jobs</a>
-          <a href="/chat" class="sc-btn outline">💬 Ask AI</a>
+          <a href="/generator" class="sc-btn outline">📄 Generate Documents</a>
         </div>
       </div>`).join('');
 

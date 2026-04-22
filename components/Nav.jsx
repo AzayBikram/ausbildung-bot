@@ -31,7 +31,7 @@ export default function Nav() {
           <Link href="/timeline" className={`u-link${isActive('/timeline') ? ' active' : ''}`}>Timeline</Link>
           <Link href="/embassy" className={`u-link${isActive('/embassy') ? ' active' : ''}`}>Embassy</Link>
           <Link href="/generator" className={`u-link${isActive('/generator') ? ' active' : ''}`}>Documents</Link>
-          <Link href="/chat" className={`u-link${isActive('/chat') ? ' active' : ''}`}>AI Chat</Link>
+          <Link href="/generator" className={`u-link${isActive('/generator') ? ' active' : ''}`}>Documents</Link>
         </div>
         <div className="u-spacer" />
         <Link href="/myapplication" className="u-myapp">🗂️ My Application</Link>
@@ -50,7 +50,7 @@ export default function Nav() {
         <Link href="/generator" className={`u-mob-link${isActive('/generator') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><span className="mob-icon">📄</span><span>Documents</span></Link>
         <Link href="/embassy" className={`u-mob-link${isActive('/embassy') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><span className="mob-icon">🗺️</span><span>Embassy</span></Link>
         <Link href="/checklist" className={`u-mob-link${isActive('/checklist') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><span className="mob-icon">📋</span><span>Checklist</span></Link>
-        <Link href="/chat" className={`u-mob-link${isActive('/chat') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><span className="mob-icon">🤖</span><span>AI Chat</span></Link>
+        <Link href="/generator" className={`u-mob-link${isActive('/generator') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><span className="mob-icon">📄</span><span>Document Generator</span></Link>
         <div className="u-mob-section">Resources</div>
         <Link href="/eligibility" className={`u-mob-link${isActive('/eligibility') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><span className="mob-icon">🎯</span><span>Eligibility</span></Link>
         <Link href="/sectors" className={`u-mob-link${isActive('/sectors') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><span className="mob-icon">🏭</span><span>Sectors</span></Link>

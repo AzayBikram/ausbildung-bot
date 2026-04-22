@@ -167,7 +167,7 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
         <div className="hero-actions">
           <Link href="/eligibility" className="btn-hero-primary">🎯 Check My Eligibility →</Link>
           <Link href="/jobs" className="btn-hero-secondary">🔍 Search Jobs</Link>
-          <Link href="/chat" className="btn-hero-secondary">💬 Ask AI</Link>
+          <Link href="/generator" className="btn-hero-secondary">📄 Generate Documents</Link>
         </div>
         <div className="hero-stats">
           <div className="stat"><div className="stat-num">350+</div><div className="stat-label">Ausbildung Fields</div></div>
@@ -195,7 +195,7 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
             <div className="section-subtitle">From finding the right Ausbildung to getting your visa — we guide you through every single step for free.</div>
           </div>
           <div className="features-grid reveal">
-            <Link href="/chat" className="feature-card"><div className="fc-icon">🤖</div><h3>AI Chatbot</h3><p>Ask anything about Ausbildung in your language. Get instant, accurate answers 24/7 — like having a personal advisor.</p><div className="fc-link">Start chatting →</div></Link>
+            <Link href="/generator" className="feature-card"><div className="fc-icon">🤖</div><h3>Document Generator</h3><p>Ask anything about Ausbildung in your language. Get instant, accurate answers 24/7 — like having a personal advisor.</p><div className="fc-link">Start chatting →</div></Link>
             <Link href="/jobs" className="feature-card"><div className="fc-icon">🔍</div><h3>Job Finder</h3><p>Search real vacancies from Germany&apos;s official job database. Click &quot;Apply with Help&quot; and we guide you through the entire application.</p><div className="fc-link">Search jobs →</div></Link>
             <Link href="/generator" className="feature-card"><div className="fc-icon">📄</div><h3>Document Generator</h3><p>AI generates your German Lebenslauf, Bewerbungsschreiben, and interview prep — tailored to you and the specific job.</p><div className="fc-link">Generate documents →</div></Link>
             <Link href="/eligibility" className="feature-card"><div className="fc-icon">🎯</div><h3>Eligibility Checker</h3><p>Get your personal eligibility score in 2 minutes. See exactly what you qualify for and what to improve.</p><div className="fc-link">Check eligibility →</div></Link>
@@ -337,7 +337,7 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
             <div className="cta-buttons">
               <Link href="/eligibility" className="btn-cta-white">🎯 Check My Eligibility</Link>
               <Link href="/jobs" className="btn-cta-outline">🔍 Search Jobs</Link>
-              <Link href="/chat" className="btn-cta-outline">💬 Talk to AI</Link>
+              <Link href="/generator" className="btn-cta-outline">💬 Talk to AI</Link>
             </div>
           </div>
         </div>
@@ -375,7 +375,7 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
             <Link href="/phrases">German Phrases</Link>
             <Link href="/housing">Housing Guide</Link>
             <Link href="/templates">Email Templates</Link>
-            <Link href="/chat">AI Chatbot</Link>
+            <Link href="/generator">Document Generator</Link>
           </div>
         </div>
         <div className="footer-bottom">
