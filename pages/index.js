@@ -209,7 +209,7 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
           100% Free · No Agents · No Middlemen
         </div>
         <h1>Your <span className="highlight">Ausbildung</span> in<br /><span className="accent">Germany</span> starts here</h1>
-        <p>The complete free platform for people from anywhere in the world to find, apply for, and succeed in German vocational training — powered by AI.</p>
+        <p>The complete free platform for people from anywhere in the world to find, apply for, and succeed in German vocational training.</p>
         <div className="hero-actions">
           <a href="/eligibility" className="btn-hero-primary">🎯 Check My Eligibility →</a>
           <a href="/jobs" className="btn-hero-secondary">🔍 Search Jobs</a>
