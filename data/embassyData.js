@@ -461,8 +461,7 @@ export const embassyData = {
     ],
     importantNote: "Turkey requires B2 German (higher than most countries). Multiple consulates available: Istanbul, Izmir, Antalya. Apply at the consulate responsible for your residence area.",
     eligibilityTips: "B2 language requirement is strict. Get all educational documents apostilled by Turkish authorities. Istanbul consulate typically has longer wait times."
-  }
-};
+  },
 
   Bangladesh: {
     country: "Bangladesh",
@@ -631,8 +630,7 @@ export const embassyData = {
     ],
     importantNote: "Embassy covers Ethiopia and Djibouti. Ambassador: Birgitt Ory. Standard hours Mon-Thu 7:45 AM-5:00 PM, Fri 7:45 AM-1:45 PM.",
     eligibilityTips: "Apply online first at digital.diplo.de. All Ethiopian documents need English translation and authentication."
-  }
-};
+  },
 
   // Remaining African Countries
   Tanzania: {
@@ -723,7 +721,7 @@ export const embassyData = {
     appointmentSteps: [{step: "VFS", detail: "Apply through VFS Global", link: "https://visa.vfsglobal.com/zaf/en/deu/"}, {step: "Documents", detail: "Prepare all", link: ""}, {step: "Submit", detail: "At VFS center", link: ""}],
     importantNote: "Apply through VFS Global. Consulates in Cape Town and Johannesburg.",
     eligibilityTips: "VFS handles applications. Choose nearest VFS center."
-  }
+  },
 
   // Remaining countries - Latin America, Middle East, Asia, Eastern Europe
   Brazil: { country: "Brazil", flag: "🇧🇷", embassyName: "German Embassy Brasília", city: "Brasília", address: "SES Av. das Nações, Quadra 807, Lote 25, Brasília-DF 70415-900", phone: "+55 61 3442 7000", email: "info@brasilia.diplo.de", website: "https://brasilia.diplo.de", appointmentUrl: "https://brasilia.diplo.de", openingHours: "Mon-Fri 8:00-11:00 AM", processingTime: "8-12 weeks", consulates: ["São Paulo", "Rio de Janeiro", "Porto Alegre", "Recife"], languageRequirement: "B1", languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Ensino Médio", ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904", visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR", requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Certificates", "Blocked account", "Insurance"], appointmentSteps: [{step: "Appointment", detail: "Book online", link: ""}, {step: "Documents", detail: "Prepare all", link: ""}, {step: "Submit", detail: "At embassy/consulate", link: ""}], importantNote: "Multiple consulates available. Choose nearest location.", eligibilityTips: "Apply 3 months in advance." },
