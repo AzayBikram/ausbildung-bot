@@ -269,7 +269,7 @@ body{padding-top:68px;}
           </div>
           <div>
             <h4 style={{fontSize:'13px',fontWeight:700,color:'#fff',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'16px'}}>Tools</h4>
-            {[['Jobs','/jobs'],['Documents','/generator'],['Embassy','/embassy'],['AI Chat','/chat']].map(([t,h]) => <a key={h} href={h} style={{display:'block',color:'rgba(255,255,255,0.5)',textDecoration:'none',fontSize:'14px',marginBottom:'10px'}}>{t}</a>)}
+            {[['Jobs','/jobs'],['Documents','/generator'],['Embassy','/embassy']].map(([t,h]) => <a key={h} href={h} style={{display:'block',color:'rgba(255,255,255,0.5)',textDecoration:'none',fontSize:'14px',marginBottom:'10px'}}>{t}</a>)}
           </div>
           <div>
             <h4 style={{fontSize:'13px',fontWeight:700,color:'#fff',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'16px'}}>Resources</h4>
