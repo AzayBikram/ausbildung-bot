@@ -206,6 +206,7 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
             <Link href="/salary" className="feature-card"><div className="fc-icon">💰</div><h3>Salary Calculator</h3><p>See your expected monthly salary, tax deductions, and net pay for any Ausbildung field and year of training.</p><div className="fc-link">Calculate salary →</div></Link>
             <Link href="/recognition" className="feature-card"><div className="fc-icon">🎓</div><h3>Qualification Recognition</h3><p>Check if your foreign diploma is recognized in Germany and how to get it officially recognized.</p><div className="fc-link">Check recognition →</div></Link>
             <Link href="/phrases" className="feature-card"><div className="fc-icon">💬</div><h3>German Phrase Helper</h3><p>Essential German phrases for the workplace, Berufsschule, emails, and interviews — with pronunciation guides.</p><div className="fc-link">Learn phrases →</div></Link>
+            <Link href="/templates" className="feature-card"><div className="fc-icon">📧</div><h3>Email Templates</h3><p>Ready-to-use German email templates for contacting employers, following up on applications, and professional communication.</p><div className="fc-link">Get templates →</div></Link>
           </div>
         </div>
       </section>
