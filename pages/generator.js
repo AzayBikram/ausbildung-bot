@@ -202,14 +202,32 @@ export default function Generator() {
       if (file.size > 5 * 1024 * 1024) { alert('Photo too large. Please use an image under 5MB.'); return; }
       const reader = new FileReader();
       reader.onload = function(e) {
-        const preview = document.getElementById('photoPreview');
-        preview.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" />`;
-        preview.style.border = '2px solid var(--success)';
-        uploadedPhotoRef.current = e.target.result;
-        uploadedPhotoTypeRef.current = file.type.includes('png') ? 'PNG' : 'JPEG';
-        document.getElementById('photoStatus').textContent = '✅ Photo uploaded — will appear in PDF';
-        document.getElementById('photoStatus').style.color = 'var(--success)';
-        document.getElementById('removePhotoBtn').style.display = 'inline-block';
+        const img = new Image();
+        img.onload = function() {
+          // Create canvas to fix orientation
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+
+          // Set canvas size to image size
+          canvas.width = img.width;
+          canvas.height = img.height;
+
+          // Draw image (this automatically handles EXIF orientation in modern browsers)
+          ctx.drawImage(img, 0, 0);
+
+          // Convert to data URL
+          const correctedDataUrl = canvas.toDataURL(file.type.includes('png') ? 'image/png' : 'image/jpeg', 0.95);
+
+          const preview = document.getElementById('photoPreview');
+          preview.innerHTML = `<img src="${correctedDataUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" />`;
+          preview.style.border = '2px solid var(--success)';
+          uploadedPhotoRef.current = correctedDataUrl;
+          uploadedPhotoTypeRef.current = file.type.includes('png') ? 'PNG' : 'JPEG';
+          document.getElementById('photoStatus').textContent = '✅ Photo uploaded — will appear in PDF';
+          document.getElementById('photoStatus').style.color = 'var(--success)';
+          document.getElementById('removePhotoBtn').style.display = 'inline-block';
+        };
+        img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     };
