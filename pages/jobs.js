@@ -90,6 +90,10 @@ export default function Jobs() {
 
     window.startApplication = async function(safeData) {
       selectedJob = JSON.parse(decodeURIComponent(escape(atob(safeData))));
+      // Extract reference number from URL
+      const refMatch = selectedJob.applyUrl.match(/jobdetail\/([^\/\?]+)/);
+      selectedJob.refnr = refMatch ? refMatch[1] : null;
+
       document.getElementById('applyJobTitle').textContent = `📋 Applying for: ${selectedJob.title}`;
       document.getElementById('applyJobSubtitle').textContent = `🏢 ${selectedJob.company} — 📍 ${selectedJob.location}`;
       document.getElementById('officialApplyLink').href = selectedJob.applyUrl;
@@ -100,35 +104,58 @@ export default function Jobs() {
     };
 
     window.loadJobOverview = async function() {
-      document.getElementById('jobOverview').innerHTML = '<div class="loading"><div class="spinner"></div>Loading job details...</div>';
+      const el = document.getElementById('jobOverview');
+      el.innerHTML = '<div class="loading"><div class="spinner"></div>Loading job details from Arbeitsagentur...</div>';
+
+      if (!selectedJob.refnr) {
+        el.innerHTML = `<p><strong>Job Overview:</strong></p><p>${selectedJob.title} at ${selectedJob.company} in ${selectedJob.location}.</p><p>This is an Ausbildung (vocational training) position in Germany. <a href="${selectedJob.applyUrl}" target="_blank" style="color:var(--accent);">Visit the official job page</a> for complete details.</p>`;
+        return;
+      }
+
       try {
-        const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ system: 'You are a helpful Ausbildung career advisor. Respond in English.',
-            messages: [{ role: 'user', content: `Give a helpful overview of this Ausbildung: "${selectedJob.title}" at ${selectedJob.company} in ${selectedJob.location}. Include: 1) What it involves day-to-day, 2) Duration, 3) Monthly salary range, 4) Career prospects, 5) Why it is great for someone from abroad. Max 200 words.` }] }) });
+        const r = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'jobDetails', refnr: selectedJob.refnr })
+        });
         const d = await r.json();
-        console.log('Job overview response:', d);
-        const text = d.content?.map(b => b.text || '').join('') || 'No overview available.';
-        document.getElementById('jobOverview').textContent = text;
+
+        if (d.overview && d.overview.length > 50) {
+          el.innerHTML = `<p>${d.overview}</p><p style="margin-top:12px;"><a href="${selectedJob.applyUrl}" target="_blank" style="color:var(--accent);">→ View full details on Arbeitsagentur</a></p>`;
+        } else {
+          el.innerHTML = `<p><strong>Job:</strong> ${selectedJob.title}</p><p><strong>Company:</strong> ${selectedJob.company}</p><p><strong>Location:</strong> ${selectedJob.location}</p><p style="margin-top:12px;">This is an Ausbildung (vocational training) position. <a href="${selectedJob.applyUrl}" target="_blank" style="color:var(--accent);">View full details on Arbeitsagentur</a></p>`;
+        }
       } catch (e) {
         console.error('Job overview error:', e);
-        document.getElementById('jobOverview').textContent = 'Could not load job details. Please continue.';
+        el.innerHTML = `<p>Could not load details from source.</p><p><a href="${selectedJob.applyUrl}" target="_blank" style="color:var(--accent);">View this job on Arbeitsagentur</a></p>`;
       }
     };
 
     window.loadRequirements = async function() {
       const el = document.getElementById('requirementsContent');
       el.innerHTML = '<div class="loading"><div class="spinner"></div>Loading requirements...</div>';
+
+      if (!selectedJob.refnr) {
+        el.innerHTML = '<div class="ai-response"><strong>Typical Ausbildung Requirements:</strong><ul style="margin-top:10px;padding-left:20px;"><li>Secondary school diploma (Hauptschulabschluss or higher)</li><li>German language: minimum B1 level</li><li>Age: typically 16-25 years (but older applicants welcome)</li><li>Motivation and interest in the field</li></ul></div>';
+        return;
+      }
+
       try {
-        const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ system: 'You are a helpful Ausbildung career advisor. Respond in English.',
-            messages: [{ role: 'user', content: `List typical requirements for "${selectedJob.title}" Ausbildung in Germany. Include: education, German language level, age, specific skills. Under 150 words.` }] }) });
+        const r = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'jobDetails', refnr: selectedJob.refnr })
+        });
         const d = await r.json();
-        console.log('Requirements response:', d);
-        const text = d.content?.map(b => b.text || '').join('') || 'Typical requirements: Secondary school diploma, German B1 minimum, motivation and interest in the field.';
-        el.innerHTML = `<div class="ai-response">${text}</div>`;
+
+        if (d.requirements && d.requirements.length > 30) {
+          el.innerHTML = `<div class="ai-response">${d.requirements}</div>`;
+        } else {
+          el.innerHTML = '<div class="ai-response"><strong>Typical Ausbildung Requirements:</strong><ul style="margin-top:10px;padding-left:20px;"><li>Secondary school diploma (Hauptschulabschluss or higher)</li><li>German language: minimum B1 level</li><li>Age: typically 16-25 years (but older applicants welcome)</li><li>Motivation and interest in the field</li></ul><p style="margin-top:12px;"><a href="' + selectedJob.applyUrl + '" target="_blank" style="color:var(--accent);">→ View specific requirements on Arbeitsagentur</a></p></div>';
+        }
       } catch (e) {
         console.error('Requirements error:', e);
-        el.innerHTML = '<div class="ai-response">Typical requirements: Secondary school diploma, German B1 minimum, motivation and interest in the field.</div>';
+        el.innerHTML = '<div class="ai-response"><strong>Typical Requirements:</strong><ul style="margin-top:10px;padding-left:20px;"><li>Secondary school diploma</li><li>German B1 minimum</li><li>Motivation for the field</li></ul></div>';
       }
     };
 

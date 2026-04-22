@@ -43,6 +43,49 @@ export default async function handler(req) {
     }
   }
 
+  // Job details scraper
+  if (body.type === 'jobDetails') {
+    const { refnr } = body;
+    if (!refnr) return new Response(JSON.stringify({ error: 'Missing job reference' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+
+    try {
+      const url = `https://www.arbeitsagentur.de/jobsuche/jobdetail/${refnr}`;
+      const r = await fetch(url);
+      const html = await r.text();
+
+      // Extract job details from HTML
+      const extractText = (pattern) => {
+        const match = html.match(pattern);
+        return match ? match[1].replace(/<[^>]*>/g, '').trim() : '';
+      };
+
+      const overview = extractText(/<div[^>]*class="[^"]*beschreibung[^"]*"[^>]*>([\s\S]*?)<\/div>/i) ||
+                       extractText(/<div[^>]*id="jobdetails-beschreibung"[^>]*>([\s\S]*?)<\/div>/i) ||
+                       'This is an Ausbildung (vocational training) position in Germany. Visit the official page for full details.';
+
+      const requirements = extractText(/<div[^>]*class="[^"]*anforderungen[^"]*"[^>]*>([\s\S]*?)<\/div>/i) ||
+                          'Typical requirements: Secondary school diploma, German language skills (minimum B1), motivation for the field.';
+
+      return new Response(JSON.stringify({
+        overview: overview.substring(0, 800),
+        requirements: requirements.substring(0, 600),
+        sourceUrl: url
+      }), {
+        status: 200,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    } catch (e) {
+      return new Response(JSON.stringify({
+        overview: 'This is an Ausbildung (vocational training) position in Germany. Visit the official job page for complete details.',
+        requirements: 'Typical requirements: Secondary school diploma, German language skills (minimum B1), motivation and interest in the field.',
+        error: 'Could not fetch details'
+      }), {
+        status: 200,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+  }
+
   const { messages, system, stream: useStream, max_tokens: maxTokens } = body;
 
   if (!messages || !Array.isArray(messages)) {
