@@ -337,7 +337,7 @@ footer{background:#060d1a;color:rgba(255,255,255,0.5);padding:60px 40px 40px;}
             <div className="cta-buttons">
               <Link href="/eligibility" className="btn-cta-white">🎯 Check My Eligibility</Link>
               <Link href="/jobs" className="btn-cta-outline">🔍 Search Jobs</Link>
-              <Link href="/generator" className="btn-cta-outline">💬 Talk to AI</Link>
+              <Link href="/generator" className="btn-cta-outline">📄 Generate Documents</Link>
             </div>
           </div>
         </div>
