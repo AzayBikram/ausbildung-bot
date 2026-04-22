@@ -106,8 +106,13 @@ export default function Jobs() {
           body: JSON.stringify({ system: 'You are a helpful Ausbildung career advisor. Respond in English.',
             messages: [{ role: 'user', content: `Give a helpful overview of this Ausbildung: "${selectedJob.title}" at ${selectedJob.company} in ${selectedJob.location}. Include: 1) What it involves day-to-day, 2) Duration, 3) Monthly salary range, 4) Career prospects, 5) Why it is great for someone from abroad. Max 200 words.` }] }) });
         const d = await r.json();
-        document.getElementById('jobOverview').textContent = d.content?.map(b => b.text || '').join('') || '';
-      } catch (e) { document.getElementById('jobOverview').textContent = 'Could not load job details. Please continue.'; }
+        console.log('Job overview response:', d);
+        const text = d.content?.map(b => b.text || '').join('') || 'No overview available.';
+        document.getElementById('jobOverview').textContent = text;
+      } catch (e) {
+        console.error('Job overview error:', e);
+        document.getElementById('jobOverview').textContent = 'Could not load job details. Please continue.';
+      }
     };
 
     window.loadRequirements = async function() {
@@ -118,8 +123,13 @@ export default function Jobs() {
           body: JSON.stringify({ system: 'You are a helpful Ausbildung career advisor. Respond in English.',
             messages: [{ role: 'user', content: `List typical requirements for "${selectedJob.title}" Ausbildung in Germany. Include: education, German language level, age, specific skills. Under 150 words.` }] }) });
         const d = await r.json();
-        el.innerHTML = `<div class="ai-response">${d.content?.map(b => b.text || '').join('') || ''}</div>`;
-      } catch (e) { el.innerHTML = '<div class="ai-response">Typical requirements: Secondary school diploma, German B1 minimum, motivation and interest in the field.</div>'; }
+        console.log('Requirements response:', d);
+        const text = d.content?.map(b => b.text || '').join('') || 'Typical requirements: Secondary school diploma, German B1 minimum, motivation and interest in the field.';
+        el.innerHTML = `<div class="ai-response">${text}</div>`;
+      } catch (e) {
+        console.error('Requirements error:', e);
+        el.innerHTML = '<div class="ai-response">Typical requirements: Secondary school diploma, German B1 minimum, motivation and interest in the field.</div>';
+      }
     };
 
     window.loadDocumentChecklist = function() {

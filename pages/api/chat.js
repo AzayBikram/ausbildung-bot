@@ -80,13 +80,19 @@ export default async function handler(req) {
     }
 
     const data = await response.json();
+
+    // Log if there's an error from Anthropic
+    if (!response.ok) {
+      console.error('Anthropic API error:', response.status, data);
+    }
+
     return new Response(JSON.stringify(data), {
       status: response.ok ? 200 : response.status,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (err) {
     console.error('Proxy error:', err);
-    return new Response(JSON.stringify({ error: 'Internal server error' }), {
+    return new Response(JSON.stringify({ error: 'Internal server error', details: err.message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
