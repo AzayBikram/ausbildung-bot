@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import Nav from '../components/Nav';
 import { useEffect, useRef } from 'react';
+import { generateLebenslauf, generateBewerbungsschreiben, generateInterviewPrep } from '../lib/documentTemplates';
 
 export default function Generator() {
   const currentDocRef = useRef('cv');
@@ -145,139 +146,30 @@ export default function Generator() {
       btn.disabled = true;
       resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      const uniqueSeed = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-      const prompts = {
-        cv: `Du bist ein erfahrener HR-Experte und Karriereberater in Deutschland mit 20 Jahren Erfahrung. Du schreibst Lebensläufe, die klingen als wären sie von einem echten Menschen geschrieben — nicht von einer KI.
+      // Use template-based generation - NO AI NEEDED!
+      setTimeout(() => {
+        try {
+          let generatedText = '';
+          if (currentDocRef.current === 'cv') {
+            generatedText = generateLebenslauf(data);
+          } else if (currentDocRef.current === 'cover') {
+            generatedText = generateBewerbungsschreiben(data);
+          } else if (currentDocRef.current === 'interview') {
+            generatedText = generateInterviewPrep(data);
+          }
 
-WICHTIG — ANTI-KI-REGELN (strikt einzuhalten):
-- Verwende KEINE generischen Formulierungen wie "motiviert", "teamfähig", "zuverlässig", "kommunikativ", "lernbereit" als leere Worthülsen
-- Keine aufgeblasenen, blumigen Sätze
-- Keine Aufzählung von Eigenschaften ohne konkreten Kontext
-- Jeder Satz muss spezifisch für DIESE Person und DIESEN Hintergrund sein
-- Der Lebenslauf muss sich von allen anderen unterscheiden — einzigartig (Seed: ${uniqueSeed})
-- Schreibe natürlich, klar und menschlich — wie ein Mensch das über sich schreiben würde
-- Verwende aktive, präzise Sprache
-- Vermeide Wiederholungen
-- Überprüfe auf Grammatik und Rechtschreibung — null Fehler
-
-ABSOLUT VERBOTEN — NIEMALS ERFINDEN:
-- Füge KEINE Informationen hinzu die nicht angegeben wurden
-- Erfinde KEINE Hobbys, Interessen, Vereinsmitgliedschaften oder ehrenamtliche Tätigkeiten
-- Erfinde KEINE zusätzlichen Kenntnisse oder Fähigkeiten
-- Erfinde KEINE Berufserfahrung oder Praktika
-- Erfinde KEINE Kurse, Zertifikate oder Weiterbildungen
-- Wenn ein Feld leer ist — lasse es leer oder schreibe "–" (KEIN Erfinden)
-- Wenn keine Hobbys angegeben wurden — lasse den Abschnitt komplett weg
-- Verwende NUR die exakten Informationen die der Bewerber angegeben hat
-- Formatiere und präsentiere die echten Informationen professionell — aber FÜGE NICHTS HINZU
-
-FORMAT (strikt einhalten):
-[BEWERBUNGSFOTO]                    (oben rechts Platzhalter)
-
-LEBENSLAUF
-
-Persönliche Daten:
-Name: [vollständiger Name direkt — kein zweites Label danach]
-Geschlecht: [nur das Geschlecht]
-Geburtsdatum: [nur das Datum — kein zweites Label, weglassen wenn nicht angegeben]
-Nationalität: [nur die Nationalität — kein zweites Label]
-Anschrift: [nur die Adresse direkt — z.B. "Lagos, Nigeria" — NIEMALS Label wiederholen]
-Telefon: [nur die Nummer, weglassen wenn nicht angegeben]
-E-Mail: [nur die E-Mail-Adresse, weglassen wenn nicht angegeben]
-
-WICHTIG: Nach dem Doppelpunkt kommt direkt der Wert — KEINE Wiederholung des Labels.
-
-Ausbildung:
-[Nur die angegebene Ausbildung — NICHTS erfinden]
-
-Berufserfahrung: (NUR wenn angegeben, sonst Abschnitt weglassen)
-[Nur die angegebene Erfahrung]
-
-Kenntnisse und Fähigkeiten:
-[Nur die angegebenen Kenntnisse — NICHTS hinzufügen]
-
-Sprachkenntnisse:
-[Nur die angegebenen Sprachen]
-
-Hobbys und Interessen: (NUR wenn vom Bewerber angegeben, sonst komplett weglassen)
-
-Angaben zur Person:
-Name: ${data.firstName || ''} ${data.lastName || ''} ${data.name || ''}
-Geschlecht: ${data.gender === 'male' ? 'Männlich' : data.gender === 'female' ? 'Weiblich' : data.gender === 'diverse' ? 'Divers' : 'Nicht angegeben'}
-Geburtsdatum: ${data.dob || 'nicht angegeben'}
-Nationalität: ${data.nationality || ''}
-Kontakt: ${data.email || 'nicht angegeben'} | ${data.phone || 'nicht angegeben'} | ${data.contact || ''}
-Adresse: ${data.address || ''}
-Schulabschluss/Studium: ${data.eduLevel || ''} - ${data.schoolName || ''} (${data.gradYear || ''}) - ${data.fieldOfStudy || ''} ${data.education || ''}
-Berufserfahrung: ${data.workExp || 'Keine bisherige Berufserfahrung angegeben'}
-Kenntnisse: ${data.skills || 'Keine angegeben'}
-Deutschkenntnisse: ${data.germanLevel || 'nicht angegeben'}
-Weitere Sprachen: ${data.otherLangs || 'keine weiteren angegeben'}
-Angestrebte Ausbildung: ${data.ausbildungTarget || ''}
-
-GRAMMATIK-HINWEIS: ${data.gender === 'male' ? 'Der Bewerber ist männlich — verwende männliche Formen: "der Bewerber", "er", "sein"' : data.gender === 'female' ? 'Die Bewerberin ist weiblich — verwende weibliche Formen: "die Bewerberin", "sie", "ihr"' : 'Verwende geschlechtsneutrale Sprache wo möglich'}
-
-Erstelle den Lebenslauf NUR mit den oben angegebenen Informationen. Formatiere sie professionell — aber ERFINDE NICHTS DAZU.`,
-
-        cover: `Du bist ein erfahrener Bewerbungsberater in Deutschland. Du schreibst Bewerbungsschreiben, die klingen wie von einem echten, engagierten Menschen — nicht wie KI-generierter Text.
-
-WICHTIG — ANTI-KI-REGELN (strikt einzuhalten):
-- KEINE generischen Phrasen: "Hiermit bewerbe ich mich", "Mit großem Interesse", "Ich bin eine motivierte Person", "teamfähig und zuverlässig"
-- Beginne den Brief NICHT mit "Ich" — finde einen originellen, spezifischen Einstieg
-- Jeder Satz muss konkret und spezifisch für diese Person, dieses Unternehmen und diese Stelle sein
-- Zeige echte Persönlichkeit — nicht eine Schablone
-- Der Brief muss bei einem deutschen Personalchef Interesse wecken — nicht langweilen
-- Maximal eine Seite, präzise, kein Fülltext
-- Einzigartig (Seed: ${uniqueSeed}) — kein anderer Brief soll so aussehen
-- Überprüfe auf Grammatik und Rechtschreibung — null Fehler
-- Verwende natürliche, menschliche Sprache
-
-ABSOLUT VERBOTEN — NIEMALS ERFINDEN:
-- ERFINDE KEINE Erfahrungen in Deutschland die nicht angegeben wurden
-- ERFINDE KEINE Besuche in Deutschland, keine Einkäufe in deutschen Geschäften, keine Reisen nach Deutschland
-- ERFINDE KEINE Praktika, Kurse oder Veranstaltungen die nicht angegeben wurden
-- ERFINDE KEINE Kontakte oder Verbindungen zu Deutschland
-- Verwende NUR die Informationen die der Bewerber angegeben hat
-- Wenn die Person noch nie in Deutschland war — das ist normal und in Ordnung, schreibe trotzdem einen überzeugenden Brief ohne Lügen
-- Motivation darf aus dem Herkunftsland kommen: z.B. Interesse am deutschen Berufsbildungssystem, Karriereziele, persönliche Stärken
-
-Angaben:
-Name: ${data.firstName || ''} ${data.lastName || ''} ${data.name || ''}
-Geschlecht: ${data.gender === 'male' ? 'Männlich' : data.gender === 'female' ? 'Weiblich' : data.gender === 'diverse' ? 'Divers' : 'Nicht angegeben'}
-Nationalität: ${data.nationality || ''}
-Wohnort: ${data.address || 'Heimatland des Bewerbers'}
-Ausbildung: ${data.eduLevel || ''} ${data.education || ''}
-Kenntnisse: ${data.skills || ''}
-Berufserfahrung: ${data.workExp || 'Keine bisherige Berufserfahrung'}
-Deutschkenntnisse: ${data.germanLevel || ''}
-Angestrebte Stelle: ${data.ausbildungTarget || ''}
-Unternehmen: ${data.companyName || ''}
-Persönliche Motivation: ${data.motivation || ''}
-
-GRAMMATIK-HINWEIS: ${data.gender === 'male' ? 'Der Bewerber ist männlich — Anrede: "Sehr geehrte Damen und Herren," oder wenn Ansprechpartner bekannt "Sehr geehrter Herr [Name]". Verwende männliche Formen im Text.' : data.gender === 'female' ? 'Die Bewerberin ist weiblich — Anrede: "Sehr geehrte Damen und Herren," oder wenn Ansprechpartner bekannt "Sehr geehrte Frau [Name]". Verwende weibliche Formen im Text.' : 'Verwende "Sehr geehrte Damen und Herren," als Anrede. Verwende geschlechtsneutrale Sprache.'}
-
-Schreibe ein authentisches, ehrliches und überzeugendes Bewerbungsschreiben. NUR auf Basis der echten Angaben — NICHTS erfinden.`,
-
-        interview: `Du bist ein erfahrener Karrierecoach in Deutschland, der Menschen auf Vorstellungsgespräche vorbereitet. Schreibe realistische, praxisnahe Vorbereitungsunterlagen auf Deutsch.
-
-WICHTIG:
-- Fragen und Antworten müssen spezifisch für diese Ausbildung sein — nicht generisch
-- Antwortbeispiele müssen zu dieser Person passen (Nationalität, Hintergrund)
-- Kulturelle Tipps müssen konkret und praxisnah sein
-- Keine leeren Phrasen — alles muss verwertbar sein
-- Einzigartig (Seed: ${uniqueSeed})
-
-Angestrebte Ausbildung: ${data.ausbildungTarget || 'allgemeine Ausbildung'}
-Hintergrund des Bewerbers: ${data.nationality || ''}, ${data.education || data.eduLevel || ''}
-
-Erstelle:
-1. DIE 10 WICHTIGSTEN FRAGEN MIT BEISPIELANTWORTEN
-2. 5 KULTURELLE TIPPS FÜR DAS GESPRÄCH IN DEUTSCHLAND
-3. WAS MAN UNBEDINGT VERMEIDEN SOLLTE
-4. FRAGEN DIE DER BEWERBER STELLEN SOLLTE
-
-Alles auf Deutsch, praxisnah und authentisch.`
-      };
+          generatedTextRef.current = generatedText;
+          loadingIndicator.classList.add('hidden');
+          resultContent.style.display = 'block';
+          resultContent.textContent = generatedText;
+          btn.disabled = false;
+        } catch (err) {
+          loadingIndicator.classList.add('hidden');
+          resultContent.style.display = 'block';
+          resultContent.textContent = 'Error generating document. Please check your input.';
+          btn.disabled = false;
+        }
+      }, 800); // Small delay for visual feedback
 
       const titles = {
         cv: '📋 Your Lebenslauf (CV)',
@@ -285,34 +177,6 @@ Alles auf Deutsch, praxisnah und authentisch.`
         interview: '🎤 Your Interview Preparation Guide'
       };
       document.getElementById('resultTitle').textContent = titles[currentDocRef.current];
-
-      try {
-        const response = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            system: `Du bist ein erfahrener deutscher HR-Experte und Karriereberater mit 20 Jahren Erfahrung. Du erstellst Bewerbungsunterlagen die:
-1. Authentisch und menschlich klingen — KEINE KI-Sprache
-2. Grammatikalisch einwandfrei sind
-3. Spezifisch auf die Person und Stelle zugeschnitten sind
-4. Sich von allen anderen Bewerbungen unterscheiden
-5. Bei deutschen Personalchefs positiv auffallen
-6. Keine Klischees oder leere Worthülsen enthalten
-Die Eingabe kann auf Englisch oder Deutsch sein. Du antwortest IMMER auf Deutsch.`,
-            messages: [{ role: 'user', content: prompts[currentDocRef.current] }]
-          })
-        });
-        const responseData = await response.json();
-        generatedTextRef.current = responseData.content?.map(b => b.text || '').join('') || 'Error generating document.';
-        loadingIndicator.classList.add('hidden');
-        resultContent.style.display = 'block';
-        resultContent.textContent = generatedTextRef.current;
-      } catch (err) {
-        loadingIndicator.classList.add('hidden');
-        resultContent.style.display = 'block';
-        resultContent.textContent = 'Error generating document. Please try again.';
-      }
-      btn.disabled = false;
     };
 
     window.copyResult = function() {
