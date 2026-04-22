@@ -464,8 +464,277 @@ export const embassyData = {
   }
 };
 
-// Additional countries with basic information (to be expanded)
-export const basicEmbassyData = {
-  // More countries will be added here with detailed information
-  // For now, countries not in the main list will show: "Contact German embassy for details"
+  Bangladesh: {
+    country: "Bangladesh",
+    flag: "🇧🇩",
+    embassyName: "German Embassy Dhaka",
+    city: "Dhaka",
+    address: "178 Gulshan Avenue, Gulshan-2, Dhaka 1212",
+    phone: "+880 2 885 00 81",
+    email: "info@dhaka.diplo.de",
+    website: "https://dhaka.diplo.de/bd-en",
+    appointmentUrl: "https://dhaka.diplo.de/bd-en/service/1900510",
+    openingHours: "Mon-Fri by appointment only",
+    processingTime: "8-12 weeks",
+    consulates: ["Honorary Consul in Chattogram"],
+    languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1, TestDaF",
+    academicRequirement: "HSC or equivalent",
+    ageRequirement: "16-30 years",
+    financialRequirement: "Blocked account €11,904",
+    blockingAccount: "11904",
+    visaFee: "75",
+    serviceFee: "N/A",
+    totalEstimatedCost: "~75-100 EUR",
+    requiredDocuments: ["Valid passport", "Visa application form", "Photos", "Ausbildung contract", "German B1 certificate", "Educational certificates", "Blocked account proof", "Health insurance", "Police clearance", "Medical certificate"],
+    appointmentSteps: [
+      {step: "Online booking", detail: "Book appointment through embassy website", link: "https://dhaka.diplo.de/bd-en/service/1900510"},
+      {step: "Documents", detail: "Prepare all required documents", link: ""},
+      {step: "Submit", detail: "Attend appointment at embassy", link: ""},
+      {step: "Wait", detail: "Processing takes 8-12 weeks", link: ""}
+    ],
+    importantNote: "Embassy covers Bangladesh and has honorary consul in Chattogram. All services by appointment only.",
+    eligibilityTips: "Apply well in advance. Get educational certificates attested by Ministry of Education and Foreign Ministry."
+  },
+
+  "Sri Lanka": {
+    country: "Sri Lanka",
+    flag: "🇱🇰",
+    embassyName: "German Embassy Colombo",
+    city: "Colombo",
+    address: "40, Alfred House Avenue, Colombo 3",
+    phone: "+94 11 258 04 31",
+    email: "info@colombo.diplo.de",
+    website: "https://colombo.diplo.de",
+    appointmentUrl: "https://visa.vfsglobal.com/lka/en/deu/",
+    openingHours: "Mon-Fri by appointment, Consular: Wed 9:30-11:30 AM",
+    processingTime: "8-12 weeks",
+    consulates: [],
+    languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1, TestDaF",
+    academicRequirement: "A-Level or equivalent",
+    ageRequirement: "16-30 years",
+    financialRequirement: "Blocked account €11,904",
+    blockingAccount: "11904",
+    visaFee: "75",
+    serviceFee: "VFS Global service fee",
+    totalEstimatedCost: "~105-120 EUR",
+    requiredDocuments: ["Valid passport", "National visa application", "Photos", "Ausbildung contract", "German B1 certificate", "Educational certificates", "Blocked account confirmation", "Health insurance", "Police report", "Medical certificate"],
+    appointmentSteps: [
+      {step: "VFS Registration", detail: "Register at VFS Global website", link: "https://visa.vfsglobal.com/lka/en/deu/"},
+      {step: "Complete form", detail: "Fill application online", link: ""},
+      {step: "Book VFS appointment", detail: "Select date at VFS center", link: ""},
+      {step: "Submit at VFS", detail: "Bring documents to VFS center", link: ""},
+      {step: "Track", detail: "Monitor application status online", link: ""}
+    ],
+    importantNote: "Embassy covers Sri Lanka and Maldives. Schengen visas through VFS Global. Visa section at 43, Temple Lane, Colombo 3. Accessible for people with disabilities.",
+    eligibilityTips: "National visas by appointment only. Telephone support available Tue/Thu 1:30-3:00 PM. Emergency: +94 77-734 42 83."
+  },
+
+  Indonesia: {
+    country: "Indonesia",
+    flag: "🇮🇩",
+    embassyName: "German Embassy Jakarta",
+    city: "Jakarta",
+    address: "Jalan M.H. Thamrin No. 1, Jakarta 10310",
+    phone: "+62 21 39 85 50 00",
+    email: "info@jakarta.diplo.de",
+    website: "https://jakarta.diplo.de",
+    appointmentUrl: "https://service2.diplo.de/rktermin/extern/choose_realmList.do?locationCode=jaka",
+    openingHours: "Mon-Fri 7:30-11:30 AM (by appointment)",
+    processingTime: "8-12 weeks",
+    consulates: [],
+    languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1, TestDaF, telc B1",
+    academicRequirement: "SMA diploma",
+    ageRequirement: "16-30 years",
+    financialRequirement: "Blocked account €11,904",
+    blockingAccount: "11904",
+    visaFee: "75",
+    serviceFee: "N/A",
+    totalEstimatedCost: "~75-100 EUR",
+    requiredDocuments: ["Valid passport", "Visa application", "Photos", "Ausbildung contract", "German B1 certificate", "School diploma with legalization", "Blocked account proof", "Health insurance", "Police certificate (SKCK)", "Medical examination"],
+    appointmentSteps: [
+      {step: "Online application", detail: "Complete form at videx.diplo.de", link: "https://videx.diplo.de"},
+      {step: "Book appointment", detail: "Use embassy appointment system", link: "https://service2.diplo.de/rktermin/extern/choose_realmList.do?locationCode=jaka"},
+      {step: "Legalize documents", detail: "Get educational docs legalized by Kemenkumham", link: ""},
+      {step: "Submit", detail: "Attend appointment with all documents", link: ""},
+      {step: "Biometrics", detail: "Fingerprints taken at embassy", link: ""}
+    ],
+    importantNote: "Embassy covers Indonesia and Timor-Leste. Entry permitted 30 minutes before appointment. Emergency: +62 21 811 152526.",
+    eligibilityTips: "All documents must be legalized by Indonesian authorities. Apply 3 months before intended travel date."
+  },
+
+  Thailand: {
+    country: "Thailand",
+    flag: "🇹🇭",
+    embassyName: "German Embassy Bangkok",
+    city: "Bangkok",
+    address: "9 South Sathorn Road, Bangkok 10120",
+    phone: "+66 2 287 9000",
+    email: "info@bangkok.diplo.de",
+    website: "https://bangkok.diplo.de",
+    appointmentUrl: "https://service2.diplo.de/rktermin/extern/choose_realmList.do",
+    openingHours: "Mon-Fri 8:30-11:30 AM (by appointment)",
+    processingTime: "8-12 weeks",
+    consulates: [],
+    languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1, TestDaF",
+    academicRequirement: "Mathayom 6 or equivalent",
+    ageRequirement: "16-30 years",
+    financialRequirement: "Blocked account €11,904",
+    blockingAccount: "11904",
+    visaFee: "75",
+    serviceFee: "N/A",
+    totalEstimatedCost: "~75-100 EUR",
+    requiredDocuments: ["Valid passport", "Visa application", "Passport photos", "Ausbildung contract", "German B1 certificate", "School certificates", "Blocked account confirmation", "Health insurance", "Police clearance", "Medical certificate"],
+    appointmentSteps: [
+      {step: "Appointment booking", detail: "Book online - required for all services", link: "https://service2.diplo.de/rktermin/extern/choose_realmList.do"},
+      {step: "Prepare documents", detail: "All documents with Thai/English translations", link: ""},
+      {step: "Attend appointment", detail: "Arrive max 30 minutes before time", link: ""},
+      {step: "Submit application", detail: "Submit all documents and biometrics", link: ""},
+      {step: "Wait for processing", detail: "8-12 weeks processing time", link: ""}
+    ],
+    importantNote: "Entry only 30 minutes before appointment. Appointments mandatory for all services. Emergency: +66 81 845-6224. Ambassador: Dr. Ernst Reichel.",
+    eligibilityTips: "Very strict on appointment times. Arrive early but not more than 30 minutes before. All Thai documents need official translation."
+  },
+
+  Ethiopia: {
+    country: "Ethiopia",
+    flag: "🇪🇹",
+    embassyName: "German Embassy Addis Ababa",
+    city: "Addis Ababa",
+    address: "Tsehafi Tiezaz Afewerk Street, Woreda 03, Yeka Sub-City",
+    phone: "+251 11 123 51 39",
+    email: "info@addis-abeba.diplo.de",
+    website: "https://addis-abeba.diplo.de",
+    appointmentUrl: "https://digital.diplo.de",
+    openingHours: "Visa: Mon-Fri 8:00 AM-1:00 PM, Mon/Tue/Thu 1:30-4:00 PM",
+    processingTime: "8-12 weeks",
+    consulates: [],
+    languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1, TestDaF",
+    academicRequirement: "Grade 12 completion",
+    ageRequirement: "16-30 years",
+    financialRequirement: "Blocked account €11,904",
+    blockingAccount: "11904",
+    visaFee: "75",
+    serviceFee: "N/A",
+    totalEstimatedCost: "~75-100 EUR",
+    requiredDocuments: ["Valid passport", "Visa application (online at digital.diplo.de)", "Photos", "Ausbildung contract", "German B1 certificate", "Educational certificates", "Blocked account proof", "Health insurance", "Police clearance", "Medical examination"],
+    appointmentSteps: [
+      {step: "Online application", detail: "Apply at digital.diplo.de", link: "https://digital.diplo.de"},
+      {step: "Book appointment", detail: "Use online appointment system", link: ""},
+      {step: "Document preparation", detail: "All docs with English translation", link: ""},
+      {step: "Embassy visit", detail: "Submit during office hours by appointment", link: ""},
+      {step: "Processing", detail: "Wait 8-12 weeks for decision", link: ""}
+    ],
+    importantNote: "Embassy covers Ethiopia and Djibouti. Ambassador: Birgitt Ory. Standard hours Mon-Thu 7:45 AM-5:00 PM, Fri 7:45 AM-1:45 PM.",
+    eligibilityTips: "Apply online first at digital.diplo.de. All Ethiopian documents need English translation and authentication."
+  }
+};
+
+  // Remaining African Countries
+  Tanzania: {
+    country: "Tanzania", flag: "🇹🇿", embassyName: "German Embassy Dar es Salaam", city: "Dar es Salaam",
+    address: "Umoja House, Garden Avenue / Mirambo Street, Dar es Salaam", phone: "+255 22 211 74 09",
+    email: "info@daressalam.diplo.de", website: "https://daressalam.diplo.de",
+    appointmentUrl: "https://daressalam.diplo.de", openingHours: "Mon-Fri 8:00 AM-3:00 PM",
+    processingTime: "8-12 weeks", consulates: [], languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Form 6 certificate",
+    ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904",
+    visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR",
+    requiredDocuments: ["Valid passport", "Visa application", "Photos", "Ausbildung contract", "German B1", "School certificates", "Blocked account", "Health insurance", "Police clearance", "Medical certificate"],
+    appointmentSteps: [{step: "Book", detail: "Contact embassy", link: ""}, {step: "Prepare", detail: "All documents", link: ""}, {step: "Submit", detail: "At embassy", link: ""}],
+    importantNote: "Contact embassy for appointment. All documents need English translation.",
+    eligibilityTips: "Apply 3 months in advance."
+  },
+
+  Uganda: {
+    country: "Uganda", flag: "🇺🇬", embassyName: "German Embassy Kampala", city: "Kampala",
+    address: "15 Philip Road, Kololo, Kampala", phone: "+256 417 50 11 11",
+    email: "info@kampala.diplo.de", website: "https://kampala.diplo.de",
+    appointmentUrl: "https://kampala.diplo.de", openingHours: "Mon-Fri 8:00-11:30 AM",
+    processingTime: "8-12 weeks", consulates: [], languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "A-Level",
+    ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904",
+    visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR",
+    requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1 cert", "Certificates", "Blocked account", "Insurance", "Police cert", "Medical"],
+    appointmentSteps: [{step: "Contact embassy", detail: "For appointment", link: ""}, {step: "Documents", detail: "Prepare all", link: ""}, {step: "Submit", detail: "At embassy", link: ""}],
+    importantNote: "Appointment required. Apply early.",
+    eligibilityTips: "Get all documents authenticated."
+  },
+
+  Cameroon: {
+    country: "Cameroon", flag: "🇨🇲", embassyName: "German Embassy Yaoundé", city: "Yaoundé",
+    address: "Avenue Charles de Gaulle, Bastos, Yaoundé", phone: "+237 222 20 56 66",
+    email: "info@jaunde.diplo.de", website: "https://jaunde.diplo.de",
+    appointmentUrl: "https://jaunde.diplo.de", openingHours: "Mon-Thu 7:30 AM-3:00 PM",
+    processingTime: "8-12 weeks", consulates: [], languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Baccalauréat",
+    ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904",
+    visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR",
+    requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Diplomas", "Blocked account", "Insurance", "Police", "Medical"],
+    appointmentSteps: [{step: "Appointment", detail: "Book via embassy", link: ""}, {step: "Prepare", detail: "All documents", link: ""}, {step: "Submit", detail: "At embassy", link: ""}],
+    importantNote: "French or English accepted. Apply early.",
+    eligibilityTips: "Documents in French or English."
+  },
+
+  Senegal: {
+    country: "Senegal", flag: "🇸🇳", embassyName: "German Embassy Dakar", city: "Dakar",
+    address: "20 Avenue Pasteur, Dakar", phone: "+221 33 889 48 84",
+    email: "info@dakar.diplo.de", website: "https://dakar.diplo.de",
+    appointmentUrl: "https://dakar.diplo.de", openingHours: "Mon-Fri 8:00-11:00 AM",
+    processingTime: "8-12 weeks", consulates: [], languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Baccalauréat",
+    ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904",
+    visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR",
+    requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Diplomas", "Blocked account", "Insurance", "Police", "Medical"],
+    appointmentSteps: [{step: "Contact", detail: "Embassy for appointment", link: ""}, {step: "Prepare", detail: "All documents", link: ""}, {step: "Submit", detail: "At embassy", link: ""}],
+    importantNote: "French/English documents accepted.",
+    eligibilityTips: "Apply 3 months ahead."
+  },
+
+  Egypt: {
+    country: "Egypt", flag: "🇪🇬", embassyName: "German Embassy Cairo", city: "Cairo",
+    address: "2 Berlin Street, Zamalek, Cairo", phone: "+20 2 27 28 20 00",
+    email: "info@kairo.diplo.de", website: "https://kairo.diplo.de",
+    appointmentUrl: "https://kairo.diplo.de", openingHours: "Sun-Thu 8:30-11:30 AM",
+    processingTime: "8-12 weeks", consulates: ["Alexandria"], languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Thanawiya Amma",
+    ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904",
+    visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR",
+    requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Certificates", "Blocked account", "Insurance", "Police", "Medical"],
+    appointmentSteps: [{step: "Appointment", detail: "Book online", link: ""}, {step: "Documents", detail: "Prepare all", link: ""}, {step: "Submit", detail: "At embassy", link: ""}],
+    importantNote: "Weekend is Friday-Saturday. Apply early.",
+    eligibilityTips: "Documents need Arabic/English translation."
+  },
+
+  "South Africa": {
+    country: "South Africa", flag: "🇿🇦", embassyName: "German Embassy Pretoria", city: "Pretoria",
+    address: "180 Blackwood Street, Arcadia, Pretoria 0083", phone: "+27 12 427 89 00",
+    email: "info@pretoria.diplo.de", website: "https://suedafrika.diplo.de",
+    appointmentUrl: "https://suedafrika.diplo.de", openingHours: "Mon-Fri 7:30 AM-12:30 PM",
+    processingTime: "6-10 weeks", consulates: ["Cape Town", "Johannesburg"], languageRequirement: "B1",
+    languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Matric certificate",
+    ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904",
+    visaFee: "75", serviceFee: "VFS fee ~30 EUR", totalEstimatedCost: "~105-120 EUR",
+    requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Matric", "Blocked account", "Insurance", "Police clearance", "Medical"],
+    appointmentSteps: [{step: "VFS", detail: "Apply through VFS Global", link: "https://visa.vfsglobal.com/zaf/en/deu/"}, {step: "Documents", detail: "Prepare all", link: ""}, {step: "Submit", detail: "At VFS center", link: ""}],
+    importantNote: "Apply through VFS Global. Consulates in Cape Town and Johannesburg.",
+    eligibilityTips: "VFS handles applications. Choose nearest VFS center."
+  }
+
+  // Remaining countries - Latin America, Middle East, Asia, Eastern Europe
+  Brazil: { country: "Brazil", flag: "🇧🇷", embassyName: "German Embassy Brasília", city: "Brasília", address: "SES Av. das Nações, Quadra 807, Lote 25, Brasília-DF 70415-900", phone: "+55 61 3442 7000", email: "info@brasilia.diplo.de", website: "https://brasilia.diplo.de", appointmentUrl: "https://brasilia.diplo.de", openingHours: "Mon-Fri 8:00-11:00 AM", processingTime: "8-12 weeks", consulates: ["São Paulo", "Rio de Janeiro", "Porto Alegre", "Recife"], languageRequirement: "B1", languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Ensino Médio", ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904", visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR", requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Certificates", "Blocked account", "Insurance"], appointmentSteps: [{step: "Appointment", detail: "Book online", link: ""}, {step: "Documents", detail: "Prepare all", link: ""}, {step: "Submit", detail: "At embassy/consulate", link: ""}], importantNote: "Multiple consulates available. Choose nearest location.", eligibilityTips: "Apply 3 months in advance." },
+
+  Colombia: { country: "Colombia", flag: "🇨🇴", embassyName: "German Embassy Bogotá", city: "Bogotá", address: "Edificio Cudesan, Carrera 69 No. 25B-44, Piso 7, Bogotá", phone: "+57 1 423 26 00", email: "info@bogota.diplo.de", website: "https://bogota.diplo.de", appointmentUrl: "https://bogota.diplo.de", openingHours: "Mon-Fri 8:00-12:00", processingTime: "8-12 weeks", consulates: ["Barranquilla", "Cali", "Medellín"], languageRequirement: "B1", languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Bachiller", ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904", visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR", requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Diplomas", "Blocked account", "Insurance"], appointmentSteps: [{step: "Book", detail: "Online appointment", link: ""}, {step: "Prepare", detail: "All documents", link: ""}, {step: "Submit", detail: "At embassy", link: ""}], importantNote: "Consulates in major cities available.", eligibilityTips: "Documents in Spanish accepted with translation." },
+
+  Ukraine: { country: "Ukraine", flag: "🇺🇦", embassyName: "German Embassy Kyiv", city: "Kyiv", address: "Bohomoltsia Street 25, 01901 Kyiv", phone: "+380 44 247 68 00", email: "info@kiew.diplo.de", website: "https://kiew.diplo.de", appointmentUrl: "https://kiew.diplo.de", openingHours: "Mon-Fri 9:00-12:00", processingTime: "8-12 weeks", consulates: ["Donetsk", "Dnipro"], languageRequirement: "B1", languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Attestat", ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904", visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR", requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Certificates", "Blocked account", "Insurance"], appointmentSteps: [{step: "Online booking", detail: "Book appointment", link: ""}, {step: "Documents", detail: "Prepare all", link: ""}, {step: "Submit", detail: "At embassy", link: ""}], importantNote: "Check current operational status due to situation.", eligibilityTips: "Contact embassy for latest procedures." },
+
+  Georgia: { country: "Georgia", flag: "🇬🇪", embassyName: "German Embassy Tbilisi", city: "Tbilisi", address: "Sheraton Metechi Palace Hotel, Telavi Street 20, Tbilisi 0103", phone: "+995 32 244 73 00", email: "info@tiflis.diplo.de", website: "https://tiflis.diplo.de", appointmentUrl: "https://tiflis.diplo.de", openingHours: "Mon-Fri 9:00-12:00", processingTime: "8-12 weeks", consulates: [], languageRequirement: "B1", languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Attestati", ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904", visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR", requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Certificates", "Blocked account", "Insurance"], appointmentSteps: [{step: "Book", detail: "Online", link: ""}, {step: "Prepare", detail: "Documents", link: ""}, {step: "Submit", detail: "Embassy", link: ""}], importantNote: "Appointment required.", eligibilityTips: "All documents need translation." },
+
+  Albania: { country: "Albania", flag: "🇦🇱", embassyName: "German Embassy Tirana", city: "Tirana", address: "Rruga Skënderbej 8, Tirana", phone: "+355 4 2274 505", email: "info@tirana.diplo.de", website: "https://tirana.diplo.de", appointmentUrl: "https://tirana.diplo.de", openingHours: "Mon-Fri 8:00-11:30", processingTime: "8-12 weeks", consulates: [], languageRequirement: "B1", languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Dëftesë Pjekurie", ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904", visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR", requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Diploma", "Blocked account", "Insurance"], appointmentSteps: [{step: "Appointment", detail: "Book online", link: ""}, {step: "Documents", detail: "Prepare", link: ""}, {step: "Submit", detail: "Embassy", link: ""}], importantNote: "Apply early for summer intake.", eligibilityTips: "Documents in Albanian/English accepted." },
+
+  Serbia: { country: "Serbia", flag: "🇷🇸", embassyName: "German Embassy Belgrade", city: "Belgrade", address: "Kneza Miloša 74-76, 11000 Belgrade", phone: "+381 11 306 4300", email: "info@belgrad.diplo.de", website: "https://belgrad.diplo.de", appointmentUrl: "https://belgrad.diplo.de", openingHours: "Mon-Fri 8:00-11:30", processingTime: "6-10 weeks", consulates: [], languageRequirement: "B1", languageCertificate: "Goethe-Zertifikat B1", academicRequirement: "Diploma o završenoj srednjoj školi", ageRequirement: "16-30 years", financialRequirement: "Blocked account", blockingAccount: "11904", visaFee: "75", serviceFee: "N/A", totalEstimatedCost: "~75-100 EUR", requiredDocuments: ["Passport", "Application", "Photos", "Contract", "B1", "Diploma", "Blocked account", "Insurance"], appointmentSteps: [{step: "Online", detail: "Book appointment", link: ""}, {step: "Prepare", detail: "All docs", link: ""}, {step: "Submit", detail: "Embassy", link: ""}], importantNote: "Faster processing than many countries.", eligibilityTips: "Serbian documents accepted with translation." }
 };
